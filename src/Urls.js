@@ -1,5 +1,11 @@
 const localUrl = '';
 const herokuUrl = '';
-const randomApiUrl = 'https://api.github.com/users/ljmocic';
+const statusApiUrl = 'http://localhost:8000/silo/1/';
+const loginApiUrl = 'http://localhost:8000/auth/';
 
-export { localUrl, herokuUrl, randomApiUrl };
+export {
+  localUrl,
+  herokuUrl,
+  statusApiUrl,
+  loginApiUrl,
+};

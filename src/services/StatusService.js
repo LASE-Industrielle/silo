@@ -4,16 +4,22 @@ import {
   STATUS_LOAD_SUCCESS,
   STATUS_LOAD_ERROR,
 } from '../Actions';
-import { randomApiUrl } from '../Urls';
+import { statusApiUrl } from '../Urls';
 
-const downloadData = (dispatch) => {
+const downloadData = (dispatch, token) => {
   dispatch({ type: STATUS_LOAD_START });
-  axios(randomApiUrl)
+  axios.get(statusApiUrl, {
+    headers: {
+      Authorization: 'Token 046785d8a6cfc14b26c9899f506e013b7f453fa0',
+    },
+  })
     .then(response => dispatch({
       type: STATUS_LOAD_SUCCESS,
-      payload: response.data.public_repos,
+      payload: response.data.percentage,
     }))
-    .catch(err => dispatch({ type: STATUS_LOAD_ERROR, error: err }));
+    .catch((err) => {
+      dispatch({ type: STATUS_LOAD_ERROR, error: err });
+    });
 };
 
 export default downloadData;

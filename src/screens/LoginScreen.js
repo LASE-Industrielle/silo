@@ -1,5 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Image, Alert } from 'react-native';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useReducer,
+} from 'react';
+import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -10,36 +15,34 @@ import {
   Text,
 } from 'native-base';
 
+import { authReducer } from '../Reducers';
+import UserContext from '../context/UserContext';
+import authCall from '../services/AuthService';
+
 import styles from '../Styles';
 import laseLogo from '../../assets/img/lase.jpeg';
-import UserContext from '../context/UserContext';
+
+const initialState = {
+  token: '',
+  errorMessage: '',
+  loading: false,
+};
 
 const LoginScreen = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loginUserMock } = useContext(UserContext);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    if (loggedIn) {
+    if (state.token !== '') {
+      loginUserMock(state.token);
       props.navigation.navigate('App');
     }
-  }, [loggedIn]);
+  }, [state.token]);
 
   const login = () => {
-    if (email.length < 3 && password.length < 3) {
-      loginUserMock(email);
-      setLoggedIn(true);
-    } else if (email.length >= 3 && password.length >= 3) {
-      Alert.alert(
-        '',
-        'Please enter valid email and password',
-        [
-          { text: 'OK' },
-        ],
-        { cancelable: false },
-      );
-    }
+    authCall(dispatch, email, password);
   };
 
   return (
@@ -49,7 +52,7 @@ const LoginScreen = (props) => {
           <Image style={styles.image} source={laseLogo} />
         </Item>
         <Item rounded style={styles.inputItem}>
-          <Input onChangeText={(text) => { setEmail(text); }} placeholder="Email" style={styles.placeholder} />
+          <Input autoCapitalize="none" onChangeText={(text) => { setEmail(text); }} placeholder="Email" style={styles.placeholder} />
         </Item>
         <Item rounded style={styles.inputItem}>
           <Input secureTextEntry onChangeText={(text) => { setPassword(text); }} placeholder="Password" style={styles.placeholder} />
