@@ -9,10 +9,10 @@ import UserContext from '../context/UserContext';
 import resetAction from '../utils/NavigationUtils';
 
 const ProfileScreen = (props) => {
-  const { username, logoutUserMock } = useContext(UserContext);
+  const { username, logoutUser } = useContext(UserContext);
 
   const logout = () => {
-    logoutUserMock();
+    logoutUser();
     props.navigation.dispatch(resetAction);
   };
 

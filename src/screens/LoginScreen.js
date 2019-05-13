@@ -29,20 +29,20 @@ const initialState = {
 };
 
 const LoginScreen = (props) => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { loginUserMock } = useContext(UserContext);
+  const { loginUser } = useContext(UserContext);
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
     if (state.token !== '') {
-      loginUserMock(state.token);
+      loginUser(username, state.token);
       props.navigation.navigate('App');
     }
   }, [state.token]);
 
   const login = () => {
-    authCall(dispatch, email, password);
+    authCall(dispatch, username, password);
   };
 
   return (
@@ -52,7 +52,7 @@ const LoginScreen = (props) => {
           <Image style={styles.image} source={laseLogo} />
         </Item>
         <Item rounded style={styles.inputItem}>
-          <Input autoCapitalize="none" onChangeText={(text) => { setEmail(text); }} placeholder="Email" style={styles.placeholder} />
+          <Input autoCapitalize="none" onChangeText={(text) => { setUsername(text); }} placeholder="Email" style={styles.placeholder} />
         </Item>
         <Item rounded style={styles.inputItem}>
           <Input secureTextEntry onChangeText={(text) => { setPassword(text); }} placeholder="Password" style={styles.placeholder} />

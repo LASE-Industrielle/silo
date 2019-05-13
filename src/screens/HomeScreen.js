@@ -16,11 +16,11 @@ const initialState = {
 
 const HomeScreen = () => {
   const [state, dispatch] = useReducer(statusReducer, initialState);
-  const { username } = useContext(UserContext);
+  const { username, token } = useContext(UserContext);
 
   useEffect(() => {
-    downloadData(dispatch, username);
-  }, [username]);
+    downloadData(dispatch);
+  }, [token]);
 
   return (
     <View style={styles.default}>
