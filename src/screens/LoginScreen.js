@@ -52,7 +52,7 @@ const LoginScreen = (props) => {
           <Image style={styles.image} source={laseLogo} />
         </Item>
         <Item rounded style={styles.inputItem}>
-          <Input autoCapitalize="none" onChangeText={(text) => { setUsername(text); }} placeholder="Email" style={styles.placeholder} />
+          <Input autoCapitalize="none" onChangeText={(text) => { setUsername(text); }} placeholder="Username" style={styles.placeholder} />
         </Item>
         <Item rounded style={styles.inputItem}>
           <Input secureTextEntry onChangeText={(text) => { setPassword(text); }} placeholder="Password" style={styles.placeholder} />

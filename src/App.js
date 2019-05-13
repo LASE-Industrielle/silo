@@ -7,29 +7,23 @@ const App = () => {
   const [username, setUsername] = useState('');
 
   const [token, setToken] = useState('');
-  //
-  // const loginUser = (newUsername, newToken) => {
-  //   setUsername(newUsername);
-  //   setToken(newToken);
-  // };
 
-  // const logoutUser = () => {
-  //   setUsername('');
-  //   setToken('');
-  // };
+  const loginUser = (newUsername, newToken) => {
+    setUsername(newUsername);
+    setToken(newToken);
+  };
+
+  const logoutUser = () => {
+    setUsername('');
+    setToken('');
+  };
 
   return (
     <UserContext.Provider value={{
       username,
       token,
-      loginUser: (newUsername, newToken) => {
-          setUsername(newUsername);
-          setToken(newToken);
-      },
-      logoutUser: () => {
-          setUsername('');
-          setToken('');
-      },
+      loginUser,
+      logoutUser,
     }}
     >
       <AppContainer />
