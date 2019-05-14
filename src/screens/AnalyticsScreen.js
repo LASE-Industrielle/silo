@@ -44,7 +44,7 @@ const AnalyticsScreen = () => (
         </ListItem>
       </List>
     </Content>
-  </Container >
+  </Container>
 );
 
 export default AnalyticsScreen;
