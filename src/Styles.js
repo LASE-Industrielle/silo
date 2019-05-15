@@ -30,4 +30,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
     padding: 5,
   },
+  behind: {
+    zIndex: -100,
+    justifyContent:'center',
+    alignItems:'center',
+    alignSelf:'center',
+    position:'absolute',
+  },
 });
