@@ -13,7 +13,7 @@ const statusReducer = (state, action) => {
     case STATUS_LOAD_START:
       return { ...state, loading: true };
     case STATUS_LOAD_SUCCESS:
-      return { ...state, percentage: action.payload, loading: false };
+      return { ...state, data: action.payload, loading: false };
     case STATUS_LOAD_ERROR:
       return {
         ...state,

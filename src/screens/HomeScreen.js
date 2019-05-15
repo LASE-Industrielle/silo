@@ -1,22 +1,18 @@
-import React, {useEffect, useReducer, useContext} from 'react';
-import {View, Text} from 'react-native';
+import React, {useContext, useEffect, useReducer} from 'react';
 
 import {statusReducer} from '../Reducers';
-import downloadData from '../services/StatusService';
+import downloadData from '../services/SiloService';
 import UserContext from '../context/UserContext';
-
-import styles from '../Styles';
-import CylinderIcon from "../icons/CylinderIcon";
-import Svg, {Polygon} from "react-native-svg";
+import {Container, Content, Header, Icon, Left, List, ListItem, Right, Text} from 'native-base';
 
 const initialState = {
-    percentage: 0,
+    data: [],
     errorMessage: '',
     loading: false,
 };
 
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
     const [state, dispatch] = useReducer(statusReducer, initialState);
     const {token} = useContext(UserContext);
 
@@ -25,28 +21,29 @@ const HomeScreen = () => {
     }, []);
 
     return (
-        <View style={styles.default}>
-            <Text>{`${state.percentage}%`}</Text>
-            <View>
-                <View>
-                    <CylinderIcon width={200} height={200}/>
-                </View>
-                <View style={styles.behind}>
-                    <Svg
-                        width="120"
-                        height="200"
-                    >
-                        <Polygon
-                            points={"0," + (190 - 180 * state.percentage / 100) + " 120," + (190 - 180 * state.percentage / 100) + " 120,190 0,190"}
-                            fill="red"
-                            strokeWidth="0"
-                            stroke="rgb(0,0,0)"
-                        />
-                    </Svg>
-                </View>
-            </View>
-        </View>
+        <Container>
+            <Header transparent>
+                <Text>All silos</Text>
+            </Header>
+            <Content>
+                <List>
+                    {state.data.map(item =>
+                        <ListItem key={item.id} onPress={() => {
+                            props.navigation.navigate('SiloDetails', item)
+                        }}>
+                            <Left>
+                                <Text>{item.location} - {item.percentage}%</Text>
+                            </Left>
+                            <Right>
+                                <Icon name="arrow-forward"/>
+                            </Right>
+                        </ListItem>
+                    )}
+                </List>
+            </Content>
+        </Container>
     );
+
 };
 
 export default HomeScreen;

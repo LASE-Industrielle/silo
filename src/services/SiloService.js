@@ -4,14 +4,14 @@ import {
   STATUS_LOAD_SUCCESS,
   STATUS_LOAD_ERROR,
 } from '../Actions';
-import { statusApiUrl } from '../Urls';
+import { siloApiUrl } from '../Urls';
 
 const downloadData = (dispatch) => {
   dispatch({ type: STATUS_LOAD_START });
-  axios.get(statusApiUrl)
+  axios.get(siloApiUrl)
     .then(response => dispatch({
       type: STATUS_LOAD_SUCCESS,
-      payload: response.data.percentage,
+      payload: response.data,
     }))
     .catch((err) => {
       dispatch({ type: STATUS_LOAD_ERROR, error: err });
