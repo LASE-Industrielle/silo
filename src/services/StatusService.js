@@ -6,13 +6,9 @@ import {
 } from '../Actions';
 import { statusApiUrl } from '../Urls';
 
-const downloadData = (dispatch, token) => {
+const downloadData = (dispatch) => {
   dispatch({ type: STATUS_LOAD_START });
-  axios.get(statusApiUrl, {
-    headers: {
-      Authorization: `Token ${token}`,
-    }
-  })
+  axios.get(statusApiUrl)
     .then(response => dispatch({
       type: STATUS_LOAD_SUCCESS,
       payload: response.data.percentage,

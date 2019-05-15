@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import { statusReducer } from '../Reducers';
 import downloadData from '../services/StatusService';
 import UserContext from '../context/UserContext';
+
 import styles from '../Styles';
 
 const initialState = {
@@ -12,17 +13,19 @@ const initialState = {
   loading: false,
 };
 
+
 const HomeScreen = () => {
   const [state, dispatch] = useReducer(statusReducer, initialState);
-  const { token } = useContext(UserContext);
+  const { username, token } = useContext(UserContext);
 
   useEffect(() => {
-    downloadData(dispatch, token);
-  }, []);
+    downloadData(dispatch);
+  }, [token]);
 
   return (
     <View style={styles.default}>
       <Text>{`${state.percentage}%`}</Text>
+      <Text>{username}</Text>
     </View>
   );
 };

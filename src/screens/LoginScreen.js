@@ -31,14 +31,8 @@ const initialState = {
 const LoginScreen = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { token, loginUser } = useContext(UserContext);
+  const { loginUser } = useContext(UserContext);
   const [state, dispatch] = useReducer(authReducer, initialState);
-
-  useEffect(() => {
-    if (token !== '') {
-      props.navigation.navigate('App');
-    }
-  }, [token]);
 
   useEffect(() => {
     if (state.token !== '') {
