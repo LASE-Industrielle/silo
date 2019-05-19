@@ -11,6 +11,7 @@ import HomeScreen from './screens/HomeScreen';
 import AnalyticsScreen from './screens/AnalyticsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SiloDetailsScreen from './screens/SiloDetailsScreen';
+import SiloConfigScreen from "./screens/ConfigScreen";
 
 const AppTabNavigator = createBottomTabNavigator(
     {
@@ -19,13 +20,6 @@ const AppTabNavigator = createBottomTabNavigator(
             path: 'Home',
             navigationOptions: {
                 tabBarIcon: <Icon name="home"/>,
-            },
-        },
-        Analytics: {
-            screen: AnalyticsScreen,
-            path: 'Analytics',
-            navigationOptions: {
-                tabBarIcon: <Icon name="list"/>,
             },
         },
         Profile: {
@@ -45,6 +39,38 @@ const AppTabNavigator = createBottomTabNavigator(
     },
 );
 
+const SiloNavigator = createStackNavigator(
+    {
+        Analytics: {
+            screen: AnalyticsScreen,
+            path: 'Analytics',
+            navigationOptions: {
+                header: null
+            },
+        },
+        SiloOverview: {
+            screen: SiloDetailsScreen,
+            path: 'SiloOverview',
+            navigationOptions: {
+                header: null,
+                // tabBarIcon: <Icon name="information-circle-outline"/>,
+            },
+        },
+        SiloConfig: {
+            screen: SiloConfigScreen,
+            path: 'SiloConfig',
+            navigationOptions: {
+                header: null,
+                // tabBarIcon: <Icon name="information-circle-outline"/>,
+            },
+        }
+
+    },
+    {
+        initialRouteName: 'SiloOverview',
+    }
+);
+
 const AppNavigator = createStackNavigator(
     {
         Login: {
@@ -57,9 +83,9 @@ const AppNavigator = createStackNavigator(
             path: 'App',
             navigationOptions: {header: null},
         },
-        SiloDetails: {
-            screen: SiloDetailsScreen,
-            path: 'SiloDetails',
+        Silo: {
+            screen: SiloNavigator,
+            path: 'Silo',
             navigationOptions: {
                 header: null,
             },
@@ -67,9 +93,10 @@ const AppNavigator = createStackNavigator(
 
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'App',
     },
 );
+
 
 const AppContainer = createAppContainer(AppNavigator);
 

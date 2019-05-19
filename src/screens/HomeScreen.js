@@ -29,7 +29,7 @@ const HomeScreen = (props) => {
                 <List>
                     {state.data.map(item =>
                         <ListItem key={item.id} onPress={() => {
-                            props.navigation.navigate('SiloDetails', item)
+                            props.navigation.navigate('SiloOverview', {item:item})
                         }}>
                             <Left>
                                 <Text>{item.location} - {item.percentage}%</Text>

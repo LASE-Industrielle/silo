@@ -5,13 +5,21 @@ import {
   Content,
   List,
   ListItem,
-  Text,
+  Text, Left, Button, Icon, Body, Title, Right,
 } from 'native-base';
 
-const AnalyticsScreen = () => (
+const AnalyticsScreen = (props) => (
   <Container>
     <Header>
-      <Text>Analytics</Text>
+      <Left>
+        <Button transparent onPress={() => props.navigation.goBack()}>
+          <Icon name='arrow-back'/>
+        </Button>
+      </Left>
+      <Body>
+        <Title>Analytics</Title>
+      </Body>
+      <Right/>
     </Header>
     <Content>
       <List>

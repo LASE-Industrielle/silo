@@ -1,16 +1,40 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Container,  Content} from 'native-base';
-import SiloDetails from '../components/SiloDetails';
-import Styles from '../Styles';
+import {Body, Button, Container, Content, Header, Icon, Left, Right, Title, Footer} from 'native-base';
+
+import SiloOverview from '../components/SiloOverview';
 
 const SiloDetailsScreen = (props) => {
 
-    return (
-        <View style={Styles.default}>
+    const silo = props.navigation.getParam('item', {});
 
-                    <SiloDetails percentage={props.navigation.getParam('percentage',0)}/>
-        </View>
+    return (
+        <Container>
+            <Header>
+                <Left>
+                    <Button transparent onPress={() => props.navigation.navigate('Home')}>
+                        <Icon name='arrow-back'/>
+                    </Button>
+                </Left>
+                <Body>
+                    <Title>Silo overview</Title>
+                </Body>
+                <Right>
+                    <Button transparent onPress={() => props.navigation.navigate('SiloConfig', {siloDetails:silo})}>
+                        <Icon name="settings" />
+                    </Button>
+                </Right>
+            </Header>
+
+            <Content>
+                    <SiloOverview silo={silo}/>
+
+            </Content>
+            <Footer>
+                <Button transparent onPress={() => props.navigation.navigate('Analytics')}>
+                    <Icon name="stats" />
+                </Button>
+            </Footer>
+        </Container>
     )
 }
 

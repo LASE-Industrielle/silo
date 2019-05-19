@@ -7,14 +7,16 @@ import styles from '../Styles';
 import CylinderIcon from "../icons/CylinderIcon";
 import Svg, {Polygon} from "react-native-svg";
 
-const SiloDetails = (props) => {
+const SiloOverview = (props) => {
+
+    const {silo} = props;
 
     return (
         <View style={styles.default}>
-            <Text>{`${props.percentage}%`}</Text>
+            <Text>{`${silo.percentage}%`}</Text>
             <View>
                 <View>
-                    <CylinderIcon width={200} height={200}/>
+                    <CylinderIcon width={200} height={200} fill="black"/>
                 </View>
                 <View style={styles.behind}>
                     <Svg
@@ -22,8 +24,8 @@ const SiloDetails = (props) => {
                         height="200"
                     >
                         <Polygon
-                            points={"0," + (190 - 180 * props.percentage / 100) + " 120," + (190 - 180 * props.percentage / 100) + " 120,190 0,190"}
-                            fill="red"
+                            points={"0," + (190 - 180 * silo.percentage / 100) + " 120," + (190 - 180 * silo.percentage / 100) + " 120,190 0,190"}
+                            fill="green"
                             strokeWidth="0"
                             stroke="rgb(0,0,0)"
                         />
@@ -34,4 +36,4 @@ const SiloDetails = (props) => {
     )
 }
 
-export default SiloDetails;
+export default SiloOverview;
