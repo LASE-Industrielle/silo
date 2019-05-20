@@ -9,31 +9,32 @@ import styles from '../Styles';
 
 const SiloConfigScreen = (props) => {
 
-    const silo = props.navigation.getParam('siloDetails', {});
+  const silo = props.navigation.getParam('siloDetails', {});
 
-    return (
-      <Container>
-          <Header>
-              <Left>
-                  <Button transparent onPress={() => props.navigation.goBack()}>
-                      <Icon name='arrow-back' style={styles.icons}/>
-                  </Button>
-              </Left>
-              <Body>
-              <Title>Configuration</Title>
-              </Body>
-              <Right/>
-          </Header>
-          <Content>
-              <View>
-                  <SiloData width={silo.width} height={silo.height} capacity={silo.capacity} location={silo.location} />
-                  <SensorData type={silo.sensor.type} serialNumber={silo.sensor.serial_number} />
-              </View>
-          </Content>
+  return (
+    <Container>
+      <Header>
+        <Left>
+          <Button transparent onPress={() => props.navigation.goBack()}>
+            <Icon name='arrow-back' style={styles.icons}/>
+          </Button>
+        </Left>
+        <Body>
+        <Title>Configuration</Title>
+        </Body>
+        <Right/>
+      </Header>
+      <Content>
+        <View>
+          <SiloData width={silo.width} height={silo.height} capacity={silo.capacity}
+                    location={silo.location}/>
+          <SensorData type={silo.sensor.type} serialNumber={silo.sensor.serial_number}/>
+        </View>
+      </Content>
 
-      </Container>
+    </Container>
 
-    )
+  );
 };
 
 export default SiloConfigScreen;

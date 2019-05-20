@@ -24,7 +24,10 @@ const authCall = (dispatch, loginUsername, loginPassword) => {
       });
     })
     .catch((err) => {
-      dispatch({ type: AUTH_ERROR, payload: err });
+      dispatch({
+        type: AUTH_ERROR,
+        payload: err
+      });
     });
 };
 

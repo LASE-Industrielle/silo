@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 const ProfileScreen = (props) => {
 
   const { username, logoutUser } = useContext(UserContext);
-  const [ sync, setSync ] = useState(false);
+  const [sync, setSync] = useState(false);
 
   const logout = () => {
     logoutUser();
@@ -44,14 +44,17 @@ const ProfileScreen = (props) => {
 
   return (
     <Container>
-      <Header />
+      <Header/>
       <Text>{username}</Text>
       <View style={styles.default}>
-        <Thumbnail large source={ccLogo} />
+        <Thumbnail large source={ccLogo}/>
       </View>
       <Button
         block
-        style={{ margin: 20, backgroundColor: primary }}
+        style={{
+          margin: 20,
+          backgroundColor: primary
+        }}
         onPress={logout}
       >
         <Text>Logout</Text>
@@ -60,20 +63,20 @@ const ProfileScreen = (props) => {
         <ListItem icon>
           <Left>
             <Button style={{ backgroundColor: primary }} onPress={() => setSync(!sync)}>
-              <Icon active name="sync" />
+              <Icon active name="sync"/>
             </Button>
           </Left>
           <Body>
           <Text>Syncronization</Text>
           </Body>
           <Right>
-            <Switch value={sync} />
+            <Switch value={sync}/>
           </Right>
         </ListItem>
         <ListItem icon>
           <Left>
             <Button style={{ backgroundColor: primary }}>
-              <Icon active name="wifi" />
+              <Icon active name="wifi"/>
             </Button>
           </Left>
           <Body>
@@ -81,13 +84,13 @@ const ProfileScreen = (props) => {
           </Body>
           <Right>
             <Text>GeekyAnts</Text>
-            <Icon active name="arrow-forward" />
+            <Icon active name="arrow-forward"/>
           </Right>
         </ListItem>
         <ListItem icon>
           <Left>
             <Button style={{ backgroundColor: primary }}>
-              <Icon active name="bluetooth" />
+              <Icon active name="bluetooth"/>
             </Button>
           </Left>
           <Body>
@@ -95,7 +98,7 @@ const ProfileScreen = (props) => {
           </Body>
           <Right>
             <Text>On</Text>
-            <Icon active name="arrow-forward" />
+            <Icon active name="arrow-forward"/>
           </Right>
         </ListItem>
       </Content>

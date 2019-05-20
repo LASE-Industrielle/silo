@@ -37,13 +37,17 @@ const LoginScreen = (props) => {
     <Container>
       <Content contentContainerStyle={styles.default}>
         <Item>
-          <Image style={styles.image} source={laseLogo} />
+          <Image style={styles.image} source={laseLogo}/>
         </Item>
         <Item rounded style={styles.inputItem}>
-          <Input autoCapitalize="none" onChangeText={(text) => { setUsername(text); }} placeholder="Username" style={styles.placeholder} />
+          <Input autoCapitalize="none" onChangeText={(text) => {
+            setUsername(text);
+          }} placeholder="Username" style={styles.placeholder}/>
         </Item>
         <Item rounded style={styles.inputItem}>
-          <Input secureTextEntry onChangeText={(text) => { setPassword(text); }} placeholder="Password" style={styles.placeholder} />
+          <Input secureTextEntry onChangeText={(text) => {
+            setPassword(text);
+          }} placeholder="Password" style={styles.placeholder}/>
         </Item>
         <Button
           block
@@ -51,7 +55,10 @@ const LoginScreen = (props) => {
           onPress={login}
           style={styles.buttonStyle}
         >
-          <Text style={{ color: 'white', fontSize: 14 }}>Log in</Text>
+          <Text style={{
+            color: 'white',
+            fontSize: 14
+          }}>Log in</Text>
         </Button>
       </Content>
     </Container>

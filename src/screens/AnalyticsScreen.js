@@ -25,13 +25,13 @@ const AnalyticsScreen = (props) => (
     <Header>
       <Left>
         <Button transparent onPress={() => props.navigation.goBack()}>
-          <Icon name='arrow-back' style={styles.icons} />
+          <Icon name='arrow-back' style={styles.icons}/>
         </Button>
       </Left>
       <Body>
-        <Title>Analytics</Title>
+      <Title>Analytics</Title>
       </Body>
-      <Right />
+      <Right/>
     </Header>
     <Content>
       <LineChart
@@ -58,7 +58,7 @@ const AnalyticsScreen = (props) => (
           color: () => `rgba(255, 255, 255, 0.9)`,
           style: {
             borderRadius: 12,
-            shadowColor: "#000",
+            shadowColor: '#000',
             shadowOffset: {
               width: 0,
               height: 2,
@@ -69,18 +69,20 @@ const AnalyticsScreen = (props) => (
           }
         }}
         bezier
-        style={{
-        }}
+        style={{}}
       />
       <List>
-        <ListItem itemDivider >
-          <Text style={{ color: '#676767'}}>15th May 2019</Text>
+        <ListItem itemDivider>
+          <Text style={{ color: '#676767' }}>15th May 2019</Text>
         </ListItem>
         <ListItem>
           <Left>
-            <Text>83%</Text>
+            <Text style={{
+              fontWeight: 'bold',
+              color: '#01A04E'
+            }}>83%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>
@@ -88,7 +90,7 @@ const AnalyticsScreen = (props) => (
           <Left>
             <Text>83%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>
@@ -96,18 +98,18 @@ const AnalyticsScreen = (props) => (
           <Left>
             <Text>83%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>
-        <ListItem itemDivider >
-          <Text style={{ color: '#676767'}}>14th May 2019</Text>
+        <ListItem itemDivider>
+          <Text style={{ color: '#676767' }}>14th May 2019</Text>
         </ListItem>
         <ListItem>
           <Left>
             <Text>83%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>
@@ -115,7 +117,7 @@ const AnalyticsScreen = (props) => (
           <Left>
             <Text>77%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>
@@ -123,18 +125,18 @@ const AnalyticsScreen = (props) => (
           <Left>
             <Text>65%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>
-        <ListItem itemDivider >
-          <Text style={{ color: '#676767'}}>13th May 2016</Text>
+        <ListItem itemDivider>
+          <Text style={{ color: '#676767' }}>13th May 2016</Text>
         </ListItem>
         <ListItem>
           <Left>
             <Text>11%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>
@@ -142,7 +144,7 @@ const AnalyticsScreen = (props) => (
           <Left>
             <Text>21%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>
@@ -150,7 +152,7 @@ const AnalyticsScreen = (props) => (
           <Left>
             <Text>33%</Text>
           </Left>
-          <Right >
+          <Right>
             <Text note>17:31</Text>
           </Right>
         </ListItem>

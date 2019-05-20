@@ -4,7 +4,6 @@ import {
   Button,
   Container,
   Content,
-  Footer,
   Header,
   Icon,
   Left,
@@ -19,38 +18,34 @@ import SiloShortInfo from '../components/SiloShortInfo';
 
 const SiloDetailsScreen = (props) => {
 
-    const silo = props.navigation.getParam('item', {});
+  const silo = props.navigation.getParam('item', {});
 
-    return (
-        <Container>
-            <Header>
-                <Left>
-                    <Button transparent onPress={() => props.navigation.navigate('Silos')}>
-                        <Icon name='arrow-back' style={styles.icons} />
-                    </Button>
-                </Left>
-                <Body>
-                    <Title>{silo.sensor.serial_number}</Title>
-                </Body>
-                <Right>
-                    <Button transparent onPress={() => props.navigation.navigate('SiloConfig', {siloDetails:silo})}>
-                        <Icon name="settings" style={styles.icons} />
-                    </Button>
-                </Right>
-            </Header>
+  return (
+    <Container>
+      <Header>
+        <Left>
+          <Button transparent onPress={() => props.navigation.navigate('Silos')}>
+            <Icon name='arrow-back' style={styles.icons}/>
+          </Button>
+        </Left>
+        <Body>
+        <Title>{silo.sensor.serial_number}</Title>
+        </Body>
+        <Right>
+          <Button transparent
+                  onPress={() => props.navigation.navigate('SiloConfig', { siloDetails: silo })}>
+            <Icon name="ios-information-circle-outline" style={styles.icons}/>
+          </Button>
+        </Right>
 
-            <Content>
-                    <SiloOverview silo={silo}/>
-                    <SiloShortInfo/>
+      </Header>
 
-            </Content>
-            <Footer>
-                <Button transparent onPress={() => props.navigation.navigate('Analytics')}>
-                    <Icon name="stats" style={styles.icons} />
-                </Button>
-            </Footer>
-        </Container>
-    )
+      <Content>
+        <SiloOverview silo={silo}/>
+        <SiloShortInfo test={props}/>
+      </Content>
+    </Container>
+  );
 };
 
 export default SiloDetailsScreen;

@@ -10,7 +10,10 @@ const downloadData = (dispatch) => {
       payload: response.data,
     }))
     .catch((err) => {
-      dispatch({ type: STATUS_LOAD_ERROR, error: err });
+      dispatch({
+        type: STATUS_LOAD_ERROR,
+        error: err
+      });
     });
 };
 

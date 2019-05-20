@@ -13,7 +13,12 @@ export default StyleSheet.create({
     height: 100,
     borderRadius: 10,
   },
-  buttonStyle: { marginLeft: 20, marginRight: 20, marginTop: 10, backgroundColor: primary },
+  buttonStyle: {
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
+    backgroundColor: primary
+  },
   inputItem: {
     marginTop: 10,
     marginBottom: 0,
@@ -21,10 +26,20 @@ export default StyleSheet.create({
     marginRight: 20,
     borderRadius: 10,
   },
-  placeholder: { fontSize: 14, marginLeft: 12 },
+  placeholder: {
+    fontSize: 14,
+    marginLeft: 12
+  },
   footer: { padding: 10 },
-  homeImage: { height: 200, width: null, flex: 1 },
-  notificationImage: { width: 50, height: 50 },
+  homeImage: {
+    height: 200,
+    width: null,
+    flex: 1
+  },
+  notificationImage: {
+    width: 50,
+    height: 50
+  },
   homeHeaderStyle: {
     flex: 1,
     justifyContent: 'space-between',
@@ -34,10 +49,10 @@ export default StyleSheet.create({
   },
   behind: {
     zIndex: -100,
-    justifyContent:'center',
-    alignItems:'center',
-    alignSelf:'center',
-    position:'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    position: 'absolute',
   },
   icons: {
     color: primary

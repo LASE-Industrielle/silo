@@ -48,7 +48,7 @@ const SilosScreen = (props) => {
       <Header transparent>
         <Left/>
         <Body>
-          <Title>All silos</Title>
+        <Title>Silos</Title>
         </Body>
         <Right><Text note>Updated</Text></Right>
 

@@ -49,7 +49,7 @@ const App = () => {
       logoutUser,
     }}
     >
-      <AppContainer />
+      <AppContainer/>
     </UserContext.Provider>
   );
 };
