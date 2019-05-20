@@ -1,48 +1,67 @@
-import React, {useContext, useEffect, useReducer} from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 
-import {statusReducer} from '../Reducers';
+import { RefreshControl } from 'react-native';
+
+import { statusReducer } from '../Reducers';
 import downloadData from '../services/SiloService';
 import UserContext from '../context/UserContext';
-import {Container, Content, Header, Icon, Left, List, ListItem, Right, Text} from 'native-base';
+import { Body, Container, Content, Header, Left, List, ListItem, Right, Text } from 'native-base';
+
+import SiloPercentage from '../components/SiloPercentage';
 
 const initialState = {
-    data: [],
-    errorMessage: '',
-    loading: false,
+  data: [],
+  errorMessage: '',
+  loading: false,
 };
 
 
 const HomeScreen = (props) => {
-    const [state, dispatch] = useReducer(statusReducer, initialState);
-    const {token} = useContext(UserContext);
+  const [state, dispatch] = useReducer(statusReducer, initialState);
+  const { token } = useContext(UserContext);
+  const [refreshing, setRefreshing] = useState(false);
 
-    useEffect(() => {
-        downloadData(dispatch, token);
-    }, []);
+  useEffect(() => {
+    downloadData(dispatch, token);
+  }, []);
 
-    return (
-        <Container>
-            <Header transparent>
-                <Text>All silos</Text>
-            </Header>
-            <Content>
-                <List>
-                    {state.data.map(item =>
-                        <ListItem key={item.id} onPress={() => {
-                            props.navigation.navigate('SiloOverview', {item:item})
-                        }}>
-                            <Left>
-                                <Text>{item.location} - {item.percentage}%</Text>
-                            </Left>
-                            <Right>
-                                <Icon name="arrow-forward"/>
-                            </Right>
-                        </ListItem>
-                    )}
-                </List>
-            </Content>
-        </Container>
-    );
+  const onRefresh = () => {
+    setRefreshing(true);
+    setInterval(() => {
+      setRefreshing(false);
+    }, 2000);
+  };
+
+  return (
+    <Container>
+      <Header transparent>
+        <Text>All silos</Text>
+      </Header>
+      <Content refreshControl={<RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />}>
+        <List>
+          {state.data.map(item =>
+            <ListItem key={item.id} onPress={() => {
+              props.navigation.navigate('SiloOverview', { item: item });
+            }}>
+              <Left>
+                <SiloPercentage percentage={item.percentage}/>
+                <Body>
+                <Text>Silo #1</Text>
+                <Text note>{item.location}</Text>
+                </Body>
+              </Left>
+              <Right>
+                <Text note>7h ago</Text>
+              </Right>
+            </ListItem>
+          )}
+        </List>
+      </Content>
+    </Container>
+  );
 
 };
 
