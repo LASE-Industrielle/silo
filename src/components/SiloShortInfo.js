@@ -16,7 +16,6 @@ import styles from '../Styles';
 const CardItemBordered = () => {
     return (
       <Container>
-        <Header />
         <Content>
           <Card>
             <CardItem>
@@ -35,10 +34,10 @@ const CardItemBordered = () => {
               <Text>83% at 17:31</Text>
             </ListItem>
             <ListItem>
-              <Text>51% at 15:31</Text>
+              <Text>83% at 17:31</Text>
             </ListItem>
-            <ListItem itemDivider>
-              <Text>15.05.2019</Text>
+            <ListItem>
+              <Text>51% at 15:31</Text>
             </ListItem>
           </List>
         </Content>

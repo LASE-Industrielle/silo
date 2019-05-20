@@ -5,18 +5,33 @@ import {
   Content,
   List,
   ListItem,
-  Text
+  Text,
+  Left,
+  Button,
+  Icon,
+  Body,
+  Title,
+  Right,
 } from 'native-base';
 
+import styles from '../Styles';
 
 import { LineChart } from 'react-native-chart-kit';
 
 import { primary, secondary } from '../Colors';
 
-const AnalyticsScreen = () => (
+const AnalyticsScreen = (props) => (
   <Container>
     <Header>
-      <Text>Analytics</Text>
+      <Left>
+        <Button transparent onPress={() => props.navigation.goBack()}>
+          <Icon name='arrow-back' style={styles.icons} />
+        </Button>
+      </Left>
+      <Body>
+        <Title>Analytics</Title>
+      </Body>
+      <Right />
     </Header>
     <Content>
       <LineChart

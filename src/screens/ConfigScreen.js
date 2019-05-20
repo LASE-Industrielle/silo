@@ -5,6 +5,8 @@ import {Body, Button, Container, Content, Header, Icon, Left, Right, Title} from
 import SiloData from "../components/SiloData";
 import SensorData from "../components/SensorData";
 
+import styles from '../Styles';
+
 const SiloConfigScreen = (props) => {
 
     const silo = props.navigation.getParam('siloDetails', {});
@@ -14,7 +16,7 @@ const SiloConfigScreen = (props) => {
             <Header>
                 <Left>
                     <Button transparent onPress={() => props.navigation.goBack()}>
-                        <Icon name='arrow-back'/>
+                        <Icon name='arrow-back' style={styles.icons}/>
                     </Button>
                 </Left>
                 <Body>
