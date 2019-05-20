@@ -1,17 +1,17 @@
 import React from 'react';
 import {
-    createStackNavigator,
-    createAppContainer,
-    createBottomTabNavigator,
+  createAppContainer,
+  createBottomTabNavigator,
+  createStackNavigator,
 } from 'react-navigation';
-import {Icon} from 'native-base';
+import { Icon } from 'native-base';
 
 import LoginScreen from './screens/LoginScreen';
 import SilosScreen from './screens/SilosScreen';
 import AnalyticsScreen from './screens/AnalyticsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SiloDetailsScreen from './screens/SiloDetailsScreen';
-import SiloConfigScreen from "./screens/ConfigScreen";
+import SiloConfigScreen from './screens/ConfigScreen';
 
 import styles from './Styles';
 

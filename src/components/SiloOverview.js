@@ -1,13 +1,13 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
-import {Text} from 'native-base';
+import { Text } from 'native-base';
 
 import styles from '../Styles';
-import CylinderIcon from "../icons/CylinderIcon";
-import Svg, {Polygon} from "react-native-svg";
+import CylinderIcon from '../icons/CylinderIcon';
+import Svg, { Polygon } from 'react-native-svg';
 
-import {primary} from '../Colors';
+import { primary } from '../Colors';
 
 const SiloOverview = (props) => {
 
@@ -36,6 +36,6 @@ const SiloOverview = (props) => {
             </View>
         </View>
     )
-}
+};
 
 export default SiloOverview;

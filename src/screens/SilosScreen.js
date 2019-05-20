@@ -5,7 +5,18 @@ import { RefreshControl } from 'react-native';
 import { statusReducer } from '../Reducers';
 import downloadData from '../services/SiloService';
 import UserContext from '../context/UserContext';
-import { Body, Container, Content, Header, Left, List, ListItem, Right, Text } from 'native-base';
+import {
+  Body,
+  Container,
+  Content,
+  Header,
+  Left,
+  List,
+  ListItem,
+  Right,
+  Text,
+  Title
+} from 'native-base';
 
 import SiloPercentage from '../components/SiloPercentage';
 
@@ -35,7 +46,12 @@ const SilosScreen = (props) => {
   return (
     <Container>
       <Header transparent>
-        <Text>All silos</Text>
+        <Left/>
+        <Body>
+          <Title>All silos</Title>
+        </Body>
+        <Right><Text note>Updated</Text></Right>
+
       </Header>
       <Content refreshControl={<RefreshControl
         refreshing={refreshing}

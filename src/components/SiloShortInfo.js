@@ -1,15 +1,5 @@
-import React from "react";
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Text,
-  Body,
-  List,
-  ListItem
-} from 'native-base';
+import React from 'react';
+import { Body, Card, CardItem, Container, Content, List, ListItem, Text } from 'native-base';
 
 import styles from '../Styles';
 

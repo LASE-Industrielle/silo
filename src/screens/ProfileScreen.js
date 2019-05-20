@@ -4,7 +4,20 @@ import PropTypes from 'prop-types';
 import ccLogo from '../../assets/img/cc.jpg';
 
 
-import { Container, Header, Content, ListItem, Text, Icon, Left, Body, Right, Switch, Button, Thumbnail } from 'native-base';
+import {
+  Body,
+  Button,
+  Container,
+  Content,
+  Header,
+  Icon,
+  Left,
+  ListItem,
+  Right,
+  Switch,
+  Text,
+  Thumbnail
+} from 'native-base';
 
 import UserContext from '../context/UserContext';
 import resetAction from '../utils/NavigationUtils';

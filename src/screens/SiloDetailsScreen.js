@@ -1,5 +1,16 @@
 import React from 'react';
-import {Body, Button, Container, Content, Header, Icon, Left, Right, Title, Footer} from 'native-base';
+import {
+  Body,
+  Button,
+  Container,
+  Content,
+  Footer,
+  Header,
+  Icon,
+  Left,
+  Right,
+  Title
+} from 'native-base';
 
 import styles from '../Styles';
 

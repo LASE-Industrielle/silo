@@ -1,9 +1,5 @@
 import axios from 'axios';
-import {
-  AUTH_START,
-  AUTH_SUCCESS,
-  AUTH_ERROR,
-} from '../Actions';
+import { AUTH_ERROR, AUTH_START, AUTH_SUCCESS, } from '../Actions';
 import { loginApiUrl } from '../Urls';
 
 // eslint-disable-next-line no-unused-vars

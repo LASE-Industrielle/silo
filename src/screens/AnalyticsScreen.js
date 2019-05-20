@@ -1,17 +1,17 @@
 import React from 'react';
 import {
+  Body,
+  Button,
   Container,
-  Header,
   Content,
+  Header,
+  Icon,
+  Left,
   List,
   ListItem,
-  Text,
-  Left,
-  Button,
-  Icon,
-  Body,
-  Title,
   Right,
+  Text,
+  Title,
 } from 'native-base';
 
 import styles from '../Styles';
@@ -48,53 +48,111 @@ const AnalyticsScreen = (props) => (
             ]
           }]
         }}
-        width={330} // from react-native
+        width={380} // from react-native
         height={220}
         chartConfig={{
           backgroundColor: primary,
           backgroundGradientFrom: primary,
           backgroundGradientTo: secondary,
           decimalPlaces: 1, // optional, defaults to 2dp
-          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          color: () => `rgba(255, 255, 255, 0.9)`,
           style: {
-            borderRadius: 12
+            borderRadius: 12,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
           }
         }}
         bezier
         style={{
-          marginVertical: 8,
-          borderRadius: 16,
-          paddingTop: 10,
-          paddingHorizontal: 30,
         }}
       />
       <List>
-        <ListItem itemDivider>
-          <Text>16.05.2019</Text>
+        <ListItem itemDivider >
+          <Text style={{ color: '#676767'}}>15th May 2019</Text>
         </ListItem>
         <ListItem>
-          <Text>83% at 17:31</Text>
+          <Left>
+            <Text>83%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
         </ListItem>
         <ListItem>
-          <Text>51% at 15:31</Text>
-        </ListItem>
-        <ListItem itemDivider>
-          <Text>15.05.2019</Text>
-        </ListItem>
-        <ListItem>
-          <Text>21% at 21:14</Text>
-        </ListItem>
-        <ListItem>
-          <Text>31% at 14:21</Text>
-        </ListItem>
-        <ListItem itemDivider>
-          <Text>14.05.2019</Text>
+          <Left>
+            <Text>83%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
         </ListItem>
         <ListItem>
-          <Text>15% at 12:16</Text>
+          <Left>
+            <Text>83%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
+        </ListItem>
+        <ListItem itemDivider >
+          <Text style={{ color: '#676767'}}>14th May 2019</Text>
         </ListItem>
         <ListItem>
-          <Text>89% at 10:29</Text>
+          <Left>
+            <Text>83%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
+        </ListItem>
+        <ListItem>
+          <Left>
+            <Text>77%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
+        </ListItem>
+        <ListItem>
+          <Left>
+            <Text>65%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
+        </ListItem>
+        <ListItem itemDivider >
+          <Text style={{ color: '#676767'}}>13th May 2016</Text>
+        </ListItem>
+        <ListItem>
+          <Left>
+            <Text>11%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
+        </ListItem>
+        <ListItem>
+          <Left>
+            <Text>21%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
+        </ListItem>
+        <ListItem>
+          <Left>
+            <Text>33%</Text>
+          </Left>
+          <Right >
+            <Text note>17:31</Text>
+          </Right>
         </ListItem>
       </List>
 

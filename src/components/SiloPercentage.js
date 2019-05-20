@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { primary } from '../Colors';
 
 const size = 45;
@@ -15,7 +15,7 @@ const style = StyleSheet.create({
   },
   defaultText: {
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
 
 });

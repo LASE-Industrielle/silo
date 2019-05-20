@@ -1,21 +1,23 @@
 import React from 'react';
-import {View} from 'react-native';
 
-import {Text} from 'native-base';
-
-import styles from '../Styles';
+import { Form, Input, Item, Label } from 'native-base';
 
 const SensorData = (props) => {
 
     const {serialNumber,type} = props;
 
     return (
-        <View style={styles.default}>
-            <Text style={{fontWeight: 'bold'}}>Sensor data:</Text>
-            <Text>serial number: {serialNumber}</Text>
-            <Text>type:{type}</Text>
-        </View>
-    )
-}
+      <Form>
+        <Item fixedLabel>
+          <Label>Serial Number:</Label>
+          <Input disabled value={serialNumber}/>
+        </Item>
+        <Item fixedLabel>
+          <Label>Type:</Label>
+          <Input disabled value={type}/>
+        </Item>
+      </Form>
+    );
+};
 
 export default SensorData;

@@ -1,19 +1,7 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  useReducer,
-} from 'react';
+import React, { useContext, useEffect, useReducer, useState, } from 'react';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
-import {
-  Container,
-  Content,
-  Item,
-  Input,
-  Button,
-  Text,
-} from 'native-base';
+import { Button, Container, Content, Input, Item, Text, } from 'native-base';
 
 import { authReducer } from '../Reducers';
 import UserContext from '../context/UserContext';

@@ -1,9 +1,5 @@
 import axios from 'axios';
-import {
-  STATUS_LOAD_START,
-  STATUS_LOAD_SUCCESS,
-  STATUS_LOAD_ERROR,
-} from '../Actions';
+import { STATUS_LOAD_ERROR, STATUS_LOAD_START, STATUS_LOAD_SUCCESS, } from '../Actions';
 import { siloApiUrl } from '../Urls';
 
 const downloadData = (dispatch) => {

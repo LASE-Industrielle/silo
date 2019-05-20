@@ -1,4 +1,4 @@
-import { StackActions, NavigationActions } from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation';
 
 const resetAction = StackActions.reset({
   index: 0,
