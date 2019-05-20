@@ -7,7 +7,7 @@ import {
 import {Icon} from 'native-base';
 
 import LoginScreen from './screens/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
+import SilosScreen from './screens/SilosScreen';
 import AnalyticsScreen from './screens/AnalyticsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SiloDetailsScreen from './screens/SiloDetailsScreen';
@@ -17,9 +17,9 @@ import styles from './Styles';
 
 const AppTabNavigator = createBottomTabNavigator(
     {
-        Home: {
-            screen: HomeScreen,
-            path: 'Home',
+        Silos: {
+            screen: SilosScreen,
+            path: 'Silos',
             navigationOptions: {
                 tabBarIcon: <Icon name="home" style={styles.icons}/>,
             },
@@ -35,9 +35,10 @@ const AppTabNavigator = createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-            showLabel: false,
+            showLabel: true,
+            labelStyle: styles.icons,
         },
-        initialRouteName: 'Profile',
+        initialRouteName: 'Silos',
     },
 );
 

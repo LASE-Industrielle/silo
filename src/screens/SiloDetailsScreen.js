@@ -4,6 +4,7 @@ import {Body, Button, Container, Content, Header, Icon, Left, Right, Title, Foot
 import styles from '../Styles';
 
 import SiloOverview from '../components/SiloOverview';
+import SiloShortInfo from '../components/SiloShortInfo';
 
 const SiloDetailsScreen = (props) => {
 
@@ -13,12 +14,12 @@ const SiloDetailsScreen = (props) => {
         <Container>
             <Header>
                 <Left>
-                    <Button transparent onPress={() => props.navigation.navigate('Home')}>
+                    <Button transparent onPress={() => props.navigation.navigate('Silos')}>
                         <Icon name='arrow-back' style={styles.icons} />
                     </Button>
                 </Left>
                 <Body>
-                    <Title>Silo overview</Title>
+                    <Title>{silo.sensor.serial_number}</Title>
                 </Body>
                 <Right>
                     <Button transparent onPress={() => props.navigation.navigate('SiloConfig', {siloDetails:silo})}>
@@ -29,6 +30,7 @@ const SiloDetailsScreen = (props) => {
 
             <Content>
                     <SiloOverview silo={silo}/>
+                    <SiloShortInfo/>
 
             </Content>
             <Footer>
@@ -38,6 +40,6 @@ const SiloDetailsScreen = (props) => {
             </Footer>
         </Container>
     )
-}
+};
 
 export default SiloDetailsScreen;

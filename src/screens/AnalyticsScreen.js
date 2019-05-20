@@ -5,23 +5,54 @@ import {
   Content,
   List,
   ListItem,
-  Text, Left, Button, Icon, Body, Title, Right,
+  Text
 } from 'native-base';
 
-const AnalyticsScreen = (props) => (
+
+import { LineChart } from 'react-native-chart-kit';
+
+import { primary, secondary } from '../Colors';
+
+const AnalyticsScreen = () => (
   <Container>
     <Header>
-      <Left>
-        <Button transparent onPress={() => props.navigation.goBack()}>
-          <Icon name='arrow-back'/>
-        </Button>
-      </Left>
-      <Body>
-        <Title>Analytics</Title>
-      </Body>
-      <Right/>
+      <Text>Analytics</Text>
     </Header>
     <Content>
+      <LineChart
+        data={{
+          labels: ['March', 'April', 'May', 'June'],
+          datasets: [{
+            data: [
+              Math.random() * 100,
+              Math.random() * 100,
+              Math.random() * 100,
+              Math.random() * 100,
+              Math.random() * 100,
+              Math.random() * 100
+            ]
+          }]
+        }}
+        width={330} // from react-native
+        height={220}
+        chartConfig={{
+          backgroundColor: primary,
+          backgroundGradientFrom: primary,
+          backgroundGradientTo: secondary,
+          decimalPlaces: 1, // optional, defaults to 2dp
+          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          style: {
+            borderRadius: 12
+          }
+        }}
+        bezier
+        style={{
+          marginVertical: 8,
+          borderRadius: 16,
+          paddingTop: 10,
+          paddingHorizontal: 30,
+        }}
+      />
       <List>
         <ListItem itemDivider>
           <Text>16.05.2019</Text>
@@ -51,6 +82,7 @@ const AnalyticsScreen = (props) => (
           <Text>89% at 10:29</Text>
         </ListItem>
       </List>
+
     </Content>
   </Container>
 );

@@ -16,7 +16,7 @@ const initialState = {
 };
 
 
-const HomeScreen = (props) => {
+const SilosScreen = (props) => {
   const [state, dispatch] = useReducer(statusReducer, initialState);
   const { token } = useContext(UserContext);
   const [refreshing, setRefreshing] = useState(false);
@@ -65,4 +65,4 @@ const HomeScreen = (props) => {
 
 };
 
-export default HomeScreen;
+export default SilosScreen;
