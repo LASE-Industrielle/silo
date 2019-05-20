@@ -1,14 +1,17 @@
 import React from 'react';
 import {
-  Body,
   Button,
-  Card,
-  CardItem,
   Container,
   Content,
+  Form,
   Icon,
+  Input,
+  Item,
+  Label,
+  Left,
   List,
   ListItem,
+  Right,
   Text
 } from 'native-base';
 
@@ -18,27 +21,43 @@ const CardItemBordered = (props) => {
   return (
     <Container>
       <Content>
-        <Card>
-          <CardItem>
-            <Body style={styles.default}>
-            <Text>
-              Last time filled 34% 24jh
-            </Text>
-            <Text>
-              Capacity: 25000 Serial: #sdasd
-            </Text>
-            </Body>
-          </CardItem>
-        </Card>
+            <Form>
+              <Item fixedLabel>
+                <Label>Change:</Label>
+                <Input disabled value={'23%'}/>
+              </Item>
+              <Item fixedLabel>
+                <Label>Capacity:</Label>
+                <Input disabled value={'43333 / 60000'}/>
+              </Item>
+            </Form>
         <List>
-          <ListItem>
-            <Text>83% at 17:31</Text>
+          <ListItem itemDivider>
+            <Text style={{ color: '#676767' }}>13th May 2016</Text>
           </ListItem>
           <ListItem>
-            <Text>83% at 17:31</Text>
+            <Left>
+              <Text>11%</Text>
+            </Left>
+            <Right>
+              <Text note>17:31</Text>
+            </Right>
           </ListItem>
           <ListItem>
-            <Text>51% at 15:31</Text>
+            <Left>
+              <Text>11%</Text>
+            </Left>
+            <Right>
+              <Text note>17:31</Text>
+            </Right>
+          </ListItem>
+          <ListItem>
+            <Left>
+              <Text>11%</Text>
+            </Left>
+            <Right>
+              <Text note>17:31</Text>
+            </Right>
           </ListItem>
         </List>
         <Button

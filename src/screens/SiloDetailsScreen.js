@@ -37,9 +37,7 @@ const SiloDetailsScreen = (props) => {
             <Icon name="ios-information-circle-outline" style={styles.icons}/>
           </Button>
         </Right>
-
       </Header>
-
       <Content>
         <SiloOverview silo={silo}/>
         <SiloShortInfo test={props}/>
