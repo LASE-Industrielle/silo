@@ -13,20 +13,22 @@ import ProfileScreen from './screens/ProfileScreen';
 import SiloDetailsScreen from './screens/SiloDetailsScreen';
 import SiloConfigScreen from "./screens/ConfigScreen";
 
+import styles from './Styles';
+
 const AppTabNavigator = createBottomTabNavigator(
     {
         Home: {
             screen: HomeScreen,
             path: 'Home',
             navigationOptions: {
-                tabBarIcon: <Icon name="home"/>,
+                tabBarIcon: <Icon name="home" style={styles.icons}/>,
             },
         },
         Profile: {
             screen: ProfileScreen,
             path: 'Profile',
             navigationOptions: {
-                tabBarIcon: <Icon name="person"/>,
+                tabBarIcon: <Icon name="person" style={styles.icons}/>,
             },
         },
 
@@ -35,7 +37,7 @@ const AppTabNavigator = createBottomTabNavigator(
         tabBarOptions: {
             showLabel: false,
         },
-        initialRouteName: 'Home',
+        initialRouteName: 'Profile',
     },
 );
 
@@ -52,16 +54,14 @@ const SiloNavigator = createStackNavigator(
             screen: SiloDetailsScreen,
             path: 'SiloOverview',
             navigationOptions: {
-                header: null,
-                // tabBarIcon: <Icon name="information-circle-outline"/>,
+                header: null
             },
         },
         SiloConfig: {
             screen: SiloConfigScreen,
             path: 'SiloConfig',
             navigationOptions: {
-                header: null,
-                // tabBarIcon: <Icon name="information-circle-outline"/>,
+                header: null
             },
         }
 

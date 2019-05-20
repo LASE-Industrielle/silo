@@ -7,6 +7,8 @@ import styles from '../Styles';
 import CylinderIcon from "../icons/CylinderIcon";
 import Svg, {Polygon} from "react-native-svg";
 
+import {primary} from '../Colors';
+
 const SiloOverview = (props) => {
 
     const {silo} = props;
@@ -25,7 +27,7 @@ const SiloOverview = (props) => {
                     >
                         <Polygon
                             points={"0," + (190 - 180 * silo.percentage / 100) + " 120," + (190 - 180 * silo.percentage / 100) + " 120,190 0,190"}
-                            fill="green"
+                            fill={primary}
                             strokeWidth="0"
                             stroke="rgb(0,0,0)"
                         />

@@ -49,7 +49,7 @@ const HomeScreen = (props) => {
               <Left>
                 <SiloPercentage percentage={item.percentage}/>
                 <Body>
-                <Text>Silo #1</Text>
+                <Text>{item.sensor.serial_number}</Text>
                 <Text note>{item.location}</Text>
                 </Body>
               </Left>

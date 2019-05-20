@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { primary } from './Colors';
+
 export default StyleSheet.create({
   default: {
     flex: 1,
@@ -11,7 +13,7 @@ export default StyleSheet.create({
     height: 100,
     borderRadius: 10,
   },
-  buttonStyle: { marginLeft: 20, marginRight: 20, marginTop: 10 },
+  buttonStyle: { marginLeft: 20, marginRight: 20, marginTop: 10, backgroundColor: primary },
   inputItem: {
     marginTop: 10,
     marginBottom: 0,
@@ -37,4 +39,7 @@ export default StyleSheet.create({
     alignSelf:'center',
     position:'absolute',
   },
+  icons: {
+    color: primary
+  }
 });

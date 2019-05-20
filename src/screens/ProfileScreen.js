@@ -1,15 +1,28 @@
-import React, { useContext } from 'react';
-import { View } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
-import { Text, Thumbnail, Button } from 'native-base';
-
-import styles from '../Styles';
 import ccLogo from '../../assets/img/cc.jpg';
+
+
+import { Container, Header, Content, ListItem, Text, Icon, Left, Body, Right, Switch, Button, Thumbnail } from 'native-base';
+
 import UserContext from '../context/UserContext';
 import resetAction from '../utils/NavigationUtils';
 
+import { primary } from '../Colors';
+
+const styles = StyleSheet.create({
+  default: {
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
 const ProfileScreen = (props) => {
+
   const { username, logoutUser } = useContext(UserContext);
+  const [ sync, setSync ] = useState(false);
 
   const logout = () => {
     logoutUser();
@@ -17,17 +30,63 @@ const ProfileScreen = (props) => {
   };
 
   return (
-    <View style={styles.default}>
+    <Container>
+      <Header />
       <Text>{username}</Text>
-      <Thumbnail large source={ccLogo} />
+      <View style={styles.default}>
+        <Thumbnail large source={ccLogo} />
+      </View>
       <Button
         block
-        style={{ margin: 20 }}
+        style={{ margin: 20, backgroundColor: primary }}
         onPress={logout}
       >
         <Text>Logout</Text>
       </Button>
-    </View>
+      <Content>
+        <ListItem icon>
+          <Left>
+            <Button style={{ backgroundColor: primary }} onPress={() => setSync(!sync)}>
+              <Icon active name="sync" />
+            </Button>
+          </Left>
+          <Body>
+          <Text>Syncronization</Text>
+          </Body>
+          <Right>
+            <Switch value={sync} />
+          </Right>
+        </ListItem>
+        <ListItem icon>
+          <Left>
+            <Button style={{ backgroundColor: primary }}>
+              <Icon active name="wifi" />
+            </Button>
+          </Left>
+          <Body>
+          <Text>Wi-Fi</Text>
+          </Body>
+          <Right>
+            <Text>GeekyAnts</Text>
+            <Icon active name="arrow-forward" />
+          </Right>
+        </ListItem>
+        <ListItem icon>
+          <Left>
+            <Button style={{ backgroundColor: primary }}>
+              <Icon active name="bluetooth" />
+            </Button>
+          </Left>
+          <Body>
+          <Text>Bluetooth</Text>
+          </Body>
+          <Right>
+            <Text>On</Text>
+            <Icon active name="arrow-forward" />
+          </Right>
+        </ListItem>
+      </Content>
+    </Container>
   );
 };
 

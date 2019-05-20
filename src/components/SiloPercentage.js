@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-
-import { StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { primary } from '../Colors';
 
 const size = 45;
 
@@ -10,7 +9,7 @@ const style = StyleSheet.create({
     width: size,
     height: size,
     borderRadius: size / 2,
-    backgroundColor: 'green',
+    backgroundColor: primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
