@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Switch } from 'react-native';
 import PropTypes from 'prop-types';
 import ccLogo from '../../assets/img/cc.jpg';
 
@@ -14,9 +14,9 @@ import {
   Left,
   ListItem,
   Right,
-  Switch,
   Text,
-  Thumbnail
+  Thumbnail,
+  Title
 } from 'native-base';
 
 import UserContext from '../context/UserContext';
@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
 const ProfileScreen = (props) => {
 
   const { username, logoutUser } = useContext(UserContext);
-  const [sync, setSync] = useState(false);
+  const [sync1, setSync1] = useState(true);
+  const [sync2, setSync2] = useState(false);
 
   const logout = () => {
     logoutUser();
@@ -44,61 +45,46 @@ const ProfileScreen = (props) => {
 
   return (
     <Container>
-      <Header/>
-      <Text>{username}</Text>
-      <View style={styles.default}>
-        <Thumbnail large source={ccLogo}/>
-      </View>
-      <Button
-        block
-        style={{
-          margin: 20,
-          backgroundColor: primary
-        }}
-        onPress={logout}
-      >
-        <Text>Logout</Text>
-      </Button>
-      <Content>
+      <Header><Title>{username}</Title></Header>
+      <Content style={{ marginTop: 70 }}>
+        <View style={styles.default}>
+          <Thumbnail style={{ marginTop: 20 }} large source={ccLogo}/>
+        </View>
+        <Button
+          block
+          style={{
+            margin: 20,
+            marginTop: 30,
+            backgroundColor: primary
+          }}
+          onPress={logout}
+        >
+          <Text>Logout</Text>
+        </Button>
         <ListItem icon>
           <Left>
-            <Button style={{ backgroundColor: primary }} onPress={() => setSync(!sync)}>
-              <Icon active name="sync"/>
+            <Button style={{ backgroundColor: primary }}>
+              <Icon active name="sync" />
             </Button>
           </Left>
           <Body>
-          <Text>Syncronization</Text>
+            <Text>Syncronization</Text>
           </Body>
           <Right>
-            <Switch value={sync}/>
+            <Switch value={sync1} onValueChange={() => setSync1(!sync1)} />
           </Right>
         </ListItem>
         <ListItem icon>
           <Left>
             <Button style={{ backgroundColor: primary }}>
-              <Icon active name="wifi"/>
+              <Icon active name="ios-notifications"/>
             </Button>
           </Left>
           <Body>
-          <Text>Wi-Fi</Text>
+          <Text>Notifications</Text>
           </Body>
           <Right>
-            <Text>GeekyAnts</Text>
-            <Icon active name="arrow-forward"/>
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <Button style={{ backgroundColor: primary }}>
-              <Icon active name="bluetooth"/>
-            </Button>
-          </Left>
-          <Body>
-          <Text>Bluetooth</Text>
-          </Body>
-          <Right>
-            <Text>On</Text>
-            <Icon active name="arrow-forward"/>
+            <Switch value={sync2} onValueChange={() => setSync2(!sync2)} />
           </Right>
         </ListItem>
       </Content>

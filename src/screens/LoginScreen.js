@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer, useState, } from 'react';
-import { Image } from 'react-native';
+import { Image, Alert } from 'react-native';
 import PropTypes from 'prop-types';
-import { Button, Container, Content, Input, Item, Text, } from 'native-base';
+import { Button, Container, Content, Input, Item, Text, Spinner } from 'native-base';
 
 import { authReducer } from '../Reducers';
 import UserContext from '../context/UserContext';
@@ -29,9 +29,31 @@ const LoginScreen = (props) => {
     }
   }, [state.token]);
 
+  useEffect(() => {
+    if (state.errorMessage !== '') {
+      Alert.alert(
+        'Failed',
+        'Failed to login with provided credentials',
+        [
+          {text: 'OK', onPress: () => state.errorMessage = ''},
+        ],
+        {cancelable: false},
+      );
+    }
+  }, [state.errorMessage]);
+
   const login = () => {
     authCall(dispatch, username, password);
   };
+
+  if(state.loading) {
+    return (
+      <Container>
+        <Content contentContainerStyle={styles.default}>
+          <Spinner />
+        </Content>
+      </Container>);
+  }
 
   return (
     <Container>

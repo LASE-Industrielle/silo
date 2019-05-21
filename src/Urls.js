@@ -1,13 +1,7 @@
-const localUrl = '';
-const herokuUrl = '';
-const siloApiUrl = 'http://localhost:8000/silo/';
-const loginApiUrl = 'http://localhost:8000/auth/';
-// const siloApiUrl = 'http://10.0.2.2:8000/silo/'; // android local setup
-// const loginApiUrl = 'http://10.0.2.2:8000/auth/'; // android local setup
+const siloApiUrl = 'https://silo-be.herokuapp.com/silo/';
+const loginApiUrl = 'https://silo-be.herokuapp.com/auth/';
 
 export {
-  localUrl,
-  herokuUrl,
   siloApiUrl,
   loginApiUrl,
 };
