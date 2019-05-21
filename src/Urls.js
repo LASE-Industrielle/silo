@@ -1,7 +1,9 @@
-const siloApiUrl = 'https://silo-be.herokuapp.com/silo/';
-const loginApiUrl = 'https://silo-be.herokuapp.com/auth/';
+const herokuUrl = 'https://silo-be.herokuapp.com';
+const siloApiUrl = `${herokuUrl}/silo/`;
+const loginApiUrl = `${herokuUrl}/auth/`;
 
 export {
+  herokuUrl,
   siloApiUrl,
   loginApiUrl,
 };

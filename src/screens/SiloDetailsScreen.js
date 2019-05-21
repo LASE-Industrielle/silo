@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Body,
-  Button,
-  Container,
-  Content,
-  Header,
-  Icon,
-  Left,
-  Right,
-  Title
-} from 'native-base';
+import { Body, Button, Container, Content, Header, Icon, Left, Right, Title } from 'native-base';
 
 import styles from '../Styles';
 
@@ -29,7 +19,7 @@ const SiloDetailsScreen = (props) => {
           </Button>
         </Left>
         <Body>
-        <Title>{silo.sensor.serial_number}</Title>
+          <Title>{silo.sensor.serial_number}</Title>
         </Body>
         <Right>
           <Button transparent

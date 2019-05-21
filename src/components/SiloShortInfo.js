@@ -21,16 +21,16 @@ const CardItemBordered = (props) => {
   return (
     <Container>
       <Content>
-            <Form>
-              <Item fixedLabel>
-                <Label>Change:</Label>
-                <Input disabled value={'23%'}/>
-              </Item>
-              <Item fixedLabel>
-                <Label>Capacity:</Label>
-                <Input disabled value={'43333 / 60000'}/>
-              </Item>
-            </Form>
+        <Form>
+          <Item fixedLabel>
+            <Label>Change:</Label>
+            <Input disabled value={'23%'}/>
+          </Item>
+          <Item fixedLabel>
+            <Label>Capacity:</Label>
+            <Input disabled value={'43333 / 60000'}/>
+          </Item>
+        </Form>
         <List>
           <ListItem itemDivider>
             <Text style={{ color: '#676767' }}>13th May 2016</Text>
@@ -66,7 +66,7 @@ const CardItemBordered = (props) => {
           onPress={() => props.test.navigation.navigate('Analytics')}
           style={styles.buttonStyle}
         >
-          <Icon name='stats' style={{ color: 'white'}}/>
+          <Icon name='stats' style={{ color: 'white' }}/>
           <Text style={{
             color: 'white',
             fontSize: 14,

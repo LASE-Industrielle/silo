@@ -29,7 +29,7 @@ const AnalyticsScreen = (props) => (
         </Button>
       </Left>
       <Body>
-      <Title>Analytics</Title>
+        <Title>Analytics</Title>
       </Body>
       <Right/>
     </Header>

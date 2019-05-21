@@ -1,14 +1,20 @@
 import React, { useContext, useEffect, useReducer, useState, } from 'react';
-import { Image, Alert } from 'react-native';
+import { Alert, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import { Button, Container, Content, Input, Item, Text, Spinner } from 'native-base';
+import { Button, Container, Content, Input, Item, Spinner, Text } from 'native-base';
 
-import { authReducer } from '../Reducers';
+import { authReducer } from '../reducers/Reducers';
 import UserContext from '../context/UserContext';
 import authCall from '../services/AuthService';
 
 import styles from '../Styles';
 import laseLogo from '../../assets/img/lase.jpeg';
+import { NavigationActions, StackActions } from 'react-navigation';
+
+const appAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'App' })],
+});
 
 const initialState = {
   token: '',
@@ -25,7 +31,7 @@ const LoginScreen = (props) => {
   useEffect(() => {
     if (state.token !== '') {
       loginUser(username, state.token);
-      props.navigation.navigate('App');
+      props.navigation.dispatch(appAction);
     }
   }, [state.token]);
 
@@ -35,9 +41,12 @@ const LoginScreen = (props) => {
         'Failed',
         'Failed to login with provided credentials',
         [
-          {text: 'OK', onPress: () => state.errorMessage = ''},
+          {
+            text: 'OK',
+            onPress: () => state.errorMessage = ''
+          },
         ],
-        {cancelable: false},
+        { cancelable: false },
       );
     }
   }, [state.errorMessage]);
@@ -46,11 +55,11 @@ const LoginScreen = (props) => {
     authCall(dispatch, username, password);
   };
 
-  if(state.loading) {
+  if (state.loading) {
     return (
       <Container>
         <Content contentContainerStyle={styles.default}>
-          <Spinner />
+          <Spinner/>
         </Content>
       </Container>);
   }

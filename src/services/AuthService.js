@@ -2,7 +2,6 @@ import axios from 'axios';
 import { AUTH_ERROR, AUTH_START, AUTH_SUCCESS, } from '../Actions';
 import { loginApiUrl } from '../Urls';
 
-// eslint-disable-next-line no-unused-vars
 const authCall = (dispatch, loginUsername, loginPassword) => {
   dispatch({ type: AUTH_START });
   axios({

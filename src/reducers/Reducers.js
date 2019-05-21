@@ -5,7 +5,7 @@ import {
   STATUS_LOAD_ERROR,
   STATUS_LOAD_START,
   STATUS_LOAD_SUCCESS,
-} from './Actions';
+} from '../Actions';
 
 
 const statusReducer = (state, action) => {

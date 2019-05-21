@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, View, Switch } from 'react-native';
+import { StyleSheet, Switch, View } from 'react-native';
 import PropTypes from 'prop-types';
 import ccLogo from '../../assets/img/cc.jpg';
 
@@ -64,14 +64,14 @@ const ProfileScreen = (props) => {
         <ListItem icon>
           <Left>
             <Button style={{ backgroundColor: primary }}>
-              <Icon active name="sync" />
+              <Icon active name="sync"/>
             </Button>
           </Left>
           <Body>
             <Text>Syncronization</Text>
           </Body>
           <Right>
-            <Switch value={sync1} onValueChange={() => setSync1(!sync1)} />
+            <Switch value={sync1} onValueChange={() => setSync1(!sync1)}/>
           </Right>
         </ListItem>
         <ListItem icon>
@@ -81,10 +81,10 @@ const ProfileScreen = (props) => {
             </Button>
           </Left>
           <Body>
-          <Text>Notifications</Text>
+            <Text>Notifications</Text>
           </Body>
           <Right>
-            <Switch value={sync2} onValueChange={() => setSync2(!sync2)} />
+            <Switch value={sync2} onValueChange={() => setSync2(!sync2)}/>
           </Right>
         </ListItem>
       </Content>

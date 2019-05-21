@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 
 import { RefreshControl } from 'react-native';
 
-import { statusReducer } from '../Reducers';
+import { statusReducer } from '../reducers/Reducers';
 import downloadData from '../services/SiloService';
 import UserContext from '../context/UserContext';
 import {
@@ -30,17 +30,13 @@ const initialState = {
 const SilosScreen = (props) => {
   const [state, dispatch] = useReducer(statusReducer, initialState);
   const { token } = useContext(UserContext);
-  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     downloadData(dispatch, token);
   }, []);
 
   const onRefresh = () => {
-    setRefreshing(true);
-    setInterval(() => {
-      setRefreshing(false);
-    }, 2000);
+    downloadData(dispatch, token);
   };
 
   return (
@@ -48,13 +44,13 @@ const SilosScreen = (props) => {
       <Header transparent>
         <Left/>
         <Body>
-        <Title>Silos</Title>
+          <Title>Silos</Title>
         </Body>
         <Right><Text note>Updated</Text></Right>
 
       </Header>
       <Content refreshControl={<RefreshControl
-        refreshing={refreshing}
+        refreshing={state.loading}
         onRefresh={onRefresh}
       />}>
         <List>
@@ -65,8 +61,8 @@ const SilosScreen = (props) => {
               <Left>
                 <SiloPercentage percentage={item.percentage}/>
                 <Body>
-                <Text>{item.sensor.serial_number}</Text>
-                <Text note>{item.location}</Text>
+                  <Text>{item.sensor.serial_number}</Text>
+                  <Text note>{item.location}</Text>
                 </Body>
               </Left>
               <Right>

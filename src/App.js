@@ -11,6 +11,10 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
 
+  useEffect(() => {
+    loadToken();
+  }, []);
+
   const loadToken = async () => {
     try {
       const storedToken = await AsyncStorage.getItem(TOKEN_KEY);
@@ -21,10 +25,6 @@ const App = () => {
       // error reading value
     }
   };
-
-  useEffect(() => {
-    loadToken();
-  }, []);
 
   const loginUser = async (newUsername, newToken) => {
     setUsername(newUsername);

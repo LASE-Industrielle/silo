@@ -79,8 +79,6 @@ const AppTabNavigator = createBottomTabNavigator(
   },
 );
 
-
-
 const AppNavigator = createStackNavigator(
   {
     Login: {
@@ -95,10 +93,9 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'App',
+    initialRouteName: 'Login',
   },
 );
-
 
 const AppContainer = createAppContainer(AppNavigator);
 

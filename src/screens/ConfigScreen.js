@@ -20,7 +20,7 @@ const SiloConfigScreen = (props) => {
           </Button>
         </Left>
         <Body>
-        <Title>Configuration</Title>
+          <Title>Configuration</Title>
         </Body>
         <Right/>
       </Header>
