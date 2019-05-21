@@ -77,10 +77,7 @@ const AnalyticsScreen = (props) => (
         </ListItem>
         <ListItem>
           <Left>
-            <Text style={{
-              fontWeight: 'bold',
-              color: '#01A04E'
-            }}>83%</Text>
+            <Text>83%</Text>
           </Left>
           <Right>
             <Text note>17:31</Text>
