@@ -5,6 +5,9 @@ import {
   STATUS_LOAD_ERROR,
   STATUS_LOAD_START,
   STATUS_LOAD_SUCCESS,
+  MEASUREMENTS_START,
+  MEASUREMENTS_SUCCESS,
+  MEASUREMENTS_ERROR,
 } from '../Actions';
 
 
@@ -56,4 +59,28 @@ const authReducer = (state, action) => {
   }
 };
 
-export { statusReducer, authReducer };
+const measurementsReducer = (state, action) => {
+  switch (action.type) {
+    case MEASUREMENTS_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case MEASUREMENTS_SUCCESS:
+      return {
+        ...state,
+        data: action.payload,
+        loading: false
+      };
+    case MEASUREMENTS_ERROR:
+      return {
+        ...state,
+        errorMessage: 'failed',
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+
+export { statusReducer, authReducer, measurementsReducer };

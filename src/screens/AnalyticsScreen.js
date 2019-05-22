@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect, useReducer} from 'react';
+import {ScrollView, View} from "react-native";
 import {
   Body,
   Button,
   Container,
-  Content,
   Header,
   Icon,
   Left,
@@ -19,8 +19,71 @@ import styles from '../Styles';
 import { LineChart } from 'react-native-chart-kit';
 
 import { primary, secondary } from '../Colors';
+import { measurementsReducer } from "../reducers/Reducers";
+import getAllMeasurements from "../services/MeasurementService";
 
-const AnalyticsScreen = (props) => (
+const initialState = {
+  data: {},
+  errorMessage: '',
+  loading: false,
+};
+
+const AnalyticsScreen = (props) => {
+
+  const [state, dispatch] = useReducer(measurementsReducer, initialState);
+
+  const siloId = props.navigation.getParam('id', 1);
+
+  const getLabels = () => {
+    const labels = [];
+
+    Object.keys(state.data).map(key => {
+      labels.push(new Date(key).toLocaleDateString("en-US", {month: 'short', day: 'numeric' }))
+    });
+
+    return labels.reverse();
+  };
+
+  const getAveragePercentages = () => {
+    const array = [];
+
+    Object.keys(state.data).map(key => {
+      let average = 0;
+      Object.keys(state.data[key]).map(percentage => {
+        average += state.data[key][percentage];
+      });
+      average = average / Object.keys(state.data[key]).length;
+      array.push(average);
+    });
+    return array.reverse();
+  }
+
+  useEffect(() => {
+    getAllMeasurements(dispatch, siloId);
+  }, []);
+
+  const analyticsList = () => {
+    const arr = [];
+    Object.keys(state.data).map(key => {
+      arr.push(<ListItem key={key} itemDivider>
+        <Text style={{color: '#676767'}}>{new Date(key).toLocaleDateString("en-US", { weekday: 'short', month: 'long', day: 'numeric' })}</Text>
+      </ListItem>);
+      Object.keys(state.data[key]).map(timestamp => {
+        arr.push(<ListItem key={key + timestamp}>
+          <Left>
+            <Text>{state.data[key][timestamp]}%</Text>
+          </Left>
+          <Right>
+            <Text note>{timestamp}</Text>
+          </Right>
+        </ListItem>)
+      });
+    });
+    return arr.map(x => x);
+  };
+
+
+  return (
   <Container>
     <Header>
       <Left>
@@ -29,134 +92,50 @@ const AnalyticsScreen = (props) => (
         </Button>
       </Left>
       <Body>
-        <Title>Analytics</Title>
+      <Title>Analytics</Title>
       </Body>
       <Right/>
     </Header>
-    <Content>
+    <View  style={{marginBottom: 0, height: 220}}>
       <LineChart
-        data={{
-          labels: ['March', 'April', 'May', 'June'],
-          datasets: [{
-            data: [
-              Math.random() * 100,
-              Math.random() * 100,
-              Math.random() * 100,
-              Math.random() * 100,
-              Math.random() * 100,
-              Math.random() * 100
-            ]
-          }]
-        }}
-        width={380} // from react-native
-        height={220}
-        chartConfig={{
-          backgroundColor: primary,
-          backgroundGradientFrom: primary,
-          backgroundGradientTo: secondary,
-          decimalPlaces: 1, // optional, defaults to 2dp
-          color: () => `rgba(255, 255, 255, 0.9)`,
-          style: {
-            borderRadius: 12,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            elevation: 5,
-          }
-        }}
-        bezier
-        style={{}}
+          data={{
+            labels: getLabels(),
+            datasets: [{
+              data: getAveragePercentages()
+            }]
+          }}
+          width={380} // from react-native
+          height={220}
+          chartConfig={{
+            backgroundColor: primary,
+            backgroundGradientFrom: primary,
+            backgroundGradientTo: secondary,
+            decimalPlaces: 1, // optional, defaults to 2dp
+            color: () => `rgba(255, 255, 255, 0.9)`,
+            style: {
+              borderRadius: 12,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+            }
+          }}
+          bezier
+          style={{marginBottom: 0}}
       />
-      <List>
-        <ListItem itemDivider>
-          <Text style={{ color: '#676767' }}>15th May 2019</Text>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>83%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>83%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>83%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-        <ListItem itemDivider>
-          <Text style={{ color: '#676767' }}>14th May 2019</Text>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>83%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>77%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>65%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-        <ListItem itemDivider>
-          <Text style={{ color: '#676767' }}>13th May 2016</Text>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>11%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>21%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-        <ListItem>
-          <Left>
-            <Text>33%</Text>
-          </Left>
-          <Right>
-            <Text note>17:31</Text>
-          </Right>
-        </ListItem>
-      </List>
 
-    </Content>
+    </View>
+    <ScrollView style={{position: 'relative', width: '100%', marginTop:0}}>
+      <List>
+        {analyticsList()}
+      </List>
+    </ScrollView>
   </Container>
-);
+  )
+};
 
 export default AnalyticsScreen;

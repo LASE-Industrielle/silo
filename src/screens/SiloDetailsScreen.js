@@ -33,14 +33,13 @@ const SiloDetailsScreen = (props) => {
       <Content>
         <SiloOverview silo={silo}/>
         <SiloShortInfo silo={silo}/>
-
       </Content>
       <Footer style={{backgroundColor:"white", borderTopWidth: 0}}>
         <FooterTab >
           <Button
               block
               primary
-              onPress={() => props.navigation.navigate('Analytics')}
+              onPress={() => props.navigation.navigate('Analytics', {id: silo.id})}
               style={styles.buttonAnalyticsStyle}
           >
             <AnalyticsIcon/>

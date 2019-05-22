@@ -23,7 +23,7 @@ const icon = {
     }
 };
 
-const HomeIcon = props => <SvgIcon fill={primary} height={27} width={27}  name={'icon'} {...props}
+const HomeIcon = props => <SvgIcon fill={primary} height={22} width={22}  name={'icon'} {...props}
                                       svgs={icon}>{props.children}</SvgIcon>;
 
 export default HomeIcon;

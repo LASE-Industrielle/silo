@@ -27,7 +27,7 @@ const CardItemBordered = (props) => {
           </Item>
           <Item fixedLabel>
             <Label>Capacity:</Label>
-            <Input disabled value={`${silo.capacity} kg`}/>
+            <Input disabled value={`${silo.percentage*silo.capacity/100}/${silo.capacity} kg`}/>
           </Item>
         </Form>
         <List>

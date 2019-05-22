@@ -10,15 +10,15 @@ const SiloData = (props) => {
     <Form>
       <Item fixedLabel>
         <Label>Width:</Label>
-        <Input disabled value={width.toString()}/>
+        <Input disabled value={width.toString() + ' m'}/>
       </Item>
       <Item fixedLabel>
         <Label>Height:</Label>
-        <Input disabled value={height.toString()}/>
+        <Input disabled value={height.toString() + ' m'}/>
       </Item>
       <Item fixedLabel>
         <Label>Capacity:</Label>
-        <Input disabled value={capacity.toString()}/>
+        <Input disabled value={capacity.toString() + ' kg'}/>
       </Item>
       <Item fixedLabel>
         <Label>Location:</Label>
