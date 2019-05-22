@@ -46,8 +46,9 @@ const SilosScreen = (props) => {
         <Body>
           <Title>Silos</Title>
         </Body>
-        <Right><Text note>Updated</Text></Right>
-
+        <Right>
+          { state.data.length > 0 ?  <Text note>Updated</Text>:  <Text note></Text>}
+        </Right>
       </Header>
       <Content refreshControl={<RefreshControl
         refreshing={state.loading}

@@ -24,14 +24,6 @@ import resetAction from '../utils/NavigationUtils';
 
 import { primary } from '../Colors';
 
-const styles = StyleSheet.create({
-  default: {
-    height: 70,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
 const ProfileScreen = (props) => {
 
   const { username, logoutUser } = useContext(UserContext);
@@ -45,22 +37,12 @@ const ProfileScreen = (props) => {
 
   return (
     <Container>
-      <Header><Title>{username}</Title></Header>
-      <Content style={{ marginTop: 70 }}>
-        <View style={styles.default}>
-          <Thumbnail style={{ marginTop: 20 }} large source={ccLogo}/>
+      <Header></Header>
+      <Content style={{marginTop: 15}}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', margin: 15, flexDirection: 'row' }}>
+          <Thumbnail circle large source={ccLogo}/>
         </View>
-        <Button
-          block
-          style={{
-            margin: 20,
-            marginTop: 30,
-            backgroundColor: primary
-          }}
-          onPress={logout}
-        >
-          <Text>Logout</Text>
-        </Button>
+        <Title style={{paddingBottom: 15}}>{username}</Title>
         <ListItem icon>
           <Left>
             <Button style={{ backgroundColor: primary }}>
@@ -85,6 +67,18 @@ const ProfileScreen = (props) => {
           </Body>
           <Right>
             <Switch value={sync2} onValueChange={() => setSync2(!sync2)}/>
+          </Right>
+        </ListItem>
+        <ListItem icon onPress={logout}>
+          <Left>
+            <Button style={{ backgroundColor: primary }}>
+              <Icon active name="ios-log-out"/>
+            </Button>
+          </Left>
+          <Body>
+            <Text>Logout</Text>
+          </Body>
+          <Right>
           </Right>
         </ListItem>
       </Content>

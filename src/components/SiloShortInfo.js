@@ -23,24 +23,24 @@ const CardItemBordered = (props) => {
       <Content>
         <Form>
           <Item fixedLabel>
-            <Label>Change:</Label>
-            <Input disabled value={'23%'}/>
+            <Label>Content:</Label>
+            <Input disabled value={'Soil'}/>
           </Item>
           <Item fixedLabel>
             <Label>Capacity:</Label>
-            <Input disabled value={'43333 / 60000'}/>
+            <Input disabled value={'6000 kg'}/>
           </Item>
         </Form>
         <List>
           <ListItem itemDivider>
-            <Text style={{ color: '#676767' }}>13th May 2016</Text>
+            <Text style={{ color: '#676767' }}>Average</Text>
           </ListItem>
           <ListItem>
             <Left>
-              <Text>11%</Text>
+              <Text>68%</Text>
             </Left>
             <Right>
-              <Text note>17:31</Text>
+              <Text note>15th May</Text>
             </Right>
           </ListItem>
           <ListItem>
@@ -48,15 +48,15 @@ const CardItemBordered = (props) => {
               <Text>11%</Text>
             </Left>
             <Right>
-              <Text note>17:31</Text>
+              <Text note>14th May</Text>
             </Right>
           </ListItem>
           <ListItem>
             <Left>
-              <Text>11%</Text>
+              <Text>26%</Text>
             </Left>
             <Right>
-              <Text note>17:31</Text>
+              <Text note>13th May</Text>
             </Right>
           </ListItem>
         </List>
