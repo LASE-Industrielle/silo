@@ -4,7 +4,6 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
-import { Icon } from 'native-base';
 
 import LoginScreen from './screens/LoginScreen';
 import SilosScreen from './screens/SilosScreen';
@@ -14,6 +13,8 @@ import SiloDetailsScreen from './screens/SiloDetailsScreen';
 import SiloConfigScreen from './screens/ConfigScreen';
 
 import styles from './Styles';
+import ProfileIcon from "./icons/ProfileIcon";
+import HomeIcon from "./icons/HomeIcon";
 
 const SiloNavigator = createStackNavigator(
   {
@@ -58,14 +59,14 @@ const AppTabNavigator = createBottomTabNavigator(
       screen: SiloNavigator,
       path: 'Silos',
       navigationOptions: {
-        tabBarIcon: <Icon name="home" style={styles.icons}/>,
+        tabBarIcon: <HomeIcon  style={styles.icons}/>,
       },
     },
     Profile: {
       screen: ProfileScreen,
       path: 'Profile',
       navigationOptions: {
-        tabBarIcon: <Icon name="person" style={styles.icons}/>,
+        tabBarIcon: <ProfileIcon  style={styles.icons}/>,//<Icon name="person" style={styles.icons}/>,
       },
     },
 

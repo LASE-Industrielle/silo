@@ -4,7 +4,6 @@ import {
   Container,
   Content,
   Form,
-  Icon,
   Input,
   Item,
   Label,
@@ -16,6 +15,7 @@ import {
 } from 'native-base';
 
 import styles from '../Styles';
+import AnalyticsIcon from "../icons/AnalyticsIcon";
 
 const CardItemBordered = (props) => {
   return (
@@ -66,11 +66,11 @@ const CardItemBordered = (props) => {
           onPress={() => props.test.navigation.navigate('Analytics')}
           style={styles.buttonStyle}
         >
-          <Icon name='stats' style={{ color: 'white' }}/>
+          <AnalyticsIcon style={{ color: 'white'}}/>
           <Text style={{
             color: 'white',
             fontSize: 14,
-            marginLeft: -25,
+            marginLeft: -15,
           }}>Analytics</Text>
         </Button>
       </Content>
