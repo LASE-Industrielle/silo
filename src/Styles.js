@@ -56,5 +56,12 @@ export default StyleSheet.create({
   },
   icons: {
     color: primary
-  }
+  },
+  buttonAnalyticsStyle: {
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
+    backgroundColor: primary,
+    width: '100%',
+  },
 });

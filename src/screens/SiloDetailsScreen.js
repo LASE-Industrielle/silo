@@ -1,10 +1,11 @@
 import React from 'react';
-import { Body, Button, Container, Content, Header, Icon, Left, Right, Title } from 'native-base';
+import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title, Footer} from 'native-base';
 
 import styles from '../Styles';
 
 import SiloOverview from '../components/SiloOverview';
 import SiloShortInfo from '../components/SiloShortInfo';
+import AnalyticsIcon from "../icons/AnalyticsIcon";
 
 const SiloDetailsScreen = (props) => {
 
@@ -30,8 +31,23 @@ const SiloDetailsScreen = (props) => {
       </Header>
       <Content>
         <SiloOverview silo={silo}/>
-        <SiloShortInfo test={props}/>
+        <SiloShortInfo silo={silo}/>
       </Content>
+      <Footer style={{backgroundColor: 'white', justifyContent: 'center'}}>
+        <Button
+            block
+            primary
+            onPress={() => props.navigation.navigate('Analytics')}
+            style={styles.buttonAnalyticsStyle}
+        >
+          <AnalyticsIcon/>
+          <Text style={{
+            color: 'white',
+            fontSize: 14,
+            marginLeft: -15,
+          }}>Analytics</Text>
+        </Button>
+      </Footer>
     </Container>
   );
 };

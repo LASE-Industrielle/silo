@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Container,
   Content,
   Form,
@@ -14,10 +13,10 @@ import {
   Text
 } from 'native-base';
 
-import styles from '../Styles';
-import AnalyticsIcon from "../icons/AnalyticsIcon";
 
 const CardItemBordered = (props) => {
+  const silo = props.silo;
+
   return (
     <Container>
       <Content>
@@ -28,51 +27,24 @@ const CardItemBordered = (props) => {
           </Item>
           <Item fixedLabel>
             <Label>Capacity:</Label>
-            <Input disabled value={'6000 kg'}/>
+            <Input disabled value={`${silo.capacity} kg`}/>
           </Item>
         </Form>
         <List>
           <ListItem itemDivider>
             <Text style={{ color: '#676767' }}>Average</Text>
           </ListItem>
-          <ListItem>
-            <Left>
-              <Text>68%</Text>
-            </Left>
-            <Right>
-              <Text note>15th May</Text>
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>11%</Text>
-            </Left>
-            <Right>
-              <Text note>14th May</Text>
-            </Right>
-          </ListItem>
-          <ListItem>
-            <Left>
-              <Text>26%</Text>
-            </Left>
-            <Right>
-              <Text note>13th May</Text>
-            </Right>
-          </ListItem>
+          {Object.keys(silo.last_days_in_average).map(key =>
+              <ListItem key={key}>
+                <Left>
+                  <Text>{silo.last_days_in_average[key]}%</Text>
+                </Left>
+                <Right>
+                  <Text note>{new Date(key).toLocaleDateString("en-US", { weekday: 'long', month: 'long', day: 'numeric' })}</Text>
+                </Right>
+              </ListItem>
+          )}
         </List>
-        <Button
-          block
-          primary
-          onPress={() => props.test.navigation.navigate('Analytics')}
-          style={styles.buttonStyle}
-        >
-          <AnalyticsIcon/>
-          <Text style={{
-            color: 'white',
-            fontSize: 14,
-            marginLeft: -15,
-          }}>Analytics</Text>
-        </Button>
       </Content>
     </Container>
   );
