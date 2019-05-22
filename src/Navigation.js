@@ -59,14 +59,14 @@ const AppTabNavigator = createBottomTabNavigator(
       screen: SiloNavigator,
       path: 'Silos',
       navigationOptions: {
-        tabBarIcon: <HomeIcon  style={styles.icons}/>,
+        tabBarIcon: <HomeIcon/>,
       },
     },
     Profile: {
       screen: ProfileScreen,
       path: 'Profile',
       navigationOptions: {
-        tabBarIcon: <ProfileIcon  style={styles.icons}/>,//<Icon name="person" style={styles.icons}/>,
+        tabBarIcon: <ProfileIcon/>,
       },
     },
 

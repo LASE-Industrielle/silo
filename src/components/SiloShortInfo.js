@@ -66,7 +66,7 @@ const CardItemBordered = (props) => {
           onPress={() => props.test.navigation.navigate('Analytics')}
           style={styles.buttonStyle}
         >
-          <AnalyticsIcon style={{ color: 'white'}}/>
+          <AnalyticsIcon/>
           <Text style={{
             color: 'white',
             fontSize: 14,

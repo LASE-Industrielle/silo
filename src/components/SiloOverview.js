@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import {Text} from 'native-base';
 
 import styles from '../Styles';
+import {primary} from "../Colors";
 
 const SiloOverview = (props) => {
 
@@ -24,7 +25,7 @@ const SiloOverview = (props) => {
                         alignItems: 'center',
                         zIndex: 100
                     }}>
-                        <Text style={{fontWeight: 'bold', fontSize: 22, color: 'white'}}>{silo.percentage}%</Text>
+                        <Text style={{fontWeight: 'bold', fontSize: 22, color: 'black'}}>{silo.percentage}% full</Text>
                     </View>
                     <View style={{flex: 1, backgroundColor: '#8bbfc0'}}></View>
                     <View style={{
