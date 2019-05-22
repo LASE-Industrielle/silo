@@ -67,7 +67,7 @@ const SilosScreen = (props) => {
                 </Body>
               </Left>
               <Right>
-                <Text note>7h ago</Text>
+                <Text note>{item.last_update}</Text>
               </Right>
             </ListItem>
           )}
