@@ -58,10 +58,13 @@ export default StyleSheet.create({
     color: primary
   },
   buttonAnalyticsStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
     backgroundColor: primary,
-    width: '100%',
   },
 });
