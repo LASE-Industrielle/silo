@@ -1,5 +1,5 @@
 import React, {useEffect, useReducer} from 'react';
-import {ScrollView, View} from "react-native";
+import {ScrollView, View, ActivityIndicator} from "react-native";
 import {
   Body,
   Button,
@@ -82,7 +82,6 @@ const AnalyticsScreen = (props) => {
     return arr.map(x => x);
   };
 
-
   return (
   <Container>
     <Header>
@@ -96,39 +95,42 @@ const AnalyticsScreen = (props) => {
       </Body>
       <Right/>
     </Header>
-    <View  style={{marginBottom: 0, height: 220}}>
-      <LineChart
-          data={{
-            labels: getLabels(),
-            datasets: [{
-              data: getAveragePercentages()
-            }]
-          }}
-          width={380} // from react-native
-          height={220}
-          chartConfig={{
-            backgroundColor: primary,
-            backgroundGradientFrom: primary,
-            backgroundGradientTo: secondary,
-            decimalPlaces: 1, // optional, defaults to 2dp
-            color: () => `rgba(255, 255, 255, 0.9)`,
-            style: {
-              borderRadius: 12,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 5,
-            }
-          }}
-          bezier
-          style={{marginBottom: 0}}
-      />
+    {(Object.entries(state.data).length === 0 && state.data.constructor )? <ActivityIndicator
+      animating={true}
+      size="large"
+  />:( <View  style={{marginBottom: 0, height: 220}}>
+    <LineChart
+        data={{
+          labels: getLabels(),
+          datasets: [{
+            data: getAveragePercentages()
+          }]
+        }}
+        width={380} // from react-native
+        height={220}
+        chartConfig={{
+          backgroundColor: primary,
+          backgroundGradientFrom: primary,
+          backgroundGradientTo: secondary,
+          decimalPlaces: 1, // optional, defaults to 2dp
+          color: () => `rgba(255, 255, 255, 0.9)`,
+          style: {
+            borderRadius: 12,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+          }
+        }}
+        bezier
+        style={{marginBottom: 0}}
+    />
 
-    </View>
+  </View>)}
     <ScrollView style={{position: 'relative', width: '100%', marginTop:0}}>
       <List>
         {analyticsList()}
