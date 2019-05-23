@@ -1,11 +1,11 @@
 const herokuUrl = 'https://silo-be.herokuapp.com';
-const siloApiUrl = `${herokuUrl}/silo/`;
-const loginApiUrl = `${herokuUrl}/auth/`;
-const measurementsApiUrl = `${herokuUrl}/measurement/all/`;
+const loginUrl = `${herokuUrl}/auth/`;
+const siloUrl = `${herokuUrl}/silo/`;
+const measurementsUrl = `${herokuUrl}/measurement/all/`;
 
 export {
   herokuUrl,
-  siloApiUrl,
-  loginApiUrl,
-  measurementsApiUrl,
+  loginUrl,
+  siloUrl,
+  measurementsUrl,
 };

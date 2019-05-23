@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, Switch, View } from 'react-native';
+import { Switch, View } from 'react-native';
 import PropTypes from 'prop-types';
 import ccLogo from '../../assets/img/cc.jpg';
 
@@ -37,12 +37,18 @@ const ProfileScreen = (props) => {
 
   return (
     <Container>
-      <Header></Header>
-      <Content style={{marginTop: 15}}>
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', margin: 15, flexDirection: 'row' }}>
+      <Header/>
+      <Content style={{ marginTop: 15 }}>
+        <View style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: 15,
+          flexDirection: 'row'
+        }}>
           <Thumbnail circle large source={ccLogo}/>
         </View>
-        <Title style={{paddingBottom: 15}}>{username}</Title>
+        <Title style={{ paddingBottom: 15 }}>{username}</Title>
         <ListItem icon>
           <Left>
             <Button style={{ backgroundColor: primary }}>

@@ -1,5 +1,5 @@
 import React, {useEffect, useReducer} from 'react';
-import {ScrollView, View, ActivityIndicator} from "react-native";
+import {ScrollView, View, ActivityIndicator} from 'react-native';
 import {
   Body,
   Button,
@@ -19,8 +19,8 @@ import styles from '../Styles';
 import { LineChart } from 'react-native-chart-kit';
 
 import { primary, secondary } from '../Colors';
-import { measurementsReducer } from "../reducers/Reducers";
-import getAllMeasurements from "../services/MeasurementService";
+import { measurementsReducer } from '../reducers/MeasurementsReducer';
+import getAllMeasurements from '../services/MeasurementService';
 
 const initialState = {
   data: {},
@@ -31,15 +31,22 @@ const initialState = {
 const AnalyticsScreen = (props) => {
 
   const [state, dispatch] = useReducer(measurementsReducer, initialState);
-
   const siloId = props.navigation.getParam('id', 1);
+
+  useEffect(() => {
+    getAllMeasurements(dispatch, siloId);
+  }, []);
 
   const getLabels = () => {
     const labels = [];
 
-    Object.keys(state.data).map(key => {
-      labels.push(new Date(key).toLocaleDateString("en-US", {month: 'short', day: 'numeric' }))
-    });
+    Object.keys(state.data)
+      .map(key => {
+        labels.push(new Date(key).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric'
+        }));
+      });
 
     return labels.reverse();
   };
@@ -47,38 +54,42 @@ const AnalyticsScreen = (props) => {
   const getAveragePercentages = () => {
     const array = [];
 
-    Object.keys(state.data).map(key => {
-      let average = 0;
-      Object.keys(state.data[key]).map(percentage => {
-        average += state.data[key][percentage];
+    Object.keys(state.data)
+      .map(key => {
+        let average = 0;
+        Object.keys(state.data[key])
+          .map(percentage => {
+            average += state.data[key][percentage];
+          });
+        average = average / Object.keys(state.data[key]).length;
+        array.push(average);
       });
-      average = average / Object.keys(state.data[key]).length;
-      array.push(average);
-    });
     return array.reverse();
-  }
-
-  useEffect(() => {
-    getAllMeasurements(dispatch, siloId);
-  }, []);
+  };
 
   const analyticsList = () => {
     const arr = [];
-    Object.keys(state.data).map(key => {
-      arr.push(<ListItem key={key} itemDivider>
-        <Text style={{color: '#676767'}}>{new Date(key).toLocaleDateString("en-US", { weekday: 'short', month: 'long', day: 'numeric' })}</Text>
-      </ListItem>);
-      Object.keys(state.data[key]).map(timestamp => {
-        arr.push(<ListItem key={key + timestamp}>
-          <Left>
-            <Text>{state.data[key][timestamp]}%</Text>
-          </Left>
-          <Right>
-            <Text note>{timestamp}</Text>
-          </Right>
-        </ListItem>)
+    Object.keys(state.data)
+      .map(key => {
+        arr.push(<ListItem key={key} itemDivider>
+          <Text style={{ color: '#676767' }}>{new Date(key).toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'long',
+            day: 'numeric'
+          })}</Text>
+        </ListItem>);
+        Object.keys(state.data[key])
+          .map(timestamp => {
+            arr.push(<ListItem key={key + timestamp}>
+              <Left>
+                <Text>{state.data[key][timestamp]}%</Text>
+              </Left>
+              <Right>
+                <Text note>{timestamp}</Text>
+              </Right>
+            </ListItem>);
+          });
       });
-    });
     return arr.map(x => x);
   };
 

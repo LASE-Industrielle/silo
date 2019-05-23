@@ -2,10 +2,7 @@ import React from 'react';
 
 import { Form, Input, Item, Label } from 'native-base';
 
-const SensorData = (props) => {
-
-  const { serialNumber, type } = props;
-
+const SensorData = ({ serialNumber, type }) => {
   return (
     <Form>
       <Item fixedLabel>

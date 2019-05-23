@@ -1,0 +1,4 @@
+const TOKEN_KEY = 'TOKEN';
+const SILO_DEFAULT_CONTENT = 'Soil';
+
+export { TOKEN_KEY, SILO_DEFAULT_CONTENT };

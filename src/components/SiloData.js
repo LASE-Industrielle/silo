@@ -2,10 +2,7 @@ import React from 'react';
 
 import { Form, Input, Item, Label } from 'native-base';
 
-const SiloData = (props) => {
-
-  const { width, height, capacity, location } = props;
-
+const SiloData = ({ width, height, capacity, location }) => {
   return (
     <Form>
       <Item fixedLabel>

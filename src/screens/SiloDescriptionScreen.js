@@ -7,7 +7,7 @@ import SensorData from '../components/SensorData';
 
 import styles from '../Styles';
 
-const SiloConfigScreen = (props) => {
+const SiloDescriptionScreen = (props) => {
 
   const silo = props.navigation.getParam('siloDetails', {});
 
@@ -37,4 +37,4 @@ const SiloConfigScreen = (props) => {
   );
 };
 
-export default SiloConfigScreen;
+export default SiloDescriptionScreen;

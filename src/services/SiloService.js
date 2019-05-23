@@ -1,20 +1,20 @@
 import axios from 'axios';
-import { STATUS_LOAD_ERROR, STATUS_LOAD_START, STATUS_LOAD_SUCCESS, } from '../Actions';
-import { siloApiUrl } from '../Urls';
+import { SILOS_LOAD_ERROR, SILOS_LOAD_START, SILOS_LOAD_SUCCESS, } from '../Actions';
+import { siloUrl } from '../Urls';
 
-const downloadData = (dispatch) => {
-  dispatch({ type: STATUS_LOAD_START });
-  axios.get(siloApiUrl)
+const getSilos = (dispatch) => {
+  dispatch({ type: SILOS_LOAD_START });
+  axios.get(siloUrl)
     .then(response => dispatch({
-      type: STATUS_LOAD_SUCCESS,
+      type: SILOS_LOAD_SUCCESS,
       payload: response.data,
     }))
     .catch((err) => {
       dispatch({
-        type: STATUS_LOAD_ERROR,
+        type: SILOS_LOAD_ERROR,
         error: err
       });
     });
 };
 
-export default downloadData;
+export default getSilos;
