@@ -4,6 +4,12 @@ import { primary } from '../Colors';
 
 const size = 45;
 
+const SiloPercentage = ({ percentage }) => (
+  <View style={style.defaultView}>
+    <Text style={style.defaultText}>{percentage}%</Text>
+  </View>
+);
+
 const style = StyleSheet.create({
   defaultView: {
     width: size,
@@ -18,11 +24,5 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-const SiloPercentage = ({ percentage }) => (
-  <View style={style.defaultView}>
-    <Text style={style.defaultText}>{percentage}%</Text>
-  </View>
-);
 
 export default SiloPercentage;

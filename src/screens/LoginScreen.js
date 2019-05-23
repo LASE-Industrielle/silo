@@ -3,7 +3,7 @@ import { Alert, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { Button, Container, Content, Input, Item, Spinner, Text } from 'native-base';
 
-import { authReducer } from '../reducers/Reducers';
+import { authReducer } from '../reducers/AuthReducer';
 import UserContext from '../context/UserContext';
 import authCall from '../services/AuthService';
 
