@@ -62,7 +62,7 @@ const SilosScreen = (props) => {
               <Left>
                 <SiloPercentage percentage={item.percentage}/>
                 <Body>
-                  <Text>{item.sensor.serial_number}</Text>
+                  <Text>{item.name}</Text>
                   <Text note>{item.location}</Text>
                 </Body>
               </Left>
