@@ -19,7 +19,7 @@ import styles from '../Styles';
 import { LineChart } from 'react-native-chart-kit';
 
 import { primary, secondary } from '../Colors';
-import { measurementsReducer } from '../reducers/Reducers';
+import { measurementsReducer } from '../reducers/MeasurementsReducer';
 import getAllMeasurements from '../services/MeasurementService';
 
 const initialState = {

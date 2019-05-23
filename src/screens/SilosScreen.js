@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useReducer } from 'react';
 
 import { RefreshControl } from 'react-native';
 
-import { silosReducer } from '../reducers/Reducers';
+import { silosReducer } from '../reducers/SilosReducer';
 import getSilos from '../services/SiloService';
 import UserContext from '../context/UserContext';
 import {
