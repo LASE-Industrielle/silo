@@ -1498,9 +1498,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FTEXX6B66Q;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
@@ -1516,7 +1517,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.codecentric.labs.silo;
 				PRODUCT_NAME = silo;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "labs2 silo";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
