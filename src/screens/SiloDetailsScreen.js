@@ -1,12 +1,24 @@
 import React from 'react';
-import {View} from 'react-native'
-import {Body, Button, Container, Content, Header, Icon, Left, Right, Text, Title, Footer, FooterTab} from 'native-base';
+import {
+  Body,
+  Button,
+  Container,
+  Content,
+  Footer,
+  FooterTab,
+  Header,
+  Icon,
+  Left,
+  Right,
+  Text,
+  Title
+} from 'native-base';
 
 import styles from '../Styles';
 
-import SiloOverview from '../components/SiloOverview';
+import SiloGraph from '../components/SiloGraph';
 import SiloShortInfo from '../components/SiloShortInfo';
-import AnalyticsIcon from "../icons/AnalyticsIcon";
+import AnalyticsIcon from '../icons/AnalyticsIcon';
 
 const SiloDetailsScreen = (props) => {
 
@@ -25,22 +37,25 @@ const SiloDetailsScreen = (props) => {
         </Body>
         <Right>
           <Button transparent
-                  onPress={() => props.navigation.navigate('SiloConfig', { siloDetails: silo })}>
+                  onPress={() => props.navigation.navigate('SiloDescription', { siloDetails: silo })}>
             <Icon name="ios-information-circle-outline" style={styles.icons}/>
           </Button>
         </Right>
       </Header>
       <Content>
-        <SiloOverview silo={silo}/>
+        <SiloGraph silo={silo}/>
         <SiloShortInfo silo={silo}/>
       </Content>
-      <Footer style={{backgroundColor:"white", borderTopWidth: 0}}>
-        <FooterTab >
+      <Footer style={{
+        backgroundColor: 'white',
+        borderTopWidth: 0
+      }}>
+        <FooterTab>
           <Button
-              block
-              primary
-              onPress={() => props.navigation.navigate('Analytics', {id: silo.id})}
-              style={styles.buttonAnalyticsStyle}
+            block
+            primary
+            onPress={() => props.navigation.navigate('Analytics', { id: silo.id })}
+            style={styles.buttonAnalyticsStyle}
           >
             <AnalyticsIcon/>
             <Text style={{

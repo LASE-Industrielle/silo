@@ -9,18 +9,18 @@ import LoginScreen from './screens/LoginScreen';
 import SilosScreen from './screens/SilosScreen';
 import AnalyticsScreen from './screens/AnalyticsScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import SiloDetailsScreen from './screens/SiloDetailsScreen';
-import SiloConfigScreen from './screens/ConfigScreen';
+import SiloOverviewScreen from './screens/SiloDetailsScreen';
+import SiloDescriptionScreen from './screens/SiloDescriptionScreen';
 
 import styles from './Styles';
-import ProfileIcon from "./icons/ProfileIcon";
-import HomeIcon from "./icons/HomeIcon";
+import ProfileIcon from './icons/ProfileIcon';
+import HomeIcon from './icons/HomeIcon';
 
 const SiloNavigator = createStackNavigator(
   {
     Silos: {
       screen: SilosScreen,
-      path: 'Silo',
+      path: 'Silos',
       navigationOptions: {
         header: null
       },
@@ -33,15 +33,15 @@ const SiloNavigator = createStackNavigator(
       },
     },
     SiloOverview: {
-      screen: SiloDetailsScreen,
+      screen: SiloOverviewScreen,
       path: 'SiloOverview',
       navigationOptions: {
         header: null
       },
     },
-    SiloConfig: {
-      screen: SiloConfigScreen,
-      path: 'SiloConfig',
+    SiloDescription: {
+      screen: SiloDescriptionScreen,
+      path: 'SiloDescription',
       navigationOptions: {
         header: null
       },

@@ -4,14 +4,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import AppContainer from './Navigation';
 import UserContext from './context/UserContext';
-
-const TOKEN_KEY = 'TOKEN';
+import { TOKEN_KEY } from './Constants';
 
 const App = () => {
   const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
 
   useEffect(() => {
+    // TODO
     loadToken();
   }, []);
 
@@ -22,7 +22,7 @@ const App = () => {
         setToken(storedToken);
       }
     } catch (e) {
-      // error reading value
+      console.error('Failed to get TOKEN');
     }
   };
 
@@ -32,7 +32,7 @@ const App = () => {
     try {
       await AsyncStorage.setItem(TOKEN_KEY, newToken);
     } catch (e) {
-      // saving error
+      console.error('Failed to save TOKEN to AsyncStorage');
     }
   };
 
