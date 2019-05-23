@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { AUTH_ERROR, AUTH_START, AUTH_SUCCESS, } from '../Actions';
-import { loginApiUrl } from '../Urls';
+import { loginUrl } from '../Urls';
 
 const authCall = (dispatch, loginUsername, loginPassword) => {
   dispatch({ type: AUTH_START });
   axios({
     method: 'post',
-    url: loginApiUrl,
+    url: loginUrl,
     headers: {
       'Content-Type': 'application/json',
     },

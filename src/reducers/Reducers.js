@@ -2,29 +2,29 @@ import {
   AUTH_ERROR,
   AUTH_START,
   AUTH_SUCCESS,
-  STATUS_LOAD_ERROR,
-  STATUS_LOAD_START,
-  STATUS_LOAD_SUCCESS,
+  MEASUREMENTS_ERROR,
   MEASUREMENTS_START,
   MEASUREMENTS_SUCCESS,
-  MEASUREMENTS_ERROR,
+  SILOS_LOAD_ERROR,
+  SILOS_LOAD_START,
+  SILOS_LOAD_SUCCESS,
 } from '../Actions';
 
 
-const statusReducer = (state, action) => {
+const silosReducer = (state, action) => {
   switch (action.type) {
-    case STATUS_LOAD_START:
+    case SILOS_LOAD_START:
       return {
         ...state,
         loading: true
       };
-    case STATUS_LOAD_SUCCESS:
+    case SILOS_LOAD_SUCCESS:
       return {
         ...state,
         data: action.payload,
         loading: false
       };
-    case STATUS_LOAD_ERROR:
+    case SILOS_LOAD_ERROR:
       return {
         ...state,
         errorMessage: 'failed',
@@ -83,4 +83,4 @@ const measurementsReducer = (state, action) => {
   }
 };
 
-export { statusReducer, authReducer, measurementsReducer };
+export { silosReducer, authReducer, measurementsReducer };

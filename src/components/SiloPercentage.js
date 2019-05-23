@@ -17,9 +17,7 @@ const style = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-
 });
-
 
 const SiloPercentage = ({ percentage }) => (
   <View style={style.defaultView}>

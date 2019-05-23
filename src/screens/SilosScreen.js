@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useReducer } from 'react';
 
 import { RefreshControl } from 'react-native';
 
-import { statusReducer } from '../reducers/Reducers';
-import downloadData from '../services/SiloService';
+import { silosReducer } from '../reducers/Reducers';
+import getSilos from '../services/SiloService';
 import UserContext from '../context/UserContext';
 import {
   Body,
@@ -28,15 +28,15 @@ const initialState = {
 
 
 const SilosScreen = (props) => {
-  const [state, dispatch] = useReducer(statusReducer, initialState);
+  const [state, dispatch] = useReducer(silosReducer, initialState);
   const { token } = useContext(UserContext);
 
   useEffect(() => {
-    downloadData(dispatch, token);
+    getSilos(dispatch, token);
   }, []);
 
   const onRefresh = () => {
-    downloadData(dispatch, token);
+    getSilos(dispatch, token);
   };
 
   return (
@@ -47,7 +47,7 @@ const SilosScreen = (props) => {
           <Title>Silos</Title>
         </Body>
         <Right>
-          { state.data.length > 0 ?  <Text note>Updated</Text>:  <Text note></Text>}
+          {state.data.length > 0 ? <Text note>Updated</Text> : <Text note/>}
         </Right>
       </Header>
       <Content refreshControl={<RefreshControl
