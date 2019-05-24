@@ -33,7 +33,7 @@ const SiloDetailsScreen = (props) => {
           </Button>
         </Left>
         <Body>
-          <Title>{silo.sensor.serial_number}</Title>
+          <Title>{silo.name}</Title>
         </Body>
         <Right>
           <Button transparent
