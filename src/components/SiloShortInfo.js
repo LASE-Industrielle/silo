@@ -39,7 +39,7 @@ const CardItemBordered = ({ silo }) => {
   };
 
   return (
-    <Container>
+    <Container style={{height:350}}>
       <Content>
         <Form>
           <Item fixedLabel>
