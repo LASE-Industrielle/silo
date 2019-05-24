@@ -1,5 +1,5 @@
 import React, {useEffect, useReducer} from 'react';
-import {ScrollView, View, ActivityIndicator} from 'react-native';
+import {ScrollView, View, ActivityIndicator, RefreshControl} from 'react-native';
 import {
   Body,
   Button,
@@ -21,6 +21,7 @@ import { LineChart } from 'react-native-chart-kit';
 import { primary, secondary } from '../Colors';
 import { measurementsReducer } from '../reducers/MeasurementsReducer';
 import getAllMeasurements from '../services/MeasurementService';
+import getSilos from "../services/SiloService";
 
 const initialState = {
   data: {},
@@ -36,6 +37,10 @@ const AnalyticsScreen = (props) => {
   useEffect(() => {
     getAllMeasurements(dispatch, siloId);
   }, []);
+
+  const onRefresh = () => {
+    getAllMeasurements(dispatch, siloId);
+  };
 
   const getLabels = () => {
     const labels = [];
@@ -142,7 +147,10 @@ const AnalyticsScreen = (props) => {
     />
 
   </View>)}
-    <ScrollView style={{position: 'relative', width: '100%', marginTop:0}}>
+    <ScrollView style={{position: 'relative', width: '100%', marginTop:0}} refreshControl={<RefreshControl
+        refreshing={state.loading}
+        onRefresh={onRefresh}
+    />}>
       <List>
         {analyticsList()}
       </List>
