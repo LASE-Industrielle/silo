@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 
 import { RefreshControl } from 'react-native';
 
 import { silosReducer } from '../reducers/SilosReducer';
 import getSilos from '../services/SiloService';
-import UserContext from '../context/UserContext';
+
 import {
   Body,
   Container,
@@ -29,14 +29,13 @@ const initialState = {
 
 const SilosScreen = (props) => {
   const [state, dispatch] = useReducer(silosReducer, initialState);
-  const { token } = useContext(UserContext);
 
   useEffect(() => {
-    getSilos(dispatch, token);
+    getSilos(dispatch);
   }, []);
 
   const onRefresh = () => {
-    getSilos(dispatch, token);
+    getSilos(dispatch);
   };
 
   return (

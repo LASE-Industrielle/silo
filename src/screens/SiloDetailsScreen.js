@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useReducer, useEffect } from 'react';
+import { RefreshControl } from 'react-native';
 import {
   Body,
   Button,
@@ -9,7 +10,7 @@ import {
   Header,
   Icon,
   Left,
-  Right,
+  Right, Spinner,
   Text,
   Title
 } from 'native-base';
@@ -19,10 +20,35 @@ import styles from '../Styles';
 import SiloGraph from '../components/SiloGraph';
 import SiloShortInfo from '../components/SiloShortInfo';
 import AnalyticsIcon from '../icons/AnalyticsIcon';
+import { silosReducer } from '../reducers/SilosReducer';
+import getSilos from '../services/SiloService';
+
+const initialState = {
+  data: [],
+  errorMessage: '',
+  loading: false,
+};
 
 const SiloDetailsScreen = (props) => {
-
+  const [state, dispatch] = useReducer(silosReducer, initialState);
   const silo = props.navigation.getParam('item', {});
+
+  useEffect(() => {
+    getSilos(dispatch);
+  }, []);
+
+  const onRefresh = () => {
+    getSilos(dispatch);
+  };
+
+  if(state.data.length === 0) {
+    return (
+    <Container>
+      <Content contentContainerStyle={styles.default}>
+        <Spinner/>
+      </Content>
+    </Container>);
+  }
 
   return (
     <Container>
@@ -33,18 +59,18 @@ const SiloDetailsScreen = (props) => {
           </Button>
         </Left>
         <Body>
-          <Title>{silo.name}</Title>
+          <Title>{state.data[silo.id - 1].name}</Title>
         </Body>
         <Right>
           <Button transparent
-                  onPress={() => props.navigation.navigate('SiloDescription', { siloDetails: silo })}>
+                  onPress={() => props.navigation.navigate('SiloDescription', { siloDetails: state.data[silo.id - 1] })}>
             <Icon name="ios-information-circle-outline" style={styles.icons}/>
           </Button>
         </Right>
       </Header>
-      <Content>
-        <SiloGraph silo={silo}/>
-        <SiloShortInfo silo={silo}/>
+      <Content refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={state.loading}/> }>
+        <SiloGraph silo={state.data[silo.id - 1]}/>
+        <SiloShortInfo silo={state.data[silo.id - 1]}/>
       </Content>
       <Footer style={{
         backgroundColor: 'white',
@@ -55,7 +81,7 @@ const SiloDetailsScreen = (props) => {
           <Button
             block
             primary
-            onPress={() => props.navigation.navigate('Analytics', { id: silo.id })}
+            onPress={() => props.navigation.navigate('Analytics', { id: state.data[silo.id - 1].id })}
             style={styles.buttonAnalyticsStyle}
           >
             <AnalyticsIcon/>
