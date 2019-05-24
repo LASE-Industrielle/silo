@@ -1,5 +1,5 @@
 import React, {useEffect, useReducer} from 'react';
-import {ScrollView, View, ActivityIndicator, RefreshControl} from 'react-native';
+import {ScrollView, View, ActivityIndicator, RefreshControl, Dimensions} from 'react-native';
 import {
   Body,
   Button,
@@ -21,7 +21,6 @@ import { LineChart } from 'react-native-chart-kit';
 import { primary, secondary } from '../Colors';
 import { measurementsReducer } from '../reducers/MeasurementsReducer';
 import getAllMeasurements from '../services/MeasurementService';
-import getSilos from "../services/SiloService";
 
 const initialState = {
   data: {},
@@ -122,7 +121,7 @@ const AnalyticsScreen = (props) => {
             data: getAveragePercentages()
           }]
         }}
-        width={380} // from react-native
+        width={Math.round(Dimensions.get('window').width)} // from react-native
         height={220}
         chartConfig={{
           backgroundColor: primary,
