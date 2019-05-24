@@ -48,7 +48,8 @@ const SiloDetailsScreen = (props) => {
       </Content>
       <Footer style={{
         backgroundColor: 'white',
-        borderTopWidth: 0
+        borderTopWidth: 0,
+        marginBottom:12
       }}>
         <FooterTab>
           <Button
