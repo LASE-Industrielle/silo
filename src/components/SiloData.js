@@ -17,9 +17,9 @@ const SiloData = ({ width, height, capacity, location }) => {
         <Label>Capacity:</Label>
         <Input disabled value={capacity.toString() + ' kg'}/>
       </Item>
-      <Item fixedLabel>
+      <Item fixedLabel style={{ paddingBottom: 5 }}>
         <Label>Location:</Label>
-        <Input disabled value={location}/>
+        <Input disabled multiline value={location}/>
       </Item>
     </Form>
   );

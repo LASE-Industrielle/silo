@@ -20,8 +20,8 @@ const CardItemBordered = ({ silo }) => {
 
   const getCardItems = () => {
     const dateOptions = {
-      weekday: 'long',
-      month: 'long',
+      weekday: 'short',
+      month: 'short',
       day: 'numeric'
     };
 
@@ -29,7 +29,7 @@ const CardItemBordered = ({ silo }) => {
       .map(key =>
         <ListItem key={key}>
           <Left>
-            <Text>{silo.last_days_in_average[key]}%</Text>
+            <Text>{silo.last_days_in_average[key].toFixed(0)}%</Text>
           </Left>
           <Right>
             <Text note>{new Date(key).toLocaleDateString('en-US', dateOptions)}</Text>
