@@ -25,11 +25,11 @@ const CardItemBordered = ({ silo }) => {
       day: 'numeric'
     };
 
-    return Object.keys(silo.last_days_in_average)
+    return Object.keys(silo.values_by_day)
       .map(key =>
         <ListItem key={key}>
           <Left>
-            <Text>{silo.last_days_in_average[key].toFixed(0)}%</Text>
+            <Text>{silo.values_by_day[key].toFixed(0)}%</Text>
           </Left>
           <Right>
             <Text note>{new Date(key).toLocaleDateString('en-US', dateOptions)}</Text>
