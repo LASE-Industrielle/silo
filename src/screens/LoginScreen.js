@@ -29,6 +29,13 @@ const LoginScreen = (props) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
+    if(__DEV__ === true) {
+      setUsername('demo');
+      setPassword('codecentriccclabs2');
+    }
+  }, []);
+
+  useEffect(() => {
     if (state.token !== '') {
       loginUser(username, state.token);
       props.navigation.dispatch(appAction);
@@ -71,12 +78,12 @@ const LoginScreen = (props) => {
           <Image style={styles.image} source={laseLogo}/>
         </Item>
         <Item rounded style={styles.inputItem}>
-          <Input autoCapitalize="none" onChangeText={(text) => {
+          <Input autoCapitalize="none" value={username} onChangeText={(text) => {
             setUsername(text);
           }} placeholder="Username" style={styles.placeholder}/>
         </Item>
         <Item rounded style={styles.inputItem}>
-          <Input secureTextEntry onChangeText={(text) => {
+          <Input secureTextEntry value={password} onChangeText={(text) => {
             setPassword(text);
           }} placeholder="Password" style={styles.placeholder}/>
         </Item>
