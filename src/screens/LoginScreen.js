@@ -1,32 +1,23 @@
-import React, { useContext, useEffect, useReducer, useState, } from 'react';
-import { Alert, Image } from 'react-native';
+import React, {useEffect, useState,} from 'react';
+import {Alert, Image} from 'react-native';
 import PropTypes from 'prop-types';
-import { Button, Container, Content, Input, Item, Spinner, Text } from 'native-base';
-
-import { authReducer } from '../reducers/AuthReducer';
-import UserContext from '../context/UserContext';
+import {Button, Container, Content, Input, Item, Spinner, Text} from 'native-base';
+import {useStateValue} from '../context/StateContext';
 import authCall from '../services/AuthService';
 
 import styles from '../Styles';
 import laseLogo from '../../assets/img/lase.jpeg';
-import { NavigationActions, StackActions } from 'react-navigation';
+import {NavigationActions, StackActions} from 'react-navigation';
 
 const appAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'App' })],
 });
 
-const initialState = {
-  token: '',
-  errorMessage: '',
-  loading: false,
-};
-
 const LoginScreen = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { loginUser } = useContext(UserContext);
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const [{auth}, dispatch] = useStateValue();
 
   useEffect(() => {
     if(__DEV__ === true) {
@@ -36,33 +27,32 @@ const LoginScreen = (props) => {
   }, []);
 
   useEffect(() => {
-    if (state.token !== '') {
-      loginUser(username, state.token);
+    if (auth.token !== '') {
       props.navigation.dispatch(appAction);
     }
-  }, [state.token]);
+  }, [auth.token]);
 
   useEffect(() => {
-    if (state.errorMessage !== '') {
+    if (auth.errorMessage !== '') {
       Alert.alert(
         'Failed',
         'Failed to login with provided credentials',
         [
           {
             text: 'OK',
-            onPress: () => state.errorMessage = ''
+            onPress: () => auth.errorMessage = ''
           },
         ],
         { cancelable: false },
       );
     }
-  }, [state.errorMessage]);
+  }, [auth.errorMessage]);
 
   const login = () => {
     authCall(dispatch, username, password);
   };
 
-  if (state.loading) {
+  if (auth.loading) {
     return (
       <Container>
         <Content contentContainerStyle={styles.default}>

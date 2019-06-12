@@ -1,34 +1,16 @@
-import React, { useEffect, useReducer } from 'react';
+import React, {useEffect} from 'react';
 
-import { RefreshControl } from 'react-native';
-
-import { silosReducer } from '../reducers/SilosReducer';
+import {RefreshControl} from 'react-native';
 import getSilos from '../services/SiloService';
 
-import {
-  Body,
-  Container,
-  Content,
-  Header,
-  Left,
-  List,
-  ListItem,
-  Right,
-  Text,
-  Title
-} from 'native-base';
+import {Body, Container, Content, Header, Left, List, ListItem, Right, Text, Title} from 'native-base';
 
 import SiloPercentage from '../components/SiloPercentage';
-
-const initialState = {
-  data: [],
-  errorMessage: '',
-  loading: false,
-};
+import {useStateValue} from "../context/StateContext";
 
 
 const SilosScreen = (props) => {
-  const [state, dispatch] = useReducer(silosReducer, initialState);
+  const [{silos}, dispatch] = useStateValue();
 
   useEffect(() => {
     getSilos(dispatch);
@@ -46,15 +28,15 @@ const SilosScreen = (props) => {
           <Title>Silos</Title>
         </Body>
         <Right>
-          {state.data.length > 0 ? <Text note>Updated</Text> : <Text note/>}
+          {silos.data.length > 0 ? <Text note>Updated</Text> : <Text note/>}
         </Right>
       </Header>
       <Content refreshControl={<RefreshControl
-        refreshing={state.loading}
+        refreshing={silos.loading}
         onRefresh={onRefresh}
       />}>
         <List>
-          {state.data.map(item =>
+          {silos.data.map(item =>
             <ListItem key={item.id} onPress={() => {
               props.navigation.navigate('SiloOverview', { item: item });
             }}>

@@ -1,5 +1,5 @@
-import React, { useReducer, useEffect } from 'react';
-import { RefreshControl } from 'react-native';
+import React, {useEffect} from 'react';
+import {RefreshControl} from 'react-native';
 import {
   Body,
   Button,
@@ -10,7 +10,8 @@ import {
   Header,
   Icon,
   Left,
-  Right, Spinner,
+  Right,
+  Spinner,
   Text,
   Title
 } from 'native-base';
@@ -20,17 +21,12 @@ import styles from '../Styles';
 import SiloGraph from '../components/SiloGraph';
 import SiloShortInfo from '../components/SiloShortInfo';
 import AnalyticsIcon from '../icons/AnalyticsIcon';
-import { silosReducer } from '../reducers/SilosReducer';
 import getSilos from '../services/SiloService';
+import {useStateValue} from "../context/StateContext";
 
-const initialState = {
-  data: [],
-  errorMessage: '',
-  loading: false,
-};
 
 const SiloDetailsScreen = (props) => {
-  const [state, dispatch] = useReducer(silosReducer, initialState);
+  const [{silos}, dispatch] = useStateValue();
   const silo = props.navigation.getParam('item', {});
 
   useEffect(() => {
@@ -41,7 +37,7 @@ const SiloDetailsScreen = (props) => {
     getSilos(dispatch);
   };
 
-  if(state.data.length === 0) {
+  if(silos.data.length === 0) {
     return (
     <Container>
       <Content contentContainerStyle={styles.default}>
@@ -59,18 +55,18 @@ const SiloDetailsScreen = (props) => {
           </Button>
         </Left>
         <Body>
-          <Title>{state.data[silo.id - 1].name}</Title>
+          <Title>{silos.data[silo.id - 1].name}</Title>
         </Body>
         <Right>
           <Button transparent
-                  onPress={() => props.navigation.navigate('SiloDescription', { siloDetails: state.data[silo.id - 1] })}>
+                  onPress={() => props.navigation.navigate('SiloDescription', { siloDetails: silos.data[silo.id - 1] })}>
             <Icon name="ios-information-circle-outline" style={styles.icons}/>
           </Button>
         </Right>
       </Header>
-      <Content refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={state.loading}/> }>
-        <SiloGraph silo={state.data[silo.id - 1]}/>
-        <SiloShortInfo silo={state.data[silo.id - 1]}/>
+      <Content refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={silos.loading}/> }>
+        <SiloGraph silo={silos.data[silo.id - 1]}/>
+        <SiloShortInfo silo={silos.data[silo.id - 1]}/>
       </Content>
       <Footer style={{
         backgroundColor: 'white',
@@ -81,7 +77,7 @@ const SiloDetailsScreen = (props) => {
           <Button
             block
             primary
-            onPress={() => props.navigation.navigate('Analytics', { id: state.data[silo.id - 1].id })}
+            onPress={() => props.navigation.navigate('Analytics', { id: silos.data[silo.id - 1].id })}
             style={styles.buttonAnalyticsStyle}
           >
             <AnalyticsIcon/>

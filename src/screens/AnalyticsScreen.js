@@ -1,36 +1,19 @@
-import React, {useEffect, useReducer} from 'react';
-import {ScrollView, View, ActivityIndicator, RefreshControl, Dimensions} from 'react-native';
-import {
-  Body,
-  Button,
-  Container,
-  Header,
-  Icon,
-  Left,
-  List,
-  ListItem,
-  Right,
-  Text,
-  Title,
-} from 'native-base';
+import React, {useEffect} from 'react';
+import {ActivityIndicator, Dimensions, RefreshControl, ScrollView, View} from 'react-native';
+import {Body, Button, Container, Header, Icon, Left, List, ListItem, Right, Text, Title,} from 'native-base';
 
 import styles from '../Styles';
 
-import { LineChart } from 'react-native-chart-kit';
+import {LineChart} from 'react-native-chart-kit';
 
-import { primary, secondary } from '../Colors';
-import { measurementsReducer } from '../reducers/MeasurementsReducer';
+import {primary, secondary} from '../Colors';
 import getAllMeasurements from '../services/MeasurementService';
+import {useStateValue} from "../context/StateContext";
 
-const initialState = {
-  data: {},
-  errorMessage: '',
-  loading: false,
-};
 
 const AnalyticsScreen = (props) => {
 
-  const [state, dispatch] = useReducer(measurementsReducer, initialState);
+  const [{measurements}, dispatch] = useStateValue();
   const siloId = props.navigation.getParam('id', 1);
 
   useEffect(() => {
@@ -44,7 +27,7 @@ const AnalyticsScreen = (props) => {
   const getLabels = () => {
     const labels = [];
 
-    Object.keys(state.data)
+    Object.keys(measurements.data)
       .map(key => {
         labels.push(new Date(key).toLocaleDateString('en-US', {
           month: 'short',
@@ -58,14 +41,14 @@ const AnalyticsScreen = (props) => {
   const getAveragePercentages = () => {
     const array = [];
 
-    Object.keys(state.data)
+    Object.keys(measurements.data)
       .map(key => {
         let average = 0;
-        Object.keys(state.data[key])
+        Object.keys(measurements.data[key])
           .map(percentage => {
-            average += state.data[key][percentage];
+            average += measurements.data[key][percentage];
           });
-        average = average / Object.keys(state.data[key]).length;
+        average = average / Object.keys(measurements.data[key]).length;
         array.push(average);
       });
     return array.reverse();
@@ -73,7 +56,7 @@ const AnalyticsScreen = (props) => {
 
   const analyticsList = () => {
     const arr = [];
-    Object.keys(state.data)
+    Object.keys(measurements.data)
       .map(key => {
         arr.push(<ListItem key={key} itemDivider>
           <Text style={{ color: '#676767' }}>{new Date(key).toLocaleDateString('en-US', {
@@ -82,11 +65,11 @@ const AnalyticsScreen = (props) => {
             day: 'numeric'
           })}</Text>
         </ListItem>);
-        Object.keys(state.data[key])
+        Object.keys(measurements.data[key])
           .map(timestamp => {
             arr.push(<ListItem key={key + timestamp}>
               <Left>
-                <Text>{state.data[key][timestamp]}%</Text>
+                <Text>{measurements.data[key][timestamp]}%</Text>
               </Left>
               <Right>
                 <Text note>{timestamp}</Text>
@@ -110,7 +93,7 @@ const AnalyticsScreen = (props) => {
       </Body>
       <Right/>
     </Header>
-    {(Object.entries(state.data).length === 0 && state.data.constructor )? <ActivityIndicator
+    {(Object.entries(measurements.data).length === 0 && measurements.data.constructor )? <ActivityIndicator
       animating={true}
       size="large"
   />:( <View  style={{marginBottom: 0, height: 220}}>
@@ -147,7 +130,7 @@ const AnalyticsScreen = (props) => {
 
   </View>)}
     <ScrollView style={{position: 'relative', width: '100%', marginTop:0}} refreshControl={<RefreshControl
-        refreshing={state.loading}
+        refreshing={measurements.loading}
         onRefresh={onRefresh}
     />}>
       <List>

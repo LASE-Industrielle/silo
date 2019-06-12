@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Switch, View } from 'react-native';
+import React, {useState} from 'react';
+import {Switch, View} from 'react-native';
 import PropTypes from 'prop-types';
 import ccLogo from '../../assets/img/cc.jpg';
 
@@ -19,19 +19,21 @@ import {
   Title
 } from 'native-base';
 
-import UserContext from '../context/UserContext';
+import {useStateValue} from '../context/StateContext';
 import resetAction from '../utils/NavigationUtils';
 
-import { primary } from '../Colors';
+import {primary} from '../Colors';
+import {LOGOUT_USER} from "../Actions";
 
 const ProfileScreen = (props) => {
 
-  const { username, logoutUser } = useContext(UserContext);
+  const [{profile}, dispatch] = useStateValue();
+
   const [sync1, setSync1] = useState(true);
   const [sync2, setSync2] = useState(false);
 
   const logout = () => {
-    logoutUser();
+    dispatch({type: LOGOUT_USER});
     props.navigation.dispatch(resetAction);
   };
 
@@ -48,7 +50,7 @@ const ProfileScreen = (props) => {
         }}>
           <Thumbnail circle large source={ccLogo}/>
         </View>
-        <Title style={{ paddingBottom: 15 }}>{username}</Title>
+        <Title style={{ paddingBottom: 15 }}>{profile.username}</Title>
         <ListItem icon>
           <Left>
             <Button style={{ backgroundColor: primary }}>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Body, Button, Container, Content, Header, Icon, Left, Right, Title } from 'native-base';
+import {View} from 'react-native';
+import {Body, Button, Container, Content, Header, Icon, Left, Right, Title} from 'native-base';
 
 import SiloData from '../components/SiloData';
 import SensorData from '../components/SensorData';

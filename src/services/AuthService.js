@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_ERROR, AUTH_START, AUTH_SUCCESS, } from '../Actions';
+import {AUTH_ERROR, AUTH_START, AUTH_SUCCESS, SET_USERNAME,} from '../Actions';
 import { loginUrl } from '../Urls';
 
 const authCall = (dispatch, loginUsername, loginPassword) => {
@@ -20,6 +20,10 @@ const authCall = (dispatch, loginUsername, loginPassword) => {
       dispatch({
         type: AUTH_SUCCESS,
         payload: response.data.token,
+      });
+      dispatch({
+        type: SET_USERNAME,
+        username: loginUsername,
       });
     })
     .catch((err) => {
