@@ -37,7 +37,7 @@ const ProfileScreen = (props) => {
 
   return (
     <Container>
-      <Header/>
+      <Header transparent/>
       <Content style={{ marginTop: 15 }}>
         <View style={{
           flex: 1,

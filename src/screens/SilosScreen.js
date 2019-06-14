@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 
 import { RefreshControl } from 'react-native';
 
+import styles from '../Styles';
 import { silosReducer } from '../reducers/SilosReducer';
 import getSilos from '../services/SiloService';
 
@@ -39,11 +40,11 @@ const SilosScreen = (props) => {
   };
 
   return (
-    <Container>
+    <Container style={styles.container}>
       <Header transparent>
         <Left/>
         <Body>
-          <Title>Silos</Title>
+          <Title style={{color:'black'}}>Silos</Title>
         </Body>
         <Right>
           {state.data.length > 0 ? <Text note>Updated</Text> : <Text note/>}
