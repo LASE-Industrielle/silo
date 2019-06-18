@@ -55,18 +55,18 @@ const SiloDetailsScreen = (props) => {
           </Button>
         </Left>
         <Body>
-          <Title style={{color:'black'}}>{silos.data[silo.id - 1].name}</Title>
+          <Title style={{color:'black'}}>{silo.name}</Title>
         </Body>
         <Right>
           <Button transparent
-                  onPress={() => props.navigation.navigate('SiloDescription', { siloDetails: silos.data[silo.id - 1] })}>
+                  onPress={() => props.navigation.navigate('SiloDescription', { siloDetails: silo })}>
             <Icon name="ios-information-circle-outline" style={styles.icons}/>
           </Button>
         </Right>
       </Header>
       <Content refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={silos.loading}/> }>
-        <SiloGraph silo={silos.data[silo.id - 1]}/>
-        <SiloShortInfo silo={silos.data[silo.id - 1]}/>
+        <SiloGraph silo={silo}/>
+        <SiloShortInfo silo={silo}/>
       </Content>
       <Footer style={{
         borderTopWidth: 0,
@@ -79,7 +79,7 @@ const SiloDetailsScreen = (props) => {
           <Button
             block
             primary
-            onPress={() => props.navigation.navigate('Analytics', { id: silos.data[silo.id - 1].id })}
+            onPress={() => props.navigation.navigate('Analytics', { id: silo.id })}
             style={styles.buttonAnalyticsStyle}
           >
             <AnalyticsIcon/>
