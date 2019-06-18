@@ -12,15 +12,15 @@ const SiloDescriptionScreen = (props) => {
   const silo = props.navigation.getParam('siloDetails', {});
 
   return (
-    <Container>
-      <Header>
+    <Container style={styles.container}>
+      <Header style={{backgroundColor:'white'}}>
         <Left>
           <Button transparent onPress={() => props.navigation.goBack()}>
             <Icon name='arrow-back' style={styles.icons}/>
           </Button>
         </Left>
         <Body>
-          <Title>Configuration</Title>
+          <Title style={{color:'black'}}>Configuration</Title>
         </Body>
         <Right/>
       </Header>

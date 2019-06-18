@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 
-import {RefreshControl} from 'react-native';
+import { RefreshControl } from 'react-native';
+
+import styles from '../Styles';
 import getSilos from '../services/SiloService';
 
 import {Body, Container, Content, Header, Left, List, ListItem, Right, Text, Title} from 'native-base';
@@ -21,11 +23,11 @@ const SilosScreen = (props) => {
   };
 
   return (
-    <Container>
+    <Container style={styles.container}>
       <Header transparent>
         <Left/>
         <Body>
-          <Title>Silos</Title>
+          <Title style={{color:'black'}}>Silos</Title>
         </Body>
         <Right>
           {silos.data.length > 0 ? <Text note>Updated</Text> : <Text note/>}

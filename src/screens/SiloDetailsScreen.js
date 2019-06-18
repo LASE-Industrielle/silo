@@ -47,15 +47,15 @@ const SiloDetailsScreen = (props) => {
   }
 
   return (
-    <Container>
-      <Header>
+    <Container style={styles.container}>
+      <Header style={{backgroundColor:'white'}}>
         <Left>
           <Button transparent onPress={() => props.navigation.navigate('Silos')}>
             <Icon name='arrow-back' style={styles.icons}/>
           </Button>
         </Left>
         <Body>
-          <Title>{silos.data[silo.id - 1].name}</Title>
+          <Title style={{color:'black'}}>{silos.data[silo.id - 1].name}</Title>
         </Body>
         <Right>
           <Button transparent
@@ -69,11 +69,13 @@ const SiloDetailsScreen = (props) => {
         <SiloShortInfo silo={silos.data[silo.id - 1]}/>
       </Content>
       <Footer style={{
-        backgroundColor: 'white',
         borderTopWidth: 0,
-        marginBottom:12
+        marginBottom:12,
+        shadowOffset: {height: 0, width: 0},
+        shadowOpacity: 0,
+        elevation: 0
       }}>
-        <FooterTab>
+        <FooterTab style={{ backgroundColor: 'white'}}>
           <Button
             block
             primary

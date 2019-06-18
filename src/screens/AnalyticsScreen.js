@@ -81,15 +81,15 @@ const AnalyticsScreen = (props) => {
   };
 
   return (
-  <Container>
-    <Header>
+  <Container style={styles.container}>
+    <Header style={{backgroundColor: 'white'}}>
       <Left>
         <Button transparent onPress={() => props.navigation.goBack()}>
           <Icon name='arrow-back' style={styles.icons}/>
         </Button>
       </Left>
       <Body>
-      <Title>Analytics</Title>
+      <Title style={{color:'black'}}>Analytics</Title>
       </Body>
       <Right/>
     </Header>

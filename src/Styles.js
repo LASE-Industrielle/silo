@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import {Platform, StatusBar, StyleSheet} from 'react-native';
 
-import { primary } from './Colors';
+import {primary} from './Colors';
 
 export default StyleSheet.create({
   default: {
@@ -62,9 +62,17 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    height:40,
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
     backgroundColor: primary,
   },
+  container: {
+    ...Platform.select({
+      android: {
+        marginTop: StatusBar.currentHeight
+      }
+    })
+  }
 });
