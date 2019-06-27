@@ -40,7 +40,9 @@ const SilosScreen = (props) => {
         <List>
           {silos.data.map(item =>
             <ListItem key={item.id} onPress={() => {
-              props.navigation.navigate('SiloOverview', { item: item });
+              props.navigation.navigate("SiloOverview", {
+                id: item.id
+              });
             }}>
               <Left>
                 <SiloPercentage percentage={item.percentage}/>
