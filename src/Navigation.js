@@ -15,6 +15,7 @@ import SiloDescriptionScreen from './screens/SiloDescriptionScreen';
 import styles from './Styles';
 import ProfileIcon from './icons/ProfileIcon';
 import HomeIcon from './icons/HomeIcon';
+import SplashScreen from './screens/SplashScreen';
 
 const SiloNavigator = createStackNavigator(
   {
@@ -22,35 +23,34 @@ const SiloNavigator = createStackNavigator(
       screen: SilosScreen,
       path: 'Silos',
       navigationOptions: {
-        header: null
+        header: null,
       },
     },
     Analytics: {
       screen: AnalyticsScreen,
       path: 'Analytics',
       navigationOptions: {
-        header: null
+        header: null,
       },
     },
     SiloOverview: {
       screen: SiloOverviewScreen,
       path: 'SiloOverview',
       navigationOptions: {
-        header: null
+        header: null,
       },
     },
     SiloDescription: {
       screen: SiloDescriptionScreen,
       path: 'SiloDescription',
       navigationOptions: {
-        header: null
+        header: null,
       },
-    }
-
+    },
   },
   {
     initialRouteName: 'Silos',
-  }
+  },
 );
 
 const AppTabNavigator = createBottomTabNavigator(
@@ -59,17 +59,16 @@ const AppTabNavigator = createBottomTabNavigator(
       screen: SiloNavigator,
       path: 'Silos',
       navigationOptions: {
-        tabBarIcon: <HomeIcon/>,
+        tabBarIcon: <HomeIcon />,
       },
     },
     Profile: {
       screen: ProfileScreen,
       path: 'Profile',
       navigationOptions: {
-        tabBarIcon: <ProfileIcon/>,
+        tabBarIcon: <ProfileIcon />,
       },
     },
-
   },
   {
     tabBarOptions: {
@@ -82,6 +81,11 @@ const AppTabNavigator = createBottomTabNavigator(
 
 const AppNavigator = createStackNavigator(
   {
+    Splash: {
+      screen: SplashScreen,
+      path: 'Splash',
+      navigationOptions: { header: null },
+    },
     Login: {
       screen: LoginScreen,
       path: 'Login',
@@ -91,10 +95,10 @@ const AppNavigator = createStackNavigator(
       screen: AppTabNavigator,
       path: 'App',
       navigationOptions: { header: null },
-    }
+    },
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Splash',
   },
 );
 
