@@ -20,7 +20,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  logoText: {
+    fontWeight: '100',
+    color: 'white',
+    fontFamily: 'arial',
+    letterSpacing: 10,
+  },
 });
 
 const SplashScreen = ({ navigation }) => {
@@ -43,21 +49,9 @@ const SplashScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <LinearGradient
-      style={styles.gradientContainer}
-      colors={['#6CC799', '#3A7F78']}
-    >
+    <LinearGradient style={styles.gradientContainer} colors={['#6CC799', '#3A7F78']}>
       <SiloLogoSvg />
-      <Text
-        style={{
-          fontWeight: '100',
-          color: 'white',
-          fontFamily: 'arial',
-          letterSpacing: 10,
-        }}
-      >
-        SILO
-      </Text>
+      <Text style={styles.logoText}>SILO</Text>
     </LinearGradient>
   );
 };
