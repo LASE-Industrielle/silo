@@ -1,0 +1,29 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'silo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  #use_frameworks!
+
+  # Pods for silo
+  pod 'Firebase/Core', '~>4.3.0'
+  pod 'Firebase/Messaging', '~>4.3.0'
+
+  target 'silo-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'siloTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'silo-tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for silo-tvOS
+end
