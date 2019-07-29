@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>629599671710-gmrugdo9vm91dsir67bh9llrovm9utpi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.629599671710-gmrugdo9vm91dsir67bh9llrovm9utpi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBMW4M4VzwbUQSaSNB-ewho0SAY71vjQck</string>
+	<key>GCM_SENDER_ID</key>
+	<string>629599671710</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>de.codecentric.labs.silo-app</string>
+	<key>PROJECT_ID</key>
+	<string>silo-4f420</string>
+	<key>STORAGE_BUCKET</key>
+	<string>silo-4f420.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:629599671710:ios:7f983de50c0c3a2e</string>
+	<key>DATABASE_URL</key>
+	<string>https://silo-4f420.firebaseio.com</string>
+</dict>
+</plist>

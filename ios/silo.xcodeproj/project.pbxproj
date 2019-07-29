@@ -51,8 +51,6 @@
 		6F9623EE64C94C6899534D93 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E8D3EC2180C4DB5BF641A30 /* Roboto.ttf */; };
 		81F5872E5E6A4A15B579B255 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00DDE916D3F14D72862BA49E /* Entypo.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		85626F3A22EF375800F632B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85626F0C22EF375800F632B3 /* GoogleService-Info.plist */; };
-		85E04A8A22EF41DF00D25F71 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 85E04A5C22EF41DF00D25F71 /* ios */; };
 		8B442CBB4A0E4FFF8A4FC2CF /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59E8746A726B4AB7A134E7D0 /* SimpleLineIcons.ttf */; };
 		8E361820D9AF49CE89E9F131 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A997D9767A42B5B8C5F658 /* libBVLinearGradient.a */; };
 		9570A98089A94DD49DB0CDA1 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD293D7CD50E4D8D842F48EF /* Roboto_medium.ttf */; };
@@ -65,6 +63,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B3F518ADE6934895831315CD /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B144831FFDD847C39DC4EFC1 /* Ionicons.ttf */; };
 		BD965045AE094E3B911A055D /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E5E34C9859C4B988016C35E /* AntDesign.ttf */; };
+		E327C76922EF4DF300796771 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E327C76822EF4DF300796771 /* GoogleService-Info.plist */; };
 		E8AD0936C2194A8BA26EC4FB /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AE77C448148400E9DB01E8A /* Foundation.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
@@ -457,8 +456,6 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7B5E8A50C05748A6B828DA7C /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		85626F0C22EF375800F632B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		85E04A5C22EF41DF00D25F71 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; sourceTree = "<group>"; };
 		896CBF79BCC84E569567ACBE /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
 		8D484F05CCDCF65409851ED1 /* libPods-siloTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-siloTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E8D3EC2180C4DB5BF641A30 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
@@ -475,6 +472,9 @@
 		CDBF9F8647A74AB89C00A051 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		D8502E0BD3B56BD7E8F546C5 /* Pods-silo-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-silo-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-silo-tvOSTests/Pods-silo-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D9709B48A30E4BEABB3A5A29 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
+		E327C76722EF4D1800796771 /* silo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = silo.entitlements; path = silo/silo.entitlements; sourceTree = "<group>"; };
+		E327C76822EF4DF300796771 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "silo/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E327C76A22EF4EA800796771 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "silo/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F7A997D9767A42B5B8C5F658 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
@@ -629,8 +629,8 @@
 		13B07FAE1A68108700A75B9A /* silo */ = {
 			isa = PBXGroup;
 			children = (
-				85626F0C22EF375800F632B3 /* GoogleService-Info.plist */,
-				85E04A5C22EF41DF00D25F71 /* ios */,
+				E327C76722EF4D1800796771 /* silo.entitlements */,
+				E327C76822EF4DF300796771 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -773,6 +773,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E327C76A22EF4EA800796771 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* silo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* siloTests */,
@@ -959,6 +960,17 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = WF5L7UK565;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 0;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1393,7 +1405,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85E04A8A22EF41DF00D25F71 /* ios in Resources */,
+				E327C76922EF4DF300796771 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				BD965045AE094E3B911A055D /* AntDesign.ttf in Resources */,
@@ -1414,7 +1426,6 @@
 				A52AB1E93C764D42B4EFD9D3 /* rubicon-icon-font.ttf in Resources */,
 				8B442CBB4A0E4FFF8A4FC2CF /* SimpleLineIcons.ttf in Resources */,
 				670F0EC6B8BE4AF48879F64C /* Zocial.ttf in Resources */,
-				85626F3A22EF375800F632B3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1699,6 +1710,7 @@
 			baseConfigurationReference = 3C90168FDBBC698689255EE0 /* Pods-silo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = silo/silo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1731,6 +1743,7 @@
 			baseConfigurationReference = 5627CB201160306F43F914E5 /* Pods-silo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = silo/silo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
