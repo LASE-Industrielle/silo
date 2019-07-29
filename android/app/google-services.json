@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "629599671710",
+    "firebase_url": "https://silo-4f420.firebaseio.com",
+    "project_id": "silo-4f420",
+    "storage_bucket": "silo-4f420.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629599671710:android:583fc0e180b98f0e",
+        "android_client_info": {
+          "package_name": "com.silo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629599671710-49nru66p34fm0g5k3bppv7f1itgo86pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXdI8zTZTl_tiaOXR24LzsQnO9MkvppeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629599671710-49nru66p34fm0g5k3bppv7f1itgo86pf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
