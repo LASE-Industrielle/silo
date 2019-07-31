@@ -16,6 +16,7 @@ import styles from './Styles';
 import ProfileIcon from './icons/ProfileIcon';
 import HomeIcon from './icons/HomeIcon';
 import SplashScreen from './screens/SplashScreen';
+import NotificationsScreen from './screens/NotificationsScreen';
 
 const SiloNavigator = createStackNavigator(
   {
@@ -68,6 +69,13 @@ const AppTabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: <ProfileIcon />,
       },
+    },
+    Notifications: {
+      screen: NotificationsScreen,
+      path: 'Notifications',
+      // navigationOptions: {
+      //   header: null,
+      // }
     },
   },
   {

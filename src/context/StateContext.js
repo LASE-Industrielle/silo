@@ -29,4 +29,9 @@ export const initialState = {
         errorMessage: '',
         loading: false,
     },
+    notifications: {
+        data: [],
+        errorMessage: '',
+        loading: false,
+    }
 };
