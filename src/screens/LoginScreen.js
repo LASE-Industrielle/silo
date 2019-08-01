@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import PropTypes from 'prop-types';
+import AsyncStorage from '@react-native-community/async-storage'
 import {
   Button, Container, Content, Input, Item, Spinner,
 } from 'native-base';
@@ -22,6 +22,7 @@ import authCall from '../services/AuthService';
 
 import laseLogo from '../../assets/img/lase.jpeg';
 import SiloLogoSvg from '../components/SiloLogoSvg';
+import {useNavigation} from "react-navigation-hooks";
 
 const appAction = StackActions.reset({
   index: 0,
@@ -122,6 +123,7 @@ const styles = StyleSheet.create({
 });
 
 const LoginScreen = (props) => {
+  const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [{ auth }, dispatch] = useStateValue();
@@ -134,8 +136,14 @@ const LoginScreen = (props) => {
   }, []);
 
   useEffect(() => {
-    if (auth.token !== '') {
-      props.navigation.dispatch(appAction);
+    if (auth.token !== '' && auth.token !== undefined) {
+      AsyncStorage.setItem('token', auth.token)
+        .then(() => {
+          navigation.dispatch(appAction);
+        })
+        .catch(() => {
+          console.log('failed to set token');
+        });
     }
   }, [auth.token]);
 

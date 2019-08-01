@@ -4,6 +4,7 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
+import {Icon} from "native-base";
 
 import LoginScreen from './screens/LoginScreen';
 import SilosScreen from './screens/SilosScreen';
@@ -17,6 +18,7 @@ import ProfileIcon from './icons/ProfileIcon';
 import HomeIcon from './icons/HomeIcon';
 import SplashScreen from './screens/SplashScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
+import {primary} from "./Colors";
 
 const SiloNavigator = createStackNavigator(
   {
@@ -73,9 +75,9 @@ const AppTabNavigator = createBottomTabNavigator(
     Notifications: {
       screen: NotificationsScreen,
       path: 'Notifications',
-      // navigationOptions: {
-      //   header: null,
-      // }
+      navigationOptions: {
+        tabBarIcon: <Icon style={{color:primary, backgroundColor:'white'}} name="notifications-outline" />
+      }
     },
   },
   {

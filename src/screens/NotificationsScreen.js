@@ -37,13 +37,12 @@ const renderListItem = ({item}) => (
 
 const NotificationsScreen = (props) => {
 
-  const [{notifications}, dispatch] = useStateValue();
+  const [{notifications}, dispatch] = useStateValue([]);
 
 
   useEffect(() => {
     getNotifications(dispatch);
-
-  },[notifications.data.length])
+  },[notifications.data.length]);
 
 
   const reload = () => {
@@ -57,7 +56,7 @@ const NotificationsScreen = (props) => {
     if (event.type === 'didFocus') {
       reload();
     }
-  })
+  });
 
   return (
 
@@ -70,10 +69,10 @@ const NotificationsScreen = (props) => {
                 onRefresh={() => reload()}
                 ListEmptyComponent={
                   <View style={styles.view}>
-                    <Text style={styles.whiteText}>No notifications</Text>
+                    <Text>No notifications</Text>
                   </View>
                 }
-      /> : <Text>Blabla</Text>)
+      /> : <Text>No notifications</Text>)
 
   );
 };

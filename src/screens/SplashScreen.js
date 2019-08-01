@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
 });
 
 const SplashScreen = ({ navigation }) => {
-  const checkToken = () => {
-    setTimeout(async () => {
+  const checkToken = async () => {
+    // setTimeout(async () => {
       const token = await AsyncStorage.getItem('token').catch(() => {
         navigation.dispatch(resetAction('Login'));
       });
@@ -41,7 +41,7 @@ const SplashScreen = ({ navigation }) => {
       } else {
         navigation.dispatch(resetAction('Login'));
       }
-    }, 750);
+    // }, 750);
   };
 
   useEffect(() => {

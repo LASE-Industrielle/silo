@@ -31,6 +31,7 @@ const App = () => {
 
   useEffect(() => {
     notificationOpenedListener = firebase.notifications().onNotificationOpened((notification) => {
+      firebase.notifications().removeDeliveredNotification(notification.notification.notificationId).then(console.log).catch(c => console.log('catch',c))
       NavigationService.navigate('Notifications')
     });
     return () => notificationOpenedListener()
