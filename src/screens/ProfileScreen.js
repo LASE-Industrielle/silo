@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {Switch, View} from 'react-native';
+import { Switch, View} from 'react-native';
 import PropTypes from 'prop-types';
 import ccLogo from '../../assets/img/cc.jpg';
+import AsyncStorage from '@react-native-community/async-storage';
+import { useNavigation } from 'react-navigation-hooks';
 
 
 import {
@@ -26,15 +28,17 @@ import {primary} from '../Colors';
 import {LOGOUT_USER} from "../Actions";
 
 const ProfileScreen = (props) => {
+  const navigation = useNavigation();
 
   const [{profile}, dispatch] = useStateValue();
 
   const [sync1, setSync1] = useState(true);
   const [sync2, setSync2] = useState(false);
 
-  const logout = () => {
-    dispatch({type: LOGOUT_USER});
-    props.navigation.dispatch(resetAction);
+  const logout = async () => {
+    await AsyncStorage.removeItem('token');
+    await dispatch({ type: LOGOUT_USER });
+    await navigation.dispatch(resetAction);
   };
 
   return (
