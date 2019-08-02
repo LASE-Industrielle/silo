@@ -20,7 +20,8 @@
     "react-native-svg": "^9.4.0",
     "react-native-svg-icon": "^0.8.1",
     "react-navigation": "^3.9.1",
-    "react-navigation-hooks": "^1.0.1"
+    "react-navigation-hooks": "^1.0.1",
+    "victory-native": "^32.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
