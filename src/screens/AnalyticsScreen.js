@@ -7,7 +7,7 @@ import styles from '../Styles';
 import getAllMeasurements from '../services/MeasurementService';
 import {useStateValue} from "../context/StateContext";
 import AnalyticsGraph from '../components/AnalyticsGraph';
-
+import moment from "moment";
 
 const AnalyticsScreen = (props) => {
 
@@ -22,16 +22,12 @@ const AnalyticsScreen = (props) => {
         break;
       }
       let dataMeasurement = {};
-      dataMeasurement.x = new Date(measurementsArray[i]).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric'
-      });
+      dataMeasurement.x = moment(new Date(measurementsArray[i])).format("MMM DD");
 
       let yValues = Object.values(measurements.data[measurementsArray[i]]);
       dataMeasurement.y = yValues[0];
       dataMeasurementsArray.push(dataMeasurement);
     }
-    console.log(dataMeasurementsArray.reverse());
     return dataMeasurementsArray;
   };
 
