@@ -17,4 +17,19 @@ const getAllMeasurements = (dispatch, id) => {
     });
 };
 
-export default getAllMeasurements;
+const filterMeasurements = (dispatch, id, startDate, endDate) => {
+  dispatch({ type: MEASUREMENTS_START });
+  axios.get(measurementsUrl + id + '/' + startDate +'/' + endDate)
+    .then(response => dispatch({
+      type: MEASUREMENTS_SUCCESS,
+      payload: response.data,
+    }))
+    .catch((err) => {
+      dispatch({
+        type: MEASUREMENTS_ERROR,
+        error: err
+      });
+    });
+};
+
+export {getAllMeasurements, filterMeasurements};
