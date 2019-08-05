@@ -9,11 +9,14 @@ target 'silo' do
   pod 'Firebase/Core', '~>4.3.0'
   pod 'Firebase/Messaging', '~>4.3.0'
 
+  pod 'React', :path => '../node_modules/react-native'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  pod 'react-native-date-picker', :path => '../node_modules/react-native-date-picker'
+
   target 'silo-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'react-native-date-picker', :path => '../node_modules/react-native-date-picker'
-
   end
 
   target 'siloTests' do
@@ -28,4 +31,12 @@ target 'silo-tvOS' do
   use_frameworks!
 
   # Pods for silo-tvOS
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
 end

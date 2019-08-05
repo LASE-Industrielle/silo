@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, RefreshControl, ScrollView, View} from 'react-native';
 import {Body, Button, Container, Header, Icon, Left, List, ListItem, Right, Text, Title,} from 'native-base';
-import Modal from 'react-native-modal'
+import Modal from 'react-native-modal';
+import DatePicker from 'react-native-date-picker';
 
 import styles from '../Styles';
 
@@ -9,14 +10,15 @@ import getAllMeasurements from '../services/MeasurementService';
 import {useStateValue} from "../context/StateContext";
 import AnalyticsGraph from '../components/AnalyticsGraph';
 import moment from "moment";
-import {primary} from "../Colors";
 
 
 const AnalyticsScreen = (props) => {
 
   const [{measurements}, dispatch] = useStateValue();
   const siloId = props.navigation.getParam('id', 1);
-  const [modalDisplayed,setModalDisplayed]=useState(false)
+  const [modalDisplayed,setModalDisplayed]=useState(false);
+  const [isDateTimePickerVisible, setIsDateTimePickerVisible] = useState(false);
+  const [date, setDate] = useState(new Date());
 
   const getDataMeasurements = () => {
     let measurementsArray = Object.keys(measurements.data);
@@ -71,12 +73,36 @@ const AnalyticsScreen = (props) => {
 
   return (
     <Container style={styles.container}>
+      {/*<DateTimePicker*/}
+      {/*  isVisible={isDateTimePickerVisible}*/}
+      {/*  onConfirm={(date) => (console.log(date))}*/}
+      {/*  onCancel={() => (setIsDateTimePickerVisible(false))}*/}
+      {/*/>*/}
       <Modal isVisible={modalDisplayed} onBackButtonPress={()=> setModalDisplayed(false)} backdropTransitionOutTiming={0}>
-        <View>
-        <Text>
-          Jebeni modal
-        </Text>
-          <Button onPress={()=> setModalDisplayed(false)}><Text>Klikni me</Text></Button>
+        <View style={{backgroundColor: 'white', height: '70%', alignItems: 'center'}}>
+          {isDateTimePickerVisible ?
+            <View>
+              <DatePicker
+                date={date}
+                onDateChange={date => setDate(date)}
+              />
+            </View>
+            :
+            <View>
+              <View style={{flex: 1, alignSelf: 'center', justifyContent: 'center'}}>
+                <Text>Select Date & Time</Text>
+              </View>
+              <View style={{flex: 3, justifyContent: 'center'}}>
+                <Text>
+                  Jebeni modal
+                </Text>
+                <Button onPress={() => setIsDateTimePickerVisible(true)}><Text>Klikni me</Text></Button>
+              </View>
+              <View style={{flex: 1, alignSelf: 'center', justifyContent: 'center'}}>
+                <Text>CANCEL</Text>
+              </View>
+            </View>
+          }
         </View>
       </Modal>
       <Header style={{backgroundColor: 'white'}}>
@@ -147,3 +173,4 @@ const AnalyticsScreen = (props) => {
 };
 
 export default AnalyticsScreen;
+

@@ -32,10 +32,20 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.9.0)
+  - React (0.59.8):
+    - React/Core (= 0.59.8)
+  - react-native-date-picker (2.5.0):
+    - React
+  - React/Core (0.59.8):
+    - yoga (= 0.59.8.React)
+  - yoga (0.59.8.React)
 
 DEPENDENCIES:
   - Firebase/Core (~> 4.3.0)
   - Firebase/Messaging (~> 4.3.0)
+  - React (from `../node_modules/react-native`)
+  - react-native-date-picker (from `../node_modules/react-native-date-picker`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -48,6 +58,14 @@ SPEC REPOS:
     - nanopb
     - Protobuf
 
+EXTERNAL SOURCES:
+  React:
+    :path: "../node_modules/react-native"
+  react-native-date-picker:
+    :path: "../node_modules/react-native-date-picker"
+  yoga:
+    :path: "../node_modules/react-native/ReactCommon/yoga"
+
 SPEC CHECKSUMS:
   Firebase: 83283761a1ef6dc9846e03d08059f51421afbd65
   FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
@@ -57,7 +75,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
+  react-native-date-picker: e6e7a14dff8b4c21a4a690f82c88a5f158a9bcf2
+  yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
 
-PODFILE CHECKSUM: ed422f89cfe488d16733c5db9dfa23f5585008da
+PODFILE CHECKSUM: 21fe032051c1a56aa8247c81d6c4234b32650abb
 
 COCOAPODS: 1.7.5
