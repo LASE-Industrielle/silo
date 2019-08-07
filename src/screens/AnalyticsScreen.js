@@ -8,6 +8,7 @@ import {useStateValue} from "../context/StateContext";
 import AnalyticsGraph from '../components/AnalyticsGraph';
 import moment from "moment";
 import DatePickerModal from '../components/DatePickerModal';
+import DatePickerIcon from "../icons/DatePickerIcon";
 
 
 const AnalyticsScreen = (props) => {
@@ -23,7 +24,7 @@ const AnalyticsScreen = (props) => {
   const filterData = (startDateTime, endDateTime) => {
     setSelectedStartDate(startDateTime);
     setSelectedEndDate(endDateTime);
-    filterMeasurements(dispatch, siloId, startDateTime.toLocaleString(), endDateTime.toLocaleDateString());
+    // filterMeasurements(dispatch, siloId, startDateTime.toLocaleString(), endDateTime.toLocaleDateString());
   };
 
   const getDataMeasurements = () => {
@@ -110,7 +111,7 @@ const AnalyticsScreen = (props) => {
             />
 
           </View>
-          <View style={{height:30}}>
+          <View style={{height:40}}>
             <Button
               block
               primary
@@ -121,22 +122,14 @@ const AnalyticsScreen = (props) => {
                 alignItems: 'center',
                 flexDirection: 'row',
                 //paddingVertical:15,
-                height:30,
+                height:40,
                 marginLeft: 20,
                 marginRight: 20,
                 marginTop: 10,
                 backgroundColor: '#6CC799',
               }}
             >
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 14,
-                  //marginLeft: -15
-                }}
-              >
-                Date
-              </Text>
+              <DatePickerIcon fill='white'/>
             </Button>
           </View>
         </View>)}
