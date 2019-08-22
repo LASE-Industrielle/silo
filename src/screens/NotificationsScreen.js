@@ -6,6 +6,7 @@ import { useNavigationEvents } from 'react-navigation-hooks';
 import getNotifications from '../services/NotificationService';
 import { useStore } from '../context/StateContext';
 import { elevationShadowStyle } from '../Styles';
+import GradientHeaderComponent from '../components/GradientHeaderComponent';
 
 const style = StyleSheet.create({
   view: {
@@ -115,51 +116,50 @@ const NotificationsScreen = (props) => {
   });
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
-      <View style={{ flex: 0.1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Header</Text>
-      </View>
-      <View style={{ justifyContent: 'center', alignItems: 'flex-start', marginHorizontal: 15 }}>
-        <Text style={{ color: '#C5C5C5', margin: 2 }}>You have 3 unread notifications</Text>
-      </View>
-      <View
-        style={{
-          flex: 0.9,
-          backgroundColor: 'white',
-          ...elevationShadowStyle(1.5, 0.2),
-          margin: 10,
-          borderRadius: 10,
-        }}
-      >
-        <FlatList
-          keyExtractor={item => String(item.id)}
-          data={notifications.data}
-          renderItem={renderListItem}
-          style={{ margin: 10 }}
-          refreshing={notifications.loading}
-          onRefresh={() => reload()}
-          ListHeaderComponent={(
-            <View>
-              <View style={style.footer}>
-                <TouchableOpacity>
-                  <Text style={style.allRead}>Mark all as read</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Text style={style.clearAll}>Clear all</Text>
-                </TouchableOpacity>
-              </View>
+    <GradientHeaderComponent>
+      <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'flex-start', marginHorizontal: 15 }}>
+          <Text style={{ color: '#C5C5C5', margin: 2 }}>You have 3 unread notifications</Text>
+        </View>
+        <View
+          style={{
+            flex: 0.9,
+            backgroundColor: 'white',
+            ...elevationShadowStyle(1.5, 0.2),
+            margin: 10,
+            borderRadius: 10,
+          }}
+        >
+          <FlatList
+            keyExtractor={item => String(item.id)}
+            data={notifications.data}
+            renderItem={renderListItem}
+            style={{ margin: 10 }}
+            refreshing={notifications.loading}
+            onRefresh={() => reload()}
+            ListHeaderComponent={(
+              <View>
+                <View style={style.footer}>
+                  <TouchableOpacity>
+                    <Text style={style.allRead}>Mark all as read</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Text style={style.clearAll}>Clear all</Text>
+                  </TouchableOpacity>
+                </View>
 
-              <View style={style.line} />
-            </View>
-)}
-          ListEmptyComponent={(
-            <View style={style.view}>
-              <Text>No notifications</Text>
-            </View>
-)}
-        />
+                <View style={style.line} />
+              </View>
+  )}
+            ListEmptyComponent={(
+              <View style={style.view}>
+                <Text>No notifications</Text>
+              </View>
+  )}
+          />
+        </View>
       </View>
-    </View>
+    </GradientHeaderComponent>
   );
 };
 

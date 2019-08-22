@@ -13,12 +13,14 @@ import SynchronizationIcon from '../icons/SynchronizationIcon';
 import LogoutIcon from '../icons/LogoutIcon';
 import ccLogo from '../../assets/img/cc.jpg';
 
+import GradientHeaderComponent from '../components/GradientHeaderComponent';
+
 const style = StyleSheet.create({
   view: {
     flex: 1,
     zIndex: 2,
     margin: 20,
-    marginTop: 0,
+    marginTop: 40,
     backgroundColor: 'white',
     borderRadius: 8,
     padding: 10,
@@ -84,42 +86,34 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
-      <View
-        style={{
-          flex: 0.1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          margin: 20,
-        }}
-      >
-        <Text>Header</Text>
-      </View>
-      <View style={style.view}>
-        <Image source={ccLogo} style={style.profileImage} />
-        <Text style={style.profileUsernameText}>{profile.username}</Text>
-        <View style={style.list}>
-          <View style={style.listItem}>
-            <View style={style.iconTextWrapper}>
-              <SynchronizationIcon fill="#01A04E" height={14} width={14} style={style.icon} />
-              <Text style={style.profileItemText}>Synchronization</Text>
+    <GradientHeaderComponent>
+      <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
+        <View style={style.view}>
+          <Image source={ccLogo} style={style.profileImage} />
+          <Text style={style.profileUsernameText}>{profile.username}</Text>
+          <View style={style.list}>
+            <View style={style.listItem}>
+              <View style={style.iconTextWrapper}>
+                <SynchronizationIcon fill="#01A04E" height={14} width={14} style={style.icon} />
+                <Text style={style.profileItemText}>Synchronization</Text>
+              </View>
+              <Switch value={sync1} style={style.switch} onValueChange={() => setSync1(!sync1)} />
             </View>
-            <Switch value={sync1} style={style.switch} onValueChange={() => setSync1(!sync1)} />
-          </View>
-          <View style={style.listItem}>
-            <View style={style.iconTextWrapper}>
-              <NotificationIcon fill="#01A04E" height={14} width={14} style={style.icon} />
-              <Text style={style.profileItemText}>Notifications</Text>
+            <View style={style.listItem}>
+              <View style={style.iconTextWrapper}>
+                <NotificationIcon fill="#01A04E" height={14} width={14} style={style.icon} />
+                <Text style={style.profileItemText}>Notifications</Text>
+              </View>
+              <Switch value={sync2} style={style.switch} onValueChange={() => setSync2(!sync2)} />
             </View>
-            <Switch value={sync2} style={style.switch} onValueChange={() => setSync2(!sync2)} />
+            <TouchableOpacity style={style.profileListItem} onPress={logout}>
+              <LogoutIcon fill="#F19B93" height={14} width={14} style={style.icon} />
+              <Text style={style.profileItemRedText}>Logout</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={style.profileListItem} onPress={logout}>
-            <LogoutIcon fill="#F19B93" height={14} width={14} style={style.icon} />
-            <Text style={style.profileItemRedText}>Logout</Text>
-          </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </GradientHeaderComponent>
   );
 };
 

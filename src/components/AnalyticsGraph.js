@@ -54,6 +54,8 @@ const AnalyticsGraph = (props) => {
 
           <VictoryAxis
             orientation="bottom"
+            fixLabelOverlap={true}
+            tickCount={7}
             style={{
               axis: { stroke: '#4E9685', strokeWidth: 3, width: 100 },
               ticks: { stroke: 'transparent' },
@@ -78,6 +80,7 @@ const AnalyticsGraph = (props) => {
         <View style={{ height: 200, alignItems: 'center', justifyContent: 'center' }}>
           <ActivityIndicator animating />
         </View>
+
       )}
     </View>
   );

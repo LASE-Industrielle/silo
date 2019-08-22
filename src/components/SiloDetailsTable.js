@@ -89,9 +89,7 @@ const SiloDetailsTable = ({ silo }) => {
         <View>
           <TouchableWithoutFeedback
             onPress={() => {
-              navigation.navigate('SiloDescription', {
-                siloDetails: silo,
-              });
+              navigation.navigate("Analytics", { id: silo.id });
             }}
           >
             <View style={style.analyticsButton}>

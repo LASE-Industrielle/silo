@@ -11,27 +11,32 @@ export const StateProvider = ({ reducer, initialState, children }) => (
 export const useStore = () => useContext(StateContext);
 
 export const initialState = {
-  auth: {
-    token: '',
-    errorMessage: '',
-    loading: false,
-  },
-  profile: {
-    username: '',
-  },
-  measurements: {
-    data: {},
-    errorMessage: '',
-    loading: false,
-  },
-  silos: {
-    data: [],
-    errorMessage: '',
-    loading: false,
-  },
-  notifications: {
-    data: [],
-    errorMessage: '',
-    loading: false,
-  },
+    auth: {
+        token: '',
+        errorMessage: '',
+        loading: false,
+    },
+    profile: {
+        username: '',
+    },
+    measurements: {
+        data: {},
+        errorMessage: '',
+        loading: false,
+    },
+    silos: {
+        data: [],
+        errorMessage: '',
+        loading: false,
+    },
+    notifications: {
+        data: [],
+        errorMessage: '',
+        loading: false,
+    },
+    graphMeasurements: {
+        data: {},
+        errorMessage: '',
+        loading: true,
+    },
 };

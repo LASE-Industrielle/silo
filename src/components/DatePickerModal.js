@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
-import { Text } from 'native-base';
-import Modal from 'react-native-modal';
-import moment from 'moment';
-import DatePickerComponent from './DatePickerComponent';
-import DatePickerIcon from '../icons/DatePickerIcon';
+import React, {useState} from 'react';
+import {TouchableOpacity, View} from 'react-native';
+import {Text} from "native-base";
+import Modal from "react-native-modal";
+import DatePickerComponent from './DatePickerComponent'
+import moment from "moment";
+import DatePickerIcon from "../icons/DatePickerIcon";
+import {MenuProvider} from 'react-native-popup-menu';
 
 const primary = '#6CC799';
 
@@ -17,27 +18,19 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
   const [isEndDateTimePickerVisible, setIsEndDateTimePickerVisible] = useState(false);
 
   return (
-    <Modal
-      isVisible={modalDisplayed}
-      onBackButtonPress={() => setModalDisplayed(false)}
-      backdropTransitionOutTiming={0}
-    >
-      <View style={{ backgroundColor: 'white', height: '70%' }}>
-        {!isStartDateTimePickerVisible && !isEndDateTimePickerVisible ? (
-          <View style={{ flex: 1 }}>
-            <View style={{ flexDirection: 'row' }}>
-              <View
-                style={{
-                  flex: 1,
-                  borderBottomColor: primary,
-                  borderBottomWidth: 1,
-                  height: 50,
-                  alignItems: 'flex-start',
-                  justifyContent: 'center',
-                  paddingLeft: 10,
-                }}
-              >
-                <Text style={{ color: primary, fontSize: 18 }}>Select Date & Time</Text>
+    <Modal isVisible={modalDisplayed} onBackButtonPress={() => setModalDisplayed(false)}
+           backdropTransitionOutTiming={0}>
+      <MenuProvider skipInstanceCheck >
+      <View style={{backgroundColor: 'white', height: '70%',}}>
+        {!isStartDateTimePickerVisible && !isEndDateTimePickerVisible ?
+          <View style={{flex: 1}}>
+            <View style={{flexDirection: 'row'}}>
+              <View style={{
+                flex: 1, borderBottomColor: primary,
+                borderBottomWidth: 1, height: 50, alignItems: 'flex-start',
+                justifyContent: 'center', paddingLeft: 10
+              }}>
+                <Text style={{color:primary,fontSize: 18}}>Select Date & Time</Text>
               </View>
             </View>
             <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -180,7 +173,7 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
               </View>
             </View>
           </View>
-        ) : null}
+         : null}
         {isStartDateTimePickerVisible ? (
           <DatePickerComponent
             setDateTime={setStartDateTime}
@@ -196,6 +189,7 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
           />
         ) : null}
       </View>
+      </MenuProvider>
     </Modal>
   );
 };

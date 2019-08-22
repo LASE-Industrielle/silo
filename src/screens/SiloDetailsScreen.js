@@ -8,9 +8,10 @@ import getSilos from '../services/SiloService';
 
 import GraphWidget from '../components/GraphWidget';
 import SiloDetailsTable from '../components/SiloDetailsTable';
+import GradientHeaderComponent from '../components/GradientHeaderComponent';
 
 const style = StyleSheet.create({
-  mainContainer: { flex: 1, flexDirection: 'column', marginTop: 30 },
+  mainContainer: { flex: 1, flexDirection: 'column' },
   header: { flex: 0.1, alignItems: 'center', justifyContent: 'center' },
 });
 
@@ -25,6 +26,7 @@ const SiloDetailsScreen = (props) => {
 
   useEffect(() => {
     setSilo(silos.data.find(s => s.id === id));
+    props.navigation.setParams({siloDetails: silo});
   }, [silos.data]);
 
   const onRefresh = () => {
@@ -40,16 +42,15 @@ const SiloDetailsScreen = (props) => {
   }
 
   return (
-    <ScrollView
-      style={style.mainContainer}
-      refreshControl={<RefreshControl refreshing={silos.loading} onRefresh={onRefresh} />}
-    >
-      <View style={style.header}>
-        <Text>Header</Text>
-      </View>
-      <GraphWidget />
-      <SiloDetailsTable silo={silo} />
-    </ScrollView>
+    <GradientHeaderComponent>
+      <ScrollView
+        style={style.mainContainer}
+        refreshControl={<RefreshControl refreshing={silos.loading} onRefresh={onRefresh} />}
+      >
+        <GraphWidget />
+        <SiloDetailsTable silo={silo} />
+      </ScrollView>
+    </GradientHeaderComponent>
   );
 };
 

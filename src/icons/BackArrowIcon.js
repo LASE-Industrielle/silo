@@ -2,7 +2,6 @@ import React from 'react';
 import { G, Path } from 'react-native-svg';
 import SvgIcon from 'react-native-svg-icon';
 
-import { iconColor } from '../Colors';
 
 const icon = {
   icon: {
@@ -18,6 +17,6 @@ const icon = {
   }
 };
 
-const BackArrowIcon = () => <SvgIcon fill={iconColor} height={16} width={9.37} name="icon" svgs={icon} />;
+const BackArrowIcon = () => <SvgIcon fill={'white'} height={16} width={9.37} name="icon" svgs={icon} />;
 
 export default BackArrowIcon;
