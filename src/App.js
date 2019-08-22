@@ -6,8 +6,8 @@ import firebase from 'react-native-firebase';
 
 import AppContainer from './Navigation';
 import { StateProvider, initialState } from './context/StateContext';
-import { mainReducer } from './reducers/Reducer';
-import NavigationService from "./services/NavigationService";
+import mainReducer from './reducers/Reducer';
+import NavigationService from './services/NavigationService';
 
 
 const App = () => {

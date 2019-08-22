@@ -1,32 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { RefreshControl } from "react-native";
+import React, { useEffect, useState } from 'react';
 import {
-  Body,
-  Button,
-  Container,
-  Content,
-  Footer,
-  FooterTab,
-  Header,
-  Icon,
-  Left,
-  Right,
-  Spinner,
-  Text,
-  Title
-} from "native-base";
+  View, Text, StyleSheet, RefreshControl, ScrollView,
+} from 'react-native';
 
-import styles from "../Styles";
+import { useStore } from '../context/StateContext';
+import getSilos from '../services/SiloService';
 
-import SiloGraph from "../components/SiloGraph";
-import SiloShortInfo from "../components/SiloShortInfo";
-import AnalyticsIcon from "../icons/AnalyticsIcon";
-import getSilos from "../services/SiloService";
-import { useStateValue } from "../context/StateContext";
+import GraphWidget from '../components/GraphWidget';
+import SiloDetailsTable from '../components/SiloDetailsTable';
 
-const SiloDetailsScreen = props => {
-  const [{ silos }, dispatch] = useStateValue();
-  const id = props.navigation.getParam("id", "");
+const style = StyleSheet.create({
+  mainContainer: { flex: 1, flexDirection: 'column', marginTop: 30 },
+  header: { flex: 0.1, alignItems: 'center', justifyContent: 'center' },
+});
+
+const SiloDetailsScreen = (props) => {
+  const [{ silos }, dispatch] = useStore();
+  const id = props.navigation.getParam('id', '');
   const [silo, setSilo] = useState();
 
   useEffect(() => {
@@ -43,84 +33,23 @@ const SiloDetailsScreen = props => {
 
   if (silos.data.length === 0 || silo === undefined) {
     return (
-      <Container>
-        <Content contentContainerStyle={styles.default}>
-          <Spinner />
-        </Content>
-      </Container>
+      <View>
+        <Text>Something went wrong</Text>
+      </View>
     );
   }
 
   return (
-    <Container style={styles.container}>
-      <Header style={{ backgroundColor: "white" }}>
-        <Left>
-          <Button
-            transparent
-            onPress={() => props.navigation.navigate("Silos")}
-          >
-            <Icon name="arrow-back" style={styles.icons} />
-          </Button>
-        </Left>
-        <Body>
-          <Title style={{ color: "black" }}>
-            {silo.name}
-            {props.id}
-          </Title>
-        </Body>
-        <Right>
-          <Button
-            transparent
-            onPress={() =>
-              props.navigation.navigate("SiloDescription", {
-                siloDetails: silo
-              })
-            }
-          >
-            <Icon name="ios-information-circle-outline" style={styles.icons} />
-          </Button>
-        </Right>
-      </Header>
-      <Content
-        refreshControl={
-          <RefreshControl onRefresh={onRefresh} refreshing={silos.loading} />
-        }
-      >
-        <SiloGraph silo={silo} />
-        <SiloShortInfo silo={silo} />
-      </Content>
-      <Footer
-        style={{
-          borderTopWidth: 0,
-          marginBottom: 12,
-          shadowOffset: { height: 0, width: 0 },
-          shadowOpacity: 0,
-          elevation: 0
-        }}
-      >
-        <FooterTab style={{ backgroundColor: "white" }}>
-          <Button
-            block
-            primary
-            onPress={() =>
-              props.navigation.navigate("Analytics", { id: silo.id })
-            }
-            style={styles.buttonAnalyticsStyle}
-          >
-            <AnalyticsIcon />
-            <Text
-              style={{
-                color: "white",
-                fontSize: 14,
-                marginLeft: -15
-              }}
-            >
-              Analytics
-            </Text>
-          </Button>
-        </FooterTab>
-      </Footer>
-    </Container>
+    <ScrollView
+      style={style.mainContainer}
+      refreshControl={<RefreshControl refreshing={silos.loading} onRefresh={onRefresh} />}
+    >
+      <View style={style.header}>
+        <Text>Header</Text>
+      </View>
+      <GraphWidget />
+      <SiloDetailsTable silo={silo} />
+    </ScrollView>
   );
 };
 

@@ -1,0 +1,107 @@
+import React from 'react';
+import {
+  View, Text, TouchableWithoutFeedback, StyleSheet,
+} from 'react-native';
+
+import { useNavigation } from 'react-navigation-hooks';
+import { elevationShadowStyle } from '../Styles';
+
+const style = StyleSheet.create({
+  tableContainer: { flex: 0.65, backgroundColor: '#F2F2F2' },
+  shadowContainer: {
+    flex: 1,
+    margin: 10,
+    ...elevationShadowStyle(1, 0.2),
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
+  tableContainerList: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    margin: 20,
+  },
+  line: {
+    borderColor: '#BEB9B9',
+    borderWidth: 0.5,
+    margin: 5,
+  },
+  tableItemContainer: { flexDirection: 'row', justifyContent: 'space-between', margin: 7 },
+  analyticsButton: {
+    backgroundColor: '#02A04E',
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 20,
+  },
+  analyticsText: { color: 'white', margin: 15 },
+  date: { color: '#BEB9B9' },
+  greenDot: { color: '#6CC799' },
+  orangeDot: { color: '#F1B950' },
+  percentage: { marginLeft: 10 },
+
+  kgStatus: { color: '#83D0A9', fontWeight: 'bold', marginVertical: 10 },
+});
+
+const SiloDetailsTable = ({ silo }) => {
+  const navigation = useNavigation();
+  return (
+    <View style={style.tableContainer}>
+      <View style={style.shadowContainer}>
+        <View style={style.tableContainerList}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ marginRight: 50 }}>
+              <Text style={style.greyText}>Content</Text>
+              <Text style={{ color: 'black', marginVertical: 10 }}>Soil</Text>
+            </View>
+            <View style={style.line} />
+            <View style={{ marginLeft: 5 }}>
+              <Text style={style.greyText}>Capacity</Text>
+              <Text style={style.kgStatus}>1350 / 4500 Kg</Text>
+            </View>
+          </View>
+          <View style={style.line} />
+          <Text style={{ color: '#BEB9B9', margin: 10 }}>Average</Text>
+          <View style={style.tableItemContainer}>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={style.orangeDot}>•</Text>
+              <Text style={style.percentage}>30%</Text>
+            </View>
+            <Text style={style.date}>Friday, May 24</Text>
+          </View>
+          <View style={style.line} />
+          <View style={style.tableItemContainer}>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={style.greenDot}>•</Text>
+              <Text style={style.percentage}>100%</Text>
+            </View>
+            <Text style={style.date}>Saturday, May 23</Text>
+          </View>
+          <View style={style.line} />
+          <View style={style.tableItemContainer}>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={style.greenDot}>•</Text>
+              <Text style={style.percentage}>100%</Text>
+            </View>
+            <Text style={style.date}>Sunday, May 22</Text>
+          </View>
+        </View>
+        <View>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              navigation.navigate('SiloDescription', {
+                siloDetails: silo,
+              });
+            }}
+          >
+            <View style={style.analyticsButton}>
+              <Text style={style.analyticsText}>ANALYTICS</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default SiloDetailsTable;

@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
-import {
-  Image, StyleSheet, View, Text,
-} from 'react-native';
-import { NavigationScreenProp, NavigationActions, StackActions } from 'react-navigation';
+import { StyleSheet, Text } from 'react-native';
+import { NavigationActions, StackActions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
 import LinearGradient from 'react-native-linear-gradient';
-import lase from '../../assets/img/lase.jpeg';
+
 import SiloLogoSvg from '../components/SiloLogoSvg';
 
 const resetAction = path => StackActions.reset({
@@ -15,7 +13,7 @@ const resetAction = path => StackActions.reset({
   actions: [NavigationActions.navigate({ routeName: path })],
 });
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   gradientContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -32,15 +30,15 @@ const styles = StyleSheet.create({
 const SplashScreen = ({ navigation }) => {
   const checkToken = async () => {
     // setTimeout(async () => {
-      const token = await AsyncStorage.getItem('token').catch(() => {
-        navigation.dispatch(resetAction('Login'));
-      });
-      if (token !== null) {
-        axios.defaults.headers.common.Authorization = `Token ${token}`;
-        navigation.dispatch(resetAction('App'));
-      } else {
-        navigation.dispatch(resetAction('Login'));
-      }
+    const token = await AsyncStorage.getItem('token').catch(() => {
+      navigation.dispatch(resetAction('Login'));
+    });
+    if (token !== null) {
+      axios.defaults.headers.common.Authorization = `Token ${token}`;
+      navigation.dispatch(resetAction('App'));
+    } else {
+      navigation.dispatch(resetAction('Login'));
+    }
     // }, 750);
   };
 
@@ -49,9 +47,9 @@ const SplashScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <LinearGradient style={styles.gradientContainer} colors={['#6CC799', '#3A7F78']}>
+    <LinearGradient style={style.gradientContainer} colors={['#6CC799', '#3A7F78']}>
       <SiloLogoSvg />
-      <Text style={styles.logoText}>SILO</Text>
+      <Text style={style.logoText}>SILO</Text>
     </LinearGradient>
   );
 };

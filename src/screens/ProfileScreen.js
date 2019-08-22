@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { useStateValue } from '../context/StateContext';
+import { useStore } from '../context/StateContext';
 import { LOGOUT_USER } from '../Actions';
 
 import { elevationShadowStyle } from '../Styles';
@@ -13,7 +13,7 @@ import SynchronizationIcon from '../icons/SynchronizationIcon';
 import LogoutIcon from '../icons/LogoutIcon';
 import ccLogo from '../../assets/img/cc.jpg';
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   view: {
     flex: 1,
     zIndex: 2,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 });
 
 const ProfileScreen = () => {
-  const [{ profile }, dispatch] = useStateValue();
+  const [{ profile }, dispatch] = useStore();
 
   const [sync1, setSync1] = useState(true);
   const [sync2, setSync2] = useState(false);
@@ -95,27 +95,27 @@ const ProfileScreen = () => {
       >
         <Text>Header</Text>
       </View>
-      <View style={styles.view}>
-        <Image source={ccLogo} style={styles.profileImage} />
-        <Text style={styles.profileUsernameText}>{profile.username}</Text>
-        <View style={styles.list}>
-          <View style={styles.listItem}>
-            <View style={styles.iconTextWrapper}>
-              <SynchronizationIcon fill="#01A04E" height={14} width={14} style={styles.icon} />
-              <Text style={styles.profileItemText}>Synchronization</Text>
+      <View style={style.view}>
+        <Image source={ccLogo} style={style.profileImage} />
+        <Text style={style.profileUsernameText}>{profile.username}</Text>
+        <View style={style.list}>
+          <View style={style.listItem}>
+            <View style={style.iconTextWrapper}>
+              <SynchronizationIcon fill="#01A04E" height={14} width={14} style={style.icon} />
+              <Text style={style.profileItemText}>Synchronization</Text>
             </View>
-            <Switch value={sync1} style={styles.switch} onValueChange={() => setSync1(!sync1)} />
+            <Switch value={sync1} style={style.switch} onValueChange={() => setSync1(!sync1)} />
           </View>
-          <View style={styles.listItem}>
-            <View style={styles.iconTextWrapper}>
-              <NotificationIcon fill="#01A04E" height={14} width={14} style={styles.icon} />
-              <Text style={styles.profileItemText}>Notifications</Text>
+          <View style={style.listItem}>
+            <View style={style.iconTextWrapper}>
+              <NotificationIcon fill="#01A04E" height={14} width={14} style={style.icon} />
+              <Text style={style.profileItemText}>Notifications</Text>
             </View>
-            <Switch value={sync2} style={styles.switch} onValueChange={() => setSync2(!sync2)} />
+            <Switch value={sync2} style={style.switch} onValueChange={() => setSync2(!sync2)} />
           </View>
-          <TouchableOpacity style={styles.profileListItem} onPress={logout}>
-            <LogoutIcon fill="#F19B93" height={14} width={14} style={styles.icon} />
-            <Text style={styles.profileItemRedText}>Logout</Text>
+          <TouchableOpacity style={style.profileListItem} onPress={logout}>
+            <LogoutIcon fill="#F19B93" height={14} width={14} style={style.icon} />
+            <Text style={style.profileItemRedText}>Logout</Text>
           </TouchableOpacity>
         </View>
       </View>

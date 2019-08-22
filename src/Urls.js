@@ -5,9 +5,5 @@ const measurementsUrl = `${herokuUrl}/measurement/all/`;
 const notificationUrl = `${herokuUrl}/notification/`;
 
 export {
-  herokuUrl,
-  loginUrl,
-  siloUrl,
-  measurementsUrl,
-  notificationUrl
+  herokuUrl, loginUrl, siloUrl, measurementsUrl, notificationUrl,
 };

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-
 import {
-  RefreshControl,
   View,
   Text,
   FlatList,
@@ -9,14 +7,15 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import styles, { elevationShadowStyle } from '../Styles';
+import { useStore } from '../context/StateContext';
 import getSilos from '../services/SiloService';
 
 import SiloPercentage from '../components/SiloPercentage';
-import { useStateValue } from '../context/StateContext';
+
+import { elevationShadowStyle } from '../Styles';
 
 const SilosScreen = (props) => {
-  const [{ silos }, dispatch] = useStateValue();
+  const [{ silos }, dispatch] = useStore();
 
   useEffect(() => {
     getSilos(dispatch);
@@ -57,12 +56,14 @@ const SilosScreen = (props) => {
             <TouchableWithoutFeedback
               onPress={() => props.navigation.navigate('SiloOverview', { id: item.id })}
             >
-              <View style={{
-                flex: 1,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                margin: 3,
-              }}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  margin: 3,
+                }}
+              >
                 <SiloPercentage percentage={item.percentage} />
                 <View style={{ justifyContent: 'center', flexDirection: 'column' }}>
                   <Text>Solingen</Text>

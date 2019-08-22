@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { primary } from '../Colors';
+import React from 'react';
+import { Text, View } from 'react-native';
 
 const a = '#14A95C';
 const b = '#3498DB';

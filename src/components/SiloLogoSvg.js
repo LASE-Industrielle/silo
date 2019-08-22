@@ -1,7 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
 import Svg, {
-  G, Path, Text, TSpan,
+  G, Path,
 } from 'react-native-svg';
 
 const SiloLogoSvg = () => (

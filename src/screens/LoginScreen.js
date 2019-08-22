@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   Alert,
-  Image,
   View,
   Text,
   TextInput,
@@ -11,55 +10,29 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage'
-import {
-  Button, Container, Content, Input, Item, Spinner,
-} from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage';
+import { Container, Content, Spinner } from 'native-base';
 import { NavigationActions, StackActions } from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
-import { useStateValue } from '../context/StateContext';
+import { useNavigation } from 'react-navigation-hooks';
+import { useStore } from '../context/StateContext';
 import authCall from '../services/AuthService';
 
-import laseLogo from '../../assets/img/lase.jpeg';
 import SiloLogoSvg from '../components/SiloLogoSvg';
-import {useNavigation} from "react-navigation-hooks";
 
 const appAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({ routeName: 'App' })],
 });
 
-const primary = '#01A04E';
-const secondary = '#01A000';
-const primaryText = '#606060';
 const inactiveText = '#C5C5C5';
-
 const white = '#FFFFFF';
 const blackTextColor = '#797979';
 const greyText = '#AAA9A9';
-
-const iconColor = '#FFF';
 const greenIconColor = '#02A04E';
-
-const orange = '#F1B950';
-const blue = '#3498DB';
-const red = '#F18382';
-const black = '#262626';
-
-const bgColor = '#F2F2F2';
-const bgGradientStart = '#84CFA8';
-const bgGradientEnd = '#539A88';
-const bgGradientStartLogin = '#83CEA7';
-
-const statusColorGreen = '#6CC799';
-const statusColorRed = '#F19B93';
-
-const bottomBorder = '#3A7F78';
-const whiteBorder = '#E8E6EA';
-
 const transparentColor = 'transparent';
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   loginText: {
     color: greyText,
     fontSize: 24,
@@ -122,11 +95,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = (props) => {
+const LoginScreen = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [{ auth }, dispatch] = useStateValue();
+  const [{ auth }, dispatch] = useStore();
 
   useEffect(() => {
     if (__DEV__ === true) {
@@ -155,7 +128,9 @@ const LoginScreen = (props) => {
         [
           {
             text: 'OK',
-            onPress: () => (auth.errorMessage = ''),
+            onPress: () => {
+              auth.errorMessage = '';
+            },
           },
         ],
         { cancelable: false },
@@ -170,7 +145,7 @@ const LoginScreen = (props) => {
   if (auth.loading) {
     return (
       <Container>
-        <Content contentContainerStyle={styles.default}>
+        <Content contentContainerStyle={style.default}>
           <Spinner />
         </Content>
       </Container>
@@ -198,7 +173,7 @@ const LoginScreen = (props) => {
         }}
         colors={['#6CC799', '#3A7F78']}
       >
-        <SiloLogoSvg style={{ backgroundColor: 'red'}} />
+        <SiloLogoSvg style={{ backgroundColor: 'red' }} />
         <Text
           style={{
             fontWeight: '100',
@@ -212,13 +187,13 @@ const LoginScreen = (props) => {
         </Text>
       </LinearGradient>
       <KeyboardAvoidingView
-        style={styles.keyboardAwoidingView}
+        style={style.keyboardAwoidingView}
         behavior={Platform.OS === 'ios' ? 'position' : null}
       >
-        <View style={styles.loginView}>
-          <Text style={styles.loginText}>Sign In</Text>
+        <View style={style.loginView}>
+          <Text style={style.loginText}>Sign In</Text>
           <TextInput
-            style={styles.credentialsTextInput}
+            style={style.credentialsTextInput}
             placeholder="xyz@gmail.com"
             placeholderTextColor={greyText}
             autoCapitalize="none"
@@ -230,20 +205,20 @@ const LoginScreen = (props) => {
             placeholder={
               '\u002A \u002A \u002A \u002A \u002A \u002A \u002A \u002A \u002A \u002A \u002A'
             }
-            style={styles.credentialsTextInput}
+            style={style.credentialsTextInput}
             placeholderTextColor={greyText}
             autoCapitalize="none"
             value={password}
             onChangeText={text => setPassword(text)}
           />
-          <Text style={styles.forgotPasswordText}>Forgot password?</Text>
-          <TouchableOpacity style={styles.loginTouchableOpacity} onPress={login}>
-            <Text style={styles.loginButton}>SIGN IN</Text>
+          <Text style={style.forgotPasswordText}>Forgot password?</Text>
+          <TouchableOpacity style={style.loginTouchableOpacity} onPress={login}>
+            <Text style={style.loginButton}>SIGN IN</Text>
           </TouchableOpacity>
-          <Text style={styles.dontHaveAccountText}>
+          <Text style={style.dontHaveAccountText}>
             Don&apos;t have an account?
             {' '}
-            <Text style={styles.signUpText}>Sign up</Text>
+            <Text style={style.signUpText}>Sign up</Text>
           </Text>
         </View>
       </KeyboardAvoidingView>

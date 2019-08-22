@@ -3,11 +3,11 @@ import {
   FlatList, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { useNavigationEvents } from 'react-navigation-hooks';
-import { getNotifications } from '../services/NotificationService';
-import { useStateValue } from '../context/StateContext';
+import getNotifications from '../services/NotificationService';
+import { useStore } from '../context/StateContext';
 import { elevationShadowStyle } from '../Styles';
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   view: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -70,24 +70,24 @@ const styles = StyleSheet.create({
 const renderListItem = ({ item }) => {
   item.read = false;
   return (
-    <View style={styles.notificationContainer}>
+    <View style={style.notificationContainer}>
       {item.read ? (
         <View>
-          <Text style={styles.inactiveDot}>•</Text>
+          <Text style={style.inactiveDot}>•</Text>
         </View>
       ) : (
         <View>
-          <Text style={styles.activeDot}>•</Text>
+          <Text style={style.activeDot}>•</Text>
         </View>
       )}
       <View>
-        <Text style={styles.notificationTitle}>{item.title}</Text>
-        <Text style={styles.notificationBody}>{item.body}</Text>
-        <View style={styles.notificationFooter}>
-          <Text style={styles.time}>
+        <Text style={style.notificationTitle}>{item.title}</Text>
+        <Text style={style.notificationBody}>{item.body}</Text>
+        <View style={style.notificationFooter}>
+          <Text style={style.time}>
             {`${item.timestamp.split('-')[0]} ${item.timestamp.split('-')[1]}`}
           </Text>
-          {item.read ? null : <Text style={styles.readButton}>Read</Text>}
+          {item.read ? null : <Text style={style.readButton}>Read</Text>}
         </View>
       </View>
     </View>
@@ -95,7 +95,7 @@ const renderListItem = ({ item }) => {
 };
 
 const NotificationsScreen = (props) => {
-  const [{ notifications }, dispatch] = useStateValue([]);
+  const [{ notifications }, dispatch] = useStore([]);
 
   useEffect(() => {
     getNotifications(dispatch);
@@ -140,20 +140,20 @@ const NotificationsScreen = (props) => {
           onRefresh={() => reload()}
           ListHeaderComponent={(
             <View>
-              <View style={styles.footer}>
+              <View style={style.footer}>
                 <TouchableOpacity>
-                  <Text style={styles.allRead}>Mark all as read</Text>
+                  <Text style={style.allRead}>Mark all as read</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.clearAll}>Clear all</Text>
+                  <Text style={style.clearAll}>Clear all</Text>
                 </TouchableOpacity>
               </View>
 
-              <View style={styles.line} />
+              <View style={style.line} />
             </View>
 )}
           ListEmptyComponent={(
-            <View style={styles.view}>
+            <View style={style.view}>
               <Text>No notifications</Text>
             </View>
 )}

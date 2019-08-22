@@ -10,7 +10,6 @@ export const elevationShadowStyle = (elevation = 2, shadowOpacity = 0.12) => ({
   shadowRadius: 6 * elevation,
 });
 
-
 export default StyleSheet.create({
   default: {
     flex: 1,

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SILOS_LOAD_ERROR, SILOS_LOAD_START, SILOS_LOAD_SUCCESS, } from '../Actions';
+import { SILOS_LOAD_ERROR, SILOS_LOAD_START, SILOS_LOAD_SUCCESS } from '../Actions';
 import { siloUrl } from '../Urls';
 
 const getSilos = (dispatch) => {
@@ -12,7 +12,7 @@ const getSilos = (dispatch) => {
     .catch((err) => {
       dispatch({
         type: SILOS_LOAD_ERROR,
-        error: err
+        error: err,
       });
     });
 };

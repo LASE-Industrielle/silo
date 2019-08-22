@@ -1,12 +1,24 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import {
-  Body, Button, Container, Content, Header, Icon, Left, Right, Title,
-} from 'native-base';
+import { View, Text, StyleSheet } from 'react-native';
 
-import SiloData from '../components/SiloData';
-import SensorData from '../components/SensorData';
 import { elevationShadowStyle } from '../Styles';
+
+const style = StyleSheet.create({
+  specificationRow: { flexDirection: 'column', justifyContent: 'center', alignItems: 'center' },
+  greyText: { color: '#BEB9B9', margin: 2 },
+  blackText: { color: '#656565', margin: 2 },
+  line: {
+    borderColor: '#BEB9B9',
+    borderWidth: 0.5,
+    marginHorizontal: 20,
+  },
+  statsText: {
+    fontSize: 20,
+    color: '#83D0A9',
+    fontWeight: 'bold',
+  },
+  units: { alignSelf: 'flex-end', color: '#BEB9B9' },
+});
 
 const SiloDescriptionScreen = (props) => {
   const silo = props.navigation.getParam('siloDetails', {});
@@ -75,23 +87,6 @@ const SiloDescriptionScreen = (props) => {
       </View>
     </View>
   );
-};
-
-const style = {
-  specificationRow: { flexDirection: 'column', justifyContent: 'center', alignItems: 'center' },
-  greyText: { color: '#BEB9B9', margin: 2 },
-  blackText: { color: '#656565', margin: 2 },
-  line: {
-    borderColor: '#BEB9B9',
-    borderWidth: 0.5,
-    marginHorizontal: 20,
-  },
-  statsText: {
-    fontSize: 20,
-    color: '#83D0A9',
-    fontWeight: 'bold',
-  },
-  units: { alignSelf: 'flex-end', color: '#BEB9B9' },
 };
 
 export default SiloDescriptionScreen;
