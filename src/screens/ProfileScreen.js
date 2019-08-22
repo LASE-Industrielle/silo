@@ -1,36 +1,79 @@
-import React, {useState} from 'react';
-import { Switch, View} from 'react-native';
-import PropTypes from 'prop-types';
-import ccLogo from '../../assets/img/cc.jpg';
-import AsyncStorage from '@react-native-community/async-storage';
-import { useNavigation } from 'react-navigation-hooks';
-
-
+import React, { useState } from 'react';
 import {
-  Body,
-  Button,
-  Container,
-  Content,
-  Header,
-  Icon,
-  Left,
-  ListItem,
-  Right,
-  Text,
-  Thumbnail,
-  Title
-} from 'native-base';
+  Image, StyleSheet, Switch, Text, TouchableOpacity, View,
+} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import {useStateValue} from '../context/StateContext';
-import resetAction from '../utils/NavigationUtils';
+import { useStateValue } from '../context/StateContext';
+import { LOGOUT_USER } from '../Actions';
 
-import {primary} from '../Colors';
-import {LOGOUT_USER} from "../Actions";
+import { elevationShadowStyle } from '../Styles';
+import NotificationIcon from '../icons/NotificationIcon';
+import SynchronizationIcon from '../icons/SynchronizationIcon';
+import LogoutIcon from '../icons/LogoutIcon';
+import ccLogo from '../../assets/img/cc.jpg';
 
-const ProfileScreen = (props) => {
-  const navigation = useNavigation();
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    zIndex: 2,
+    margin: 20,
+    marginTop: 0,
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 10,
+    fontSize: 13,
+    bottom: 32,
+    ...elevationShadowStyle(2, 0.12),
+  },
+  profileImage: {
+    alignSelf: 'center',
+    width: 100,
+    height: 100,
+    borderRadius: 100 / 2,
+    marginTop: 20,
+    borderColor: '#E8E6EA',
+    borderWidth: 5,
+  },
+  profileUsernameText: {
+    paddingBottom: 15,
+    alignSelf: 'center',
+  },
+  profileItemText: {
+    alignSelf: 'center',
+    color: '#797979',
+  },
+  profileItemRedText: {
+    fontWeight: 'bold',
+    color: '#F19B93',
+  },
+  list: {
+    flex: 1,
+  },
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+  },
+  profileListItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  },
+  iconTextWrapper: { flexDirection: 'row' },
+  icon: {
+    padding: 7,
+    margin: 7,
+    borderRadius: 5,
+    alignSelf: 'center',
+  },
+  switch: {
+    alignSelf: 'flex-end',
+  },
+});
 
-  const [{profile}, dispatch] = useStateValue();
+const ProfileScreen = () => {
+  const [{ profile }, dispatch] = useStateValue();
 
   const [sync1, setSync1] = useState(true);
   const [sync2, setSync2] = useState(false);
@@ -38,71 +81,46 @@ const ProfileScreen = (props) => {
   const logout = async () => {
     await AsyncStorage.removeItem('token');
     await dispatch({ type: LOGOUT_USER });
-    await navigation.dispatch(resetAction);
   };
 
   return (
-    <Container>
-      <Header transparent/>
-      <Content style={{ marginTop: 15 }}>
-        <View style={{
-          flex: 1,
-          alignItems: 'center',
+    <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
+      <View
+        style={{
+          flex: 0.1,
           justifyContent: 'center',
-          margin: 15,
-          flexDirection: 'row'
-        }}>
-          <Thumbnail circle large source={ccLogo}/>
+          alignItems: 'center',
+          margin: 20,
+        }}
+      >
+        <Text>Header</Text>
+      </View>
+      <View style={styles.view}>
+        <Image source={ccLogo} style={styles.profileImage} />
+        <Text style={styles.profileUsernameText}>{profile.username}</Text>
+        <View style={styles.list}>
+          <View style={styles.listItem}>
+            <View style={styles.iconTextWrapper}>
+              <SynchronizationIcon fill="#01A04E" height={14} width={14} style={styles.icon} />
+              <Text style={styles.profileItemText}>Synchronization</Text>
+            </View>
+            <Switch value={sync1} style={styles.switch} onValueChange={() => setSync1(!sync1)} />
+          </View>
+          <View style={styles.listItem}>
+            <View style={styles.iconTextWrapper}>
+              <NotificationIcon fill="#01A04E" height={14} width={14} style={styles.icon} />
+              <Text style={styles.profileItemText}>Notifications</Text>
+            </View>
+            <Switch value={sync2} style={styles.switch} onValueChange={() => setSync2(!sync2)} />
+          </View>
+          <TouchableOpacity style={styles.profileListItem} onPress={logout}>
+            <LogoutIcon fill="#F19B93" height={14} width={14} style={styles.icon} />
+            <Text style={styles.profileItemRedText}>Logout</Text>
+          </TouchableOpacity>
         </View>
-        <Title style={{ paddingBottom: 15 }}>{profile.username}</Title>
-        <ListItem icon>
-          <Left>
-            <Button style={{ backgroundColor: primary }}>
-              <Icon active name="sync"/>
-            </Button>
-          </Left>
-          <Body>
-            <Text>Syncronization</Text>
-          </Body>
-          <Right>
-            <Switch value={sync1} onValueChange={() => setSync1(!sync1)}/>
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <Button style={{ backgroundColor: primary }}>
-              <Icon active name="ios-notifications"/>
-            </Button>
-          </Left>
-          <Body>
-            <Text>Notifications</Text>
-          </Body>
-          <Right>
-            <Switch value={sync2} onValueChange={() => setSync2(!sync2)}/>
-          </Right>
-        </ListItem>
-        <ListItem icon onPress={logout}>
-          <Left>
-            <Button style={{ backgroundColor: primary }}>
-              <Icon active name="ios-log-out"/>
-            </Button>
-          </Left>
-          <Body>
-            <Text>Logout</Text>
-          </Body>
-          <Right>
-          </Right>
-        </ListItem>
-      </Content>
-    </Container>
+      </View>
+    </View>
   );
-};
-
-ProfileScreen.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-    dispatch: PropTypes.func.isRequired,
-  }).isRequired,
 };
 
 export default ProfileScreen;

@@ -1,6 +1,15 @@
-import {Platform, StatusBar, StyleSheet} from 'react-native';
+import { Platform, StatusBar, StyleSheet } from 'react-native';
 
-import {primary} from './Colors';
+import { primary } from './Colors';
+
+export const elevationShadowStyle = (elevation = 2, shadowOpacity = 0.12) => ({
+  elevation,
+  shadowColor: 'black',
+  shadowOffset: { width: 0, height: 3 * elevation },
+  shadowOpacity,
+  shadowRadius: 6 * elevation,
+});
+
 
 export default StyleSheet.create({
   default: {
@@ -17,7 +26,7 @@ export default StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
-    backgroundColor: primary
+    backgroundColor: primary,
   },
   inputItem: {
     marginTop: 10,
@@ -28,17 +37,17 @@ export default StyleSheet.create({
   },
   placeholder: {
     fontSize: 14,
-    marginLeft: 12
+    marginLeft: 12,
   },
   footer: { padding: 10 },
   homeImage: {
     height: 200,
     width: null,
-    flex: 1
+    flex: 1,
   },
   notificationImage: {
     width: 50,
-    height: 50
+    height: 50,
   },
   homeHeaderStyle: {
     flex: 1,
@@ -55,14 +64,14 @@ export default StyleSheet.create({
     position: 'absolute',
   },
   icons: {
-    color: primary
+    color: primary,
   },
   buttonAnalyticsStyle: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    height:40,
+    height: 40,
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
@@ -71,8 +80,8 @@ export default StyleSheet.create({
   container: {
     ...Platform.select({
       android: {
-        marginTop: StatusBar.currentHeight
-      }
-    })
-  }
+        marginTop: StatusBar.currentHeight,
+      },
+    }),
+  },
 });

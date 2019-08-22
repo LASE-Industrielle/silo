@@ -183,7 +183,7 @@ const LoginScreen = (props) => {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
       }}
     >
       <LinearGradient
@@ -193,7 +193,8 @@ const LoginScreen = (props) => {
           width: Dimensions.get('window').width,
           alignItems: 'center',
           justifyContent: 'center',
-          paddingTop: 30
+          paddingTop: 30,
+          borderBottomRightRadius: 30,
         }}
         colors={['#6CC799', '#3A7F78']}
       >
