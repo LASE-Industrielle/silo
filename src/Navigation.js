@@ -1,20 +1,15 @@
 import React from 'react';
-import {
-  createAppContainer,
-  createBottomTabNavigator,
-  createStackNavigator, Header,
-} from 'react-navigation';
+import { createAppContainer, createBottomTabNavigator, createStackNavigator, Header } from 'react-navigation';
 import { Icon } from 'native-base';
 
 import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import LoginScreen from './screens/LoginScreen';
 import SilosScreen from './screens/SilosScreen';
-import AnalyticsScreen from './screens/AnalyticsScreen';
+import Analytics2Screen from './screens/Analytics2Screen';
 import ProfileScreen from './screens/ProfileScreen';
 import SiloOverviewScreen from './screens/SiloDetailsScreen';
 import SiloDescriptionScreen from './screens/SiloDescriptionScreen';
-
 
 import ProfileIcon from './icons/ProfileIcon';
 import SplashScreen from './screens/SplashScreen';
@@ -26,17 +21,17 @@ import InfoIcon from './icons/InfoIcon';
 const styles = StyleSheet.create({
   headerTitleText: {
     marginLeft: Platform.OS === 'ios' ? 0 : 26,
-    //fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue-Medium' : 'HelveticaNeueMedium',
+    // fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue-Medium' : 'HelveticaNeueMedium',
     fontSize: 18,
-    color: 'white'
+    color: 'white',
   },
   headerRightView: {
     flexDirection: 'row',
-    marginRight: 8
+    marginRight: 8,
   },
   notificationIconPadding: {
     paddingRight: 5,
-    paddingLeft: 14
+    paddingLeft: 14,
   },
   profileIconPadding: {
     paddingRight: 14,
@@ -45,12 +40,18 @@ const styles = StyleSheet.create({
   backArrowPadding: {
     padding: 20,
     paddingTop: 15,
-    paddingBottom: 15
-  }
+    paddingBottom: 15,
+  },
 });
 
-const navigationOptions = (backArrowExists, title, rightIconsExists = false, notificationIconExists = false,
-                           profileIconExists = false, infoIconExists = false) => ({ navigation }) => {
+const navigationOptions = (
+  backArrowExists,
+  title,
+  rightIconsExists = false,
+  notificationIconExists = false,
+  profileIconExists = false,
+  infoIconExists = false,
+) => ({ navigation }) => {
   return {
     header: props => (
       <View>
@@ -69,7 +70,7 @@ const navigationOptions = (backArrowExists, title, rightIconsExists = false, not
           backgroundColor: 'transparent',
           marginTop: 0,
           marginBottom: 10,
-          zIndex: -1
+          zIndex: -1,
         }
         : {
           backgroundColor: 'transparent',
@@ -80,29 +81,28 @@ const navigationOptions = (backArrowExists, title, rightIconsExists = false, not
     headerTintColor: navigation.getParam('HeaderTintColor', 'white'),
     headerRight: rightIconsExists ? (
       <View style={styles.headerRightView}>
-        {notificationIconExists ?
+        {notificationIconExists ? (
           <TouchableOpacity style={styles.notificationIconPadding} onPress={() => navigation.navigate('Notifications')}>
-            <NotificationIcon fill="white"/>
+            <NotificationIcon fill="white" />
           </TouchableOpacity>
-          :
-          null
-        }
-        {profileIconExists ?
+        ) : null}
+        {profileIconExists ? (
           <TouchableOpacity style={styles.profileIconPadding} onPress={() => navigation.navigate('Profile')}>
-            <ProfileIcon/>
+            <ProfileIcon />
           </TouchableOpacity>
-          :
-          null
-        }
-        {infoIconExists ?
-          <TouchableOpacity style={styles.profileIconPadding} onPress={() => navigation.navigate('SiloDescription', {
-            siloDetails: navigation.getParam('siloDetails', {})
-          })}>
-            <InfoIcon/>
+        ) : null}
+        {infoIconExists ? (
+          <TouchableOpacity
+            style={styles.profileIconPadding}
+            onPress={() =>
+              navigation.navigate('SiloDescription', {
+                siloDetails: navigation.getParam('siloDetails', {}),
+              })
+            }
+          >
+            <InfoIcon />
           </TouchableOpacity>
-          :
-          null
-        }
+        ) : null}
       </View>
     ) : null,
     headerLeft: backArrowExists ? (
@@ -110,7 +110,7 @@ const navigationOptions = (backArrowExists, title, rightIconsExists = false, not
         <BackArrowIcon />
       </TouchableOpacity>
     ) : null,
-    headerTransparent: true
+    headerTransparent: true,
   };
 };
 
@@ -119,17 +119,17 @@ const SiloNavigator = createStackNavigator(
     Silos: {
       screen: SilosScreen,
       path: 'Silos',
-      navigationOptions: navigationOptions(false, 'Silos', true, true, true)
+      navigationOptions: navigationOptions(false, 'Silos', true, true, true),
     },
     Analytics: {
-      screen: AnalyticsScreen,
+      screen: Analytics2Screen,
       path: 'Analytics',
       navigationOptions: navigationOptions(true, 'Analytics'),
     },
     SiloOverview: {
       screen: SiloOverviewScreen,
       path: 'SiloOverview',
-      navigationOptions: navigationOptions(true, '', true, false, false, true)
+      navigationOptions: navigationOptions(true, '', true, false, false, true),
     },
     SiloDescription: {
       screen: SiloDescriptionScreen,
@@ -148,10 +148,9 @@ const SiloNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Silos',
+    initialRouteName: 'Analytics',
   },
 );
-
 
 const AppNavigator = createStackNavigator(
   {
@@ -163,7 +162,7 @@ const AppNavigator = createStackNavigator(
     Login: {
       screen: LoginScreen,
       path: 'Login',
-      navigationOptions: navigationOptions(false, '', false)
+      navigationOptions: navigationOptions(false, '', false),
     },
     App: {
       screen: SiloNavigator,
