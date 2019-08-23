@@ -12,7 +12,8 @@ import GradientHeaderComponent from '../components/GradientHeaderComponent';
 
 const style = StyleSheet.create({
   mainContainer: {
-    flex: 1, flexDirection: 'column',
+    flex: 1,
+    flexDirection: 'column',
   },
   header: { flex: 0.1, alignItems: 'center', justifyContent: 'center' },
 });
@@ -49,7 +50,7 @@ const SiloDetailsScreen = (props) => {
         style={style.mainContainer}
         refreshControl={<RefreshControl refreshing={silos.loading} onRefresh={onRefresh} />}
       >
-        <GraphWidget />
+        <GraphWidget silo={silo} />
         <SiloDetailsTable silo={silo} />
       </ScrollView>
     </GradientHeaderComponent>

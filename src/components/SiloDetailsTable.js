@@ -62,34 +62,24 @@ const SiloDetailsTable = ({ silo }) => {
           </View>
           <View style={style.line} />
           <Text style={{ color: '#BEB9B9', margin: 10 }}>Average</Text>
-          <View style={style.tableItemContainer}>
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={style.orangeDot}>•</Text>
-              <Text style={style.percentage}>30%</Text>
+          {Object.keys(silo.values_by_day).map(key => (
+            <View style={style.tableItemContainer} key={key}>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={silo.values_by_day[key] > 50 ? style.orangeDot : style.greenDot}>
+                  •
+                </Text>
+                <Text style={style.percentage}>
+                  {`${silo.values_by_day[key]}%`}
+                </Text>
+              </View>
+              <Text style={style.date}>{key}</Text>
             </View>
-            <Text style={style.date}>Friday, May 24</Text>
-          </View>
-          <View style={style.line} />
-          <View style={style.tableItemContainer}>
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={style.greenDot}>•</Text>
-              <Text style={style.percentage}>100%</Text>
-            </View>
-            <Text style={style.date}>Saturday, May 23</Text>
-          </View>
-          <View style={style.line} />
-          <View style={style.tableItemContainer}>
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={style.greenDot}>•</Text>
-              <Text style={style.percentage}>100%</Text>
-            </View>
-            <Text style={style.date}>Sunday, May 22</Text>
-          </View>
+          ))}
         </View>
         <View>
           <TouchableWithoutFeedback
             onPress={() => {
-              navigation.navigate("Analytics", { id: silo.id });
+              navigation.navigate('Analytics', { id: silo.id });
             }}
           >
             <View style={style.analyticsButton}>
