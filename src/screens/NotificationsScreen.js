@@ -42,7 +42,8 @@ const style = StyleSheet.create({
   notificationContainer: {
     flex: 1,
     flexDirection: 'row',
-    margin: 5,
+    margin: 10,
+    marginBottom: 30,
     fontSize: 13,
   },
   notificationTitle: {
@@ -118,15 +119,17 @@ const NotificationsScreen = (props) => {
   return (
     <GradientHeaderComponent>
       <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
-        <View style={{ justifyContent: 'center', alignItems: 'flex-start', marginHorizontal: 15 }}>
-          <Text style={{ color: '#C5C5C5', margin: 2 }}>You have 3 unread notifications</Text>
+        <View style={{ justifyContent: 'center', alignItems: 'flex-start' }}>
+          <Text style={{ color: '#C5C5C5', margin: 5, marginLeft: 15 }}>You have 3 unread notifications</Text>
         </View>
         <View
           style={{
-            flex: 0.9,
+            flex: 1,
             backgroundColor: 'white',
-            ...elevationShadowStyle(1.5, 0.2),
             margin: 10,
+            marginTop: 5,
+            marginBottom: 20,
+            ...elevationShadowStyle(),
             borderRadius: 10,
           }}
         >
@@ -134,7 +137,7 @@ const NotificationsScreen = (props) => {
             keyExtractor={item => String(item.id)}
             data={notifications.data}
             renderItem={renderListItem}
-            style={{ margin: 10 }}
+            style={{ margin: 10, marginTop: 0 }}
             refreshing={notifications.loading}
             onRefresh={() => reload()}
             ListHeaderComponent={(

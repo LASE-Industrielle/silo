@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import { useNavigation } from 'react-navigation-hooks';
 import { useStore } from '../context/StateContext';
 import { LOGOUT_USER } from '../Actions';
 
@@ -19,14 +20,13 @@ const style = StyleSheet.create({
   view: {
     flex: 1,
     zIndex: 2,
-    margin: 20,
-    marginTop: 40,
+    margin: 10,
+    marginBottom: 20,
     backgroundColor: 'white',
     borderRadius: 8,
     padding: 10,
     fontSize: 13,
-    bottom: 32,
-    ...elevationShadowStyle(2, 0.12),
+    ...elevationShadowStyle(),
   },
   profileImage: {
     alignSelf: 'center',
@@ -75,6 +75,7 @@ const style = StyleSheet.create({
 });
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
   const [{ profile }, dispatch] = useStore();
 
   const [sync1, setSync1] = useState(true);
@@ -83,6 +84,7 @@ const ProfileScreen = () => {
   const logout = async () => {
     await AsyncStorage.removeItem('token');
     await dispatch({ type: LOGOUT_USER });
+    navigation.navigate('Login');
   };
 
   return (

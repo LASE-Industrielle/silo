@@ -11,7 +11,7 @@ const style = StyleSheet.create({
   shadowContainer: {
     flex: 1,
     margin: 10,
-    ...elevationShadowStyle(1, 0.2),
+    ...elevationShadowStyle(),
     backgroundColor: 'white',
     borderRadius: 10,
   },

@@ -11,7 +11,9 @@ import SiloDetailsTable from '../components/SiloDetailsTable';
 import GradientHeaderComponent from '../components/GradientHeaderComponent';
 
 const style = StyleSheet.create({
-  mainContainer: { flex: 1, flexDirection: 'column' },
+  mainContainer: {
+    flex: 1, flexDirection: 'column',
+  },
   header: { flex: 0.1, alignItems: 'center', justifyContent: 'center' },
 });
 
@@ -26,7 +28,7 @@ const SiloDetailsScreen = (props) => {
 
   useEffect(() => {
     setSilo(silos.data.find(s => s.id === id));
-    props.navigation.setParams({siloDetails: silo});
+    props.navigation.setParams({ siloDetails: silo });
   }, [silos.data]);
 
   const onRefresh = () => {

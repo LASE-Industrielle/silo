@@ -17,10 +17,8 @@ import SiloDescriptionScreen from './screens/SiloDescriptionScreen';
 
 
 import ProfileIcon from './icons/ProfileIcon';
-import HomeIcon from './icons/HomeIcon';
 import SplashScreen from './screens/SplashScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
-import {primary} from "./Colors";
 import NotificationIcon from './icons/NotificationIcon';
 import BackArrowIcon from './icons/BackArrowIcon';
 import InfoIcon from './icons/InfoIcon';
