@@ -57,7 +57,9 @@ const SiloDetailsTable = ({ silo }) => {
             <View style={style.line} />
             <View style={{ marginLeft: 5 }}>
               <Text style={style.greyText}>Capacity</Text>
-              <Text style={style.kgStatus}>1350 / 4500 Kg</Text>
+              <Text style={style.kgStatus}>
+                {`${Math.round(silo.percentage * 0.01 * silo.capacity)} / ${silo.capacity}`}
+              </Text>
             </View>
           </View>
           <View style={style.line} />
@@ -65,12 +67,10 @@ const SiloDetailsTable = ({ silo }) => {
           {Object.keys(silo.values_by_day).map(key => (
             <View style={style.tableItemContainer} key={key}>
               <View style={{ flexDirection: 'row' }}>
-                <Text style={silo.values_by_day[key] > 50 ? style.orangeDot : style.greenDot}>
+                <Text style={silo.values_by_day[key] < 50 ? style.orangeDot : style.greenDot}>
                   •
                 </Text>
-                <Text style={style.percentage}>
-                  {`${silo.values_by_day[key]}%`}
-                </Text>
+                <Text style={style.percentage}>{`${silo.values_by_day[key]}%`}</Text>
               </View>
               <Text style={style.date}>{key}</Text>
             </View>
