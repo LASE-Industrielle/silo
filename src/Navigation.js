@@ -6,7 +6,6 @@ import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'r
 
 import LoginScreen from './screens/LoginScreen';
 import SilosScreen from './screens/SilosScreen';
-import Analytics2Screen from './screens/Analytics2Screen';
 import ProfileScreen from './screens/ProfileScreen';
 import SiloOverviewScreen from './screens/SiloDetailsScreen';
 import SiloDescriptionScreen from './screens/SiloDescriptionScreen';
@@ -17,6 +16,7 @@ import NotificationsScreen from './screens/NotificationsScreen';
 import NotificationIcon from './icons/NotificationIcon';
 import BackArrowIcon from './icons/BackArrowIcon';
 import InfoIcon from './icons/InfoIcon';
+import AnalyticsScreen from './screens/AnalyticsScreen';
 
 const styles = StyleSheet.create({
   headerTitleText: {
@@ -122,7 +122,7 @@ const SiloNavigator = createStackNavigator(
       navigationOptions: navigationOptions(false, 'Silos', true, true, true),
     },
     Analytics: {
-      screen: Analytics2Screen,
+      screen: AnalyticsScreen,
       path: 'Analytics',
       navigationOptions: navigationOptions(true, 'Analytics'),
     },
@@ -148,7 +148,7 @@ const SiloNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Analytics',
+    initialRouteName: 'Silos',
   },
 );
 

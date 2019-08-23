@@ -1,7 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, RefreshControl, ScrollView, View, Picker, ActionSheetIOS, Platform, Alert, TouchableOpacity, TouchableNativeFeedback, TouchableHighlight} from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  RefreshControl,
+  ScrollView,
+  View,
+  Picker,
+  ActionSheetIOS,
+  Platform,
+  Alert,
+  TouchableOpacity,
+  TouchableNativeFeedback,
+  TouchableHighlight,
+  StyleSheet, FlatList
+} from 'react-native';
 import {Body, Button, Container, Header, Icon, Left, List, ListItem, Right, Text, Title,} from 'native-base';
-import styles from '../Styles';
+import styles, {elevationShadowStyle} from '../Styles';
 
 import {getAllMeasurements, filterMeasurements, getPeriodMeasurements} from '../services/MeasurementService';
 import {useStore} from "../context/StateContext";
@@ -9,6 +23,7 @@ import AnalyticsGraph from '../components/AnalyticsGraph';
 import DatePickerModal from '../components/DatePickerModal';
 import DatePickerIcon from "../icons/DatePickerIcon";
 import axios from 'axios';
+import moment from 'moment';
 
 import {
   Menu,
@@ -18,7 +33,92 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 import GradientHeaderComponent from '../components/GradientHeaderComponent';
+import CalendarIcon from '../icons/CalendarIcon';
 
+
+const style = StyleSheet.create({
+  line: {
+    borderColor: '#BEB9B9',
+    borderWidth: 0.5,
+    marginHorizontal: 5,
+  },
+  transparentView: {
+    marginTop: 10,
+    marginHorizontal: 20,
+    backgroundColor: '#6CC799',
+    borderRadius: 5,
+    height: 250
+  },
+  periodButtonText: { color: 'white', fontSize: 14, fontWeight: 'bold' },
+  list: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#FFFFFF',
+    margin: 20,
+    marginTop: 10,
+    borderRadius: 10,
+    ...elevationShadowStyle(),
+    paddingHorizontal: 10,
+  },
+  date: { margin: 10, marginTop: 25, flexDirection: 'row', justifyContent: 'flex-start' },
+  percentageFont: { margin: 5, fontWeight: 'bold' },
+  dot: { margin: 5, color: 'orange' },
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: 10,
+  },
+});
+
+const triggerStyles = {
+  triggerText: {
+    color: 'white',
+  },
+  triggerOuterWrapper: {
+    backgroundColor: 'transparent',
+    paddingHorizontal: 12,
+    paddingTop: 16,
+    flex: 1,
+    marginHorizontal: 10
+  },
+  triggerWrapper: {
+    backgroundColor: '#6CC799',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    flex: 1,
+    flexDirection: 'row',
+  },
+  triggerTouchable: {
+    underlayColor: 'darkblue',
+    activeOpacity: 70,
+    style : {
+      flex: 1,
+    },
+  },
+};
+
+const optionsStyles = {
+  optionsContainer: {
+    backgroundColor: '#6CC799',
+    marginTop: 45,
+    marginHorizontal: 12,
+    width:  Math.round(Dimensions.get('window').width) - 24,
+  },
+  optionWrapper: {
+    borderBottomColor: '#6BB599',
+    borderBottomWidth: 2,
+  },
+  optionTouchable: {
+    activeOpacity: 0.5,
+  },
+  optionText: {
+    color: 'white',
+  },
+  OptionTouchableComponent: TouchableOpacity,
+};
 
 const AnalyticsScreen = (props) => {
 
@@ -47,14 +147,9 @@ const AnalyticsScreen = (props) => {
     let measurementsArray = Object.keys(graphMeasurements.data);
     let dataMeasurementsArray = [];
     for (let i = 0; i < measurementsArray.length; i++) {
-      // if (i === 7) {
-      //   break;
-      // }
       let dataMeasurement = {};
-      //dataMeasurement.x = moment(new Date(measurementsArray[i])).format("MMM DD");
       dataMeasurement.x = measurementsArray[i];
 
-      //let yValues = Object.values(graphMeasurements.data[measurementsArray[i]]);
       dataMeasurement.y = graphMeasurements.data[measurementsArray[i]];
       dataMeasurementsArray.push(dataMeasurement);
     }
@@ -79,153 +174,94 @@ const AnalyticsScreen = (props) => {
   const analyticsList = () => {
     const arr = [];
     Object.keys(graphMeasurements.data).map(key => {
-      arr.unshift(<ListItem key={key}>
-        <Left>
-          <Text>{graphMeasurements.data[key]}%</Text>
-        </Left>
-        <Right>
-          <Text note>{key}</Text>
-        </Right>
-      </ListItem>);
+      let o = {};
+      o[key] = graphMeasurements.data[key];
+      arr.unshift(o);
     });
-    // Object.keys(graphMeasurements.data)
-    //   .map(key => {
-    //     arr.push(<ListItem key={key} itemDivider>
-    //       <Text style={{color: '#676767'}}>{new Date(key).toLocaleDateString('en-US', {
-    //         weekday: 'short',
-    //         month: 'long',
-    //         day: 'numeric'
-    //       })}</Text>
-    //     </ListItem>);
-    //     Object.keys(graphMeasurements.data[key])
-    //       .map(timestamp => {
-    //         arr.push(<ListItem key={key + timestamp}>
-    //           <Left>
-    //             <Text>{graphMeasurements.data[key][timestamp]}%</Text>
-    //           </Left>
-    //           <Right>
-    //             <Text note>{timestamp}</Text>
-    //           </Right>
-    //         </ListItem>);
-    //       });
-    //   });
     return arr.map(x => x);
+  };
+
+  const renderItem = ({ item }) => {
+    return (
+      <View style={{ flex: 1 }}>
+        {Object.keys(item).map(x => (
+          <View style={{ flex: 1 }} key={x}>
+            <View style={style.listItem}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={style.dot}>•</Text>
+                <Text style={style.percentageFont}>{`${item[x]}%`}</Text>
+              </View>
+              <View>
+                <Text style={{ color: '#BEB9B9' }}>{x}</Text>
+              </View>
+            </View>
+            <View style={style.line} />
+          </View>
+        ))}
+      </View>
+    );
   };
 
   return (
     <MenuProvider >
-    <GradientHeaderComponent>
-      <DatePickerModal
-        modalDisplayed={modalDisplayed}
-        setModalDisplayed={setModalDisplayed}
-        setSelectedStartDate={setSelectedStartDate}
-        setSelectedEndDate={setSelectedEndDate}
-        filterData={filterData}
-      />
-      {graphMeasurements.loading || transformedGraphData === '' ? <View style={{height: 220, marginBottom: 0}}>
-          <ActivityIndicator
-            animating={true}
-            size="large"
-          />
-      </View> :
-        (<View>
-          <View style={{marginBottom: 0, height: 220}}>
-            { transformedGraphData.length > 0 ?
-              <AnalyticsGraph
-                loading={false}
-                data={transformedGraphData}
-                height={220}
-              />
-              :
-              <View style={{backgroundColor: '#6CC799', height: 220}}>
-                <Text style={{color: 'white'}}>No data to show</Text>
-              </View>
-            }
-          </View>
-          {
-           Platform.OS === 'ios' ?
-             (
-               <View style={{height: 40}}>
-                 <Menu onSelect={ value => {
-                   if(value === 'custom') {
-                     setModalDisplayed(true);
-                   }
-                   else{
-                     setSelectedEndDate(new Date);
-                   }
-                   return true;
-                 }}>
-                   <MenuTrigger text='Select date' />
-                   <MenuOptions>
-                     <MenuOption value={'hour'} text='Last Hour' />
-                     <MenuOption value={'day'} text={'Last Day'}/>
-                     <MenuOption value={'week'} text={'Last Week'}/>
-                     <MenuOption value={'month'} text={'Last Month'} />
-                     <MenuOption value={'custom'} text={'Custom Date'}/>
-                   </MenuOptions>
-                 </Menu>
-               </View>
-             )
-             :
-             (
-              <View style={{height: 40}}>
-               <Menu onSelect={ value => {
-                 if(value === 'custom') {
-                   setModalDisplayed(true);
-                 }
-                 else {
-                   setLastPeriodToShow(value);
-                   getPeriodMeasurements(dispatch, siloId, value);
-                 }
-                 return true;
-               }}>
-                 <MenuTrigger text='Select period to show' />
-                 <MenuOptions customStyles={{
-                   OptionTouchableComponent: TouchableOpacity,
-                   optionTouchable: {activeOpacity: 0.5},
-                 }}>
-                   <MenuOption value={'hour'} text='Last Hour' />
-                   <MenuOption value={'day'} text={'Last Day'}/>
-                   <MenuOption value={'week'} text={'Last Week'}/>
-                   <MenuOption value={'month'} text={'Last Month'}/>
-                   <MenuOption value={'custom'} text={'Custom Date'}/>
-                 </MenuOptions>
-               </Menu>
-              </View>
-             )
-          }
-          {/*<View style={{height:40}}>*/}
-          {/*  <Button*/}
-          {/*    block*/}
-          {/*    primary*/}
-          {/*    onPress={() => setModalDisplayed(true)}*/}
-          {/*    style={{*/}
-          {/*      flex: 1,*/}
-          {/*      justifyContent: 'center',*/}
-          {/*      alignItems: 'center',*/}
-          {/*      flexDirection: 'row',*/}
-          {/*      //paddingVertical:15,*/}
-          {/*      height:40,*/}
-          {/*      marginLeft: 20,*/}
-          {/*      marginRight: 20,*/}
-          {/*      marginTop: 10,*/}
-          {/*      backgroundColor: '#6CC799',*/}
-          {/*    }}*/}
-          {/*  >*/}
-          {/*    <Text>weqwew</Text><DatePickerIcon fill='white'/>*/}
-          {/*  </Button>*/}
-          {/*</View>*/}
-        </View>)}
-      <ScrollView style={{position: 'relative', width: '100%', marginTop: 0}} refreshControl={<RefreshControl
-        refreshing={graphMeasurements.loading}
-        onRefresh={onRefresh}
-      />}>
-        <List>
-          {analyticsList()}
-        </List>
-      </ScrollView>
-
-    </GradientHeaderComponent>
+      <GradientHeaderComponent backgroundColor={'#3A7F78'}>
+        <DatePickerModal
+          modalDisplayed={modalDisplayed}
+          setModalDisplayed={setModalDisplayed}
+          setSelectedStartDate={setSelectedStartDate}
+          setSelectedEndDate={setSelectedEndDate}
+          filterData={filterData}
+        />
+           {graphMeasurements.loading || transformedGraphData === '' ? <View style={{height: '100%', backgroundColor: '#3A7F78', marginBottom: 0}}>
+                 <ActivityIndicator
+                  animating={true}
+                  size="large"
+                />
+            </View> :
+              (<ScrollView style={{ flex: 1, backgroundColor: '#3A7F78' }}>
+                  <View style={style.transparentView}>
+                    { transformedGraphData.length > 0 ?
+                      <AnalyticsGraph
+                        loading={false}
+                        data={transformedGraphData}
+                        height={220}
+                      />
+                      :
+                      <View style={{backgroundColor: '#6CC799', height: 220, justifyContent: 'center', alignItems:'center' }}>
+                        <Text style={{color: 'white'}}>No data to show</Text>
+                      </View>
+                    }
+                  </View>
+                  <View>
+                    <Menu style={{height: 44}} onSelect={ value => {
+                      if(value === 'custom') {
+                        setModalDisplayed(true);
+                      }
+                      else {
+                        setLastPeriodToShow(value);
+                        getPeriodMeasurements(dispatch, siloId, value);
+                      }
+                      return true;
+                    }}>
+                      <MenuTrigger customStyles={triggerStyles}
+                      >
+                        <Text style={{color: 'white'}}>Select period to show</Text><CalendarIcon/>
+                      </MenuTrigger>
+                      <MenuOptions customStyles={optionsStyles}>
+                        <MenuOption value={'hour'} text='Last Hour' />
+                        <MenuOption value={'day'} text={'Last Day'}/>
+                        <MenuOption value={'week'} text={'Last Week'}/>
+                        <MenuOption value={'month'} text={'Last Month'}/>
+                        <MenuOption value={'custom'} text={'Custom Date'}/>
+                      </MenuOptions>
+                    </Menu>
+                  </View>
+                  <FlatList data={analyticsList()} renderItem={renderItem} style={style.list}
+                            keyExtractor={(item, index) => index.toString()} />
+                </ScrollView>
+                   )
+                }
+      </GradientHeaderComponent>
     </MenuProvider>
   )
 };

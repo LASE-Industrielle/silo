@@ -32,7 +32,7 @@ const AnalyticsGraph = (props) => {
         <VictoryChart
           domainPadding={{ x: [5, 5], y: [0, 30] }}
           padding={{
-            left: 55, right: 50, bottom: 40, top: 20,
+            left: 25, right: 60, bottom: 40, top: 20,
           }}
           height={props.height}
           theme={VictoryTheme.material}

@@ -41,21 +41,6 @@ const filterMeasurements = (dispatch, id, startDate, endDate) => {
 
 const getPeriodMeasurements = (dispatch, id, period) => {
   dispatch({ type: GRAPH_MEASUREMENTS_START });
-  if(period === 'hour') {
-    let oo = {};
-    for(let i = 0; i <60; i++){
-      if(i < 10){
-        oo[`20:0${i}`] = i;
-      }
-      else {
-        oo[`20:${i}`] = i;
-      }
-    }
-    dispatch({
-      type: GRAPH_MEASUREMENTS_SUCCESS,
-      payload: oo,
-    })
-  }else {
     axios.get(measurementsPeriodUrl + id + '/' + period + '/')
       .then(response => dispatch({
         type: GRAPH_MEASUREMENTS_SUCCESS,
@@ -67,7 +52,6 @@ const getPeriodMeasurements = (dispatch, id, period) => {
           error: err
         });
       });
-  }
 };
 
 export {getAllMeasurements, filterMeasurements, getPeriodMeasurements};
