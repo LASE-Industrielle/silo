@@ -64,10 +64,19 @@ const SilosScreen = (props) => {
                 </View>
               </TouchableWithoutFeedback>
             )}
+            ItemSeparatorComponent={() => (
+              <View
+                style={{
+                  margin: 5,
+                  borderColor: '#BEB9B9',
+                  borderWidth: 0.5,
+                  marginHorizontal: 20,
+                }}
+              />
+            )}
             style={{
               width: Dimensions.get('window').width * 0.97,
-              paddingTop: 10,
-              paddingHorizontal: 15,
+              padding: 15,
             }}
             refreshing={silos.loading}
             onRefresh={() => onRefresh()}
