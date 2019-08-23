@@ -6,7 +6,7 @@ import { primary } from '../Colors';
 const icon = {
   icon: {
     svg: (
-      <Svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <G>
         <G id="Group_581" data-name="Group 581" transform="translate(-326 -42)">
           <G id="Group_584" data-name="Group 584" transform="translate(329.869 44.381)">
             <Rect id="App_Icon" data-name="App Icon" width="24" height="24" transform="translate(-3.869 -2.381)" fill="#fff" opacity="0"/>
@@ -18,7 +18,7 @@ const icon = {
             <Path id="Path_771" data-name="Path 771" d="M3,0A3,3,0,1,1,0,3,3,3,0,0,1,3,0Z" transform="translate(10.131 3.619)" fill="#6cc799"/>
           </G>
         </G>
-      </Svg>
+      </G>
     ),
     viewBox: '0 0 24 24'
   }

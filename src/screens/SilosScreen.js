@@ -23,7 +23,7 @@ const SilosScreen = (props) => {
   };
 
   return (
-    <GradientHeaderComponent>
+    <GradientHeaderComponent backgroundColor={'#F2F2F2'}>
       <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
         <View
           style={{
@@ -42,7 +42,7 @@ const SilosScreen = (props) => {
             data={silos.data}
             renderItem={({ item }) => (
               <TouchableWithoutFeedback
-                onPress={() => props.navigation.navigate('SiloOverview', { id: item.id })}
+                onPress={() => props.navigation.navigate('SiloOverview', { id: item.id, title: item.name })}
               >
                 <View
                   style={{

@@ -88,7 +88,7 @@ const ProfileScreen = () => {
   };
 
   return (
-    <GradientHeaderComponent>
+    <GradientHeaderComponent backgroundColor={'#F2F2F2'}>
       <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
         <View style={style.view}>
           <Image source={ccLogo} style={style.profileImage} />

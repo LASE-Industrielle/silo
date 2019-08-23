@@ -26,7 +26,7 @@ const SiloDescriptionScreen = (props) => {
   const silo = props.navigation.getParam('siloDetails', {});
 
   return (
-    <GradientHeaderComponent>
+    <GradientHeaderComponent backgroundColor={'#F2F2F2'}>
       <View
         style={{
           margin: 10,

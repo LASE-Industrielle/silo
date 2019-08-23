@@ -117,7 +117,7 @@ const NotificationsScreen = (props) => {
   });
 
   return (
-    <GradientHeaderComponent>
+    <GradientHeaderComponent backgroundColor={'#F2F2F2'}>
       <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
         <View style={{ justifyContent: 'center', alignItems: 'flex-start' }}>
           <Text style={{ color: '#C5C5C5', margin: 5, marginLeft: 15 }}>You have 3 unread notifications</Text>

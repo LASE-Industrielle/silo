@@ -45,7 +45,7 @@ const SiloDetailsScreen = (props) => {
   }
 
   return (
-    <GradientHeaderComponent>
+    <GradientHeaderComponent backgroundColor={'#6CC699'}>
       <ScrollView
         style={style.mainContainer}
         refreshControl={<RefreshControl refreshing={silos.loading} onRefresh={onRefresh} />}

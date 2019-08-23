@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   profileIconPadding: {
     paddingRight: 14,
-    paddingLeft: 5
+    paddingLeft: 5,
   },
   backArrowPadding: {
     padding: 20,

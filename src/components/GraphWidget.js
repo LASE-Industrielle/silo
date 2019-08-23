@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ProgressBar from './ProgressBar';
+import LinearGradient from 'react-native-linear-gradient';
 
 const style = StyleSheet.create({
   graphWidget: {
     flex: 0.25,
     flexDirection: 'column',
-    backgroundColor: '#6CC799',
+    //backgroundColor: '#6CC799',
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     padding: 30,
@@ -18,7 +19,7 @@ const style = StyleSheet.create({
 });
 
 const GraphWidget = ({ silo }) => (
-  <View style={style.graphWidget}>
+  <LinearGradient colors={['#6CC699', '#4B9783']} style={style.graphWidget}>
     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
       <View style={{ flexDirection: 'row' }}>
         <Text style={style.mainPercentage}>{`${silo.percentage }%`}</Text>
@@ -32,7 +33,7 @@ const GraphWidget = ({ silo }) => (
       </View>
     </View>
     <ProgressBar percentage={silo.percentage} />
-  </View>
+  </LinearGradient>
 );
 
 export default GraphWidget;

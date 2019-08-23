@@ -6,7 +6,7 @@ import { primary } from '../Colors';
 const icon = {
   icon: {
     svg: (
-      <Svg>
+      <G>
         <Defs>
           <ClipPath id="clip-path">
             <Rect id="Rectangle_1627" data-name="Rectangle 1627" width="14" height="16.4" transform="translate(1485 19)" fill="white" stroke="white" stroke-width="1"/>
@@ -27,7 +27,7 @@ const icon = {
             </G>
           </G>
         </G>
-      </Svg>
+      </G>
     ),
     viewBox: '0 0 24 24'
   }
