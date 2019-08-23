@@ -82,7 +82,7 @@ const navigationOptions = (backArrowExists, title, rightIconsExists = false, not
       <View style={styles.headerRightView}>
         {notificationIconExists ?
           <TouchableOpacity style={styles.notificationIconPadding} onPress={() => navigation.navigate('Notifications')}>
-            <NotificationIcon/>
+            <NotificationIcon fill="white"/>
           </TouchableOpacity>
           :
           null
