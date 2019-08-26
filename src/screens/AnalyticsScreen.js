@@ -34,6 +34,7 @@ import {
 } from 'react-native-popup-menu';
 import GradientHeaderComponent from '../components/GradientHeaderComponent';
 import CalendarIcon from '../icons/CalendarIcon';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const style = StyleSheet.create({
@@ -45,9 +46,12 @@ const style = StyleSheet.create({
   transparentView: {
     marginTop: 10,
     marginHorizontal: 20,
-    backgroundColor: '#6CC799',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: 5,
-    height: 250
+    height: 230,
+
+
+    padding: 3,
   },
   periodButtonText: { color: 'white', fontSize: 14, fontWeight: 'bold' },
   list: {
@@ -55,7 +59,7 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#FFFFFF',
     margin: 20,
-    marginTop: 10,
+    marginTop: 35,
     borderRadius: 10,
     ...elevationShadowStyle(),
     paddingHorizontal: 10,
@@ -80,42 +84,41 @@ const triggerStyles = {
     paddingHorizontal: 12,
     paddingTop: 16,
     flex: 1,
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
   triggerWrapper: {
-    backgroundColor: '#6CC799',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 14,
-    paddingHorizontal: 24,
+    padding: 24,
     flex: 1,
     flexDirection: 'row',
+    borderRadius: 5,
   },
-  triggerTouchable: {
-    underlayColor: 'darkblue',
-    activeOpacity: 70,
-    style : {
-      flex: 1,
-    },
-  },
+
 };
 
 const optionsStyles = {
   optionsContainer: {
-    backgroundColor: '#6CC799',
-    marginTop: 45,
-    marginHorizontal: 12,
-    width:  Math.round(Dimensions.get('window').width) - 24,
+    backgroundColor: '#6AB499',
+    marginTop: 66,
+    marginLeft: 20,
+    width:  Math.round(Dimensions.get('window').width) - 60,
+
   },
   optionWrapper: {
     borderBottomColor: '#6BB599',
     borderBottomWidth: 2,
+    height: 40,
+    flex: 1,
+    justifyContent: 'center'
   },
   optionTouchable: {
     activeOpacity: 0.5,
   },
   optionText: {
     color: 'white',
+    marginLeft: 13
   },
   OptionTouchableComponent: TouchableOpacity,
 };
@@ -184,7 +187,7 @@ const AnalyticsScreen = (props) => {
   const renderItem = ({ item }) => {
     return (
       <View style={{ flex: 1 }}>
-        {Object.keys(item).map(x => (
+        {Object.keys(item).map( (x, index) => (
           <View style={{ flex: 1 }} key={x}>
             <View style={style.listItem}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -195,7 +198,11 @@ const AnalyticsScreen = (props) => {
                 <Text style={{ color: '#BEB9B9' }}>{x}</Text>
               </View>
             </View>
-            <View style={style.line} />
+            {index === item.length - 1 ?
+              <View style={style.line} />
+              :
+              null
+            }
           </View>
         ))}
       </View>
@@ -204,7 +211,7 @@ const AnalyticsScreen = (props) => {
 
   return (
     <MenuProvider >
-      <GradientHeaderComponent backgroundColor={'#3A7F78'}>
+      <GradientHeaderComponent backgroundColor={'#6CC799'}>
         <DatePickerModal
           modalDisplayed={modalDisplayed}
           setModalDisplayed={setModalDisplayed}
@@ -212,15 +219,29 @@ const AnalyticsScreen = (props) => {
           setSelectedEndDate={setSelectedEndDate}
           filterData={filterData}
         />
-           {graphMeasurements.loading || transformedGraphData === '' ? <View style={{height: '100%', backgroundColor: '#3A7F78', marginBottom: 0}}>
-                 <ActivityIndicator
-                  animating={true}
-                  size="large"
-                />
-            </View> :
-              (<ScrollView style={{ flex: 1, backgroundColor: '#3A7F78' }}>
+          <View style={{backgroundColor: '#F2F2F2', flex: 1}}>
+            <View style={{zIndex: -1, backgroundColor: 'transparent', height: Math.round(Dimensions.get('window').height * 0.7)}}>
+              <LinearGradient
+                style={{
+                  flex: 1,
+                  borderBottomRightRadius: 20,
+                  borderBottomLeftRadius: 20
+                }}
+                colors={['#6CC799', '#3A7F78']}
+              />
+            </View>
+            <View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+              <ScrollView style={{flex: 1}}>
                   <View style={style.transparentView}>
-                    { transformedGraphData.length > 0 ?
+                    {graphMeasurements.loading || transformedGraphData === '' ?
+                      <View style={{ height: 220, justifyContent: 'center', alignItems:'center' }}>
+                        <ActivityIndicator
+                          animating={true}
+                          size="large"
+                          color="white"
+                        />
+                      </View> :
+                      (transformedGraphData.length > 0 ?
                       <AnalyticsGraph
                         loading={false}
                         data={transformedGraphData}
@@ -229,7 +250,7 @@ const AnalyticsScreen = (props) => {
                       :
                       <View style={{backgroundColor: '#6CC799', height: 220, justifyContent: 'center', alignItems:'center' }}>
                         <Text style={{color: 'white'}}>No data to show</Text>
-                      </View>
+                      </View>)
                     }
                   </View>
                   <View>
@@ -245,7 +266,7 @@ const AnalyticsScreen = (props) => {
                     }}>
                       <MenuTrigger customStyles={triggerStyles}
                       >
-                        <Text style={{color: 'white'}}>Select period to show</Text><CalendarIcon/>
+                        <Text style={{color: 'white', height: 20}}>Select period to show</Text><CalendarIcon/>
                       </MenuTrigger>
                       <MenuOptions customStyles={optionsStyles}>
                         <MenuOption value={'hour'} text='Last Hour' />
@@ -259,8 +280,8 @@ const AnalyticsScreen = (props) => {
                   <FlatList data={analyticsList()} renderItem={renderItem} style={style.list}
                             keyExtractor={(item, index) => index.toString()} />
                 </ScrollView>
-                   )
-                }
+            </View>
+          </View>
       </GradientHeaderComponent>
     </MenuProvider>
   )

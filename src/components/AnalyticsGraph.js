@@ -36,7 +36,6 @@ const AnalyticsGraph = (props) => {
           }}
           height={props.height}
           theme={VictoryTheme.material}
-          style={{ parent: { backgroundColor: '#6CC799' } }}
         >
           <VictoryAxis
             dependentAxis

@@ -21,7 +21,7 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
     <Modal isVisible={modalDisplayed} onBackButtonPress={() => setModalDisplayed(false)}
            backdropTransitionOutTiming={0}>
       <MenuProvider skipInstanceCheck >
-      <View style={{backgroundColor: 'white', height: '70%',}}>
+      <View style={{backgroundColor: 'white', height: '70%', marginTop: 100}}>
         {!isStartDateTimePickerVisible && !isEndDateTimePickerVisible ?
           <View style={{flex: 1}}>
             <View style={{flexDirection: 'row'}}>

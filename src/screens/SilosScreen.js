@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  View, Text, FlatList, Dimensions, TouchableWithoutFeedback,
+  View, Text, FlatList, Dimensions, TouchableWithoutFeedback, Platform
 } from 'react-native';
 
 import { useStore } from '../context/StateContext';
@@ -35,6 +35,7 @@ const SilosScreen = (props) => {
             margin: 10,
             marginBottom: 0,
             borderRadius: 10,
+            paddingTop: Platform.OS === "ios" ? 0 : 20
           }}
         >
           <FlatList
@@ -49,6 +50,7 @@ const SilosScreen = (props) => {
                     flex: 1,
                     flexDirection: 'row',
                     margin: 3,
+                    marginHorizontal: Platform.OS === "ios" ? 0 : 20,
                   }}
                 >
                   <SiloPercentage percentage={item.percentage} />

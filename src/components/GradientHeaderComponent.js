@@ -9,11 +9,7 @@ const styles = (backgroundColor) => StyleSheet.create({
   },
   innerView: {
     backgroundColor: backgroundColor,
-    shadowColor: '#000000',
-    shadowOpacity: 0.08,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 6,
-    elevation: 2,
+
     //borderBottomLeftRadius: 12,
   },
   linearGradient: {
