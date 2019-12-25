@@ -39,4 +39,7 @@ export const initialState = {
         errorMessage: '',
         loading: true,
     },
+    language: {
+      current: 'de'
+    }
 };

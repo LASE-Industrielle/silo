@@ -5,6 +5,7 @@ import {
 
 import { useNavigation } from 'react-navigation-hooks';
 import { elevationShadowStyle } from '../Styles';
+import {useTranslation} from "react-i18next";
 
 const style = StyleSheet.create({
   tableContainer: { flex: 0.65, backgroundColor: '#F2F2F2' },
@@ -45,25 +46,26 @@ const style = StyleSheet.create({
 
 const SiloDetailsTable = ({ silo }) => {
   const navigation = useNavigation();
+  const {t} = useTranslation()
   return (
     <View style={style.tableContainer}>
       <View style={style.shadowContainer}>
         <View style={style.tableContainerList}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ marginRight: 50 }}>
-              <Text style={style.greyText}>Content</Text>
-              <Text style={{ color: 'black', marginVertical: 10 }}>Soil</Text>
+              <Text style={style.greyText}>{t('content')}</Text>
+              <Text style={{ color: 'black', marginVertical: 10 }}>{t('Salt')}</Text>
             </View>
             <View style={style.line} />
             <View style={{ marginLeft: 5 }}>
-              <Text style={style.greyText}>Capacity</Text>
+              <Text style={style.greyText}>{t('capacity')}</Text>
               <Text style={style.kgStatus}>
                 {`${Math.round(silo.percentage * 0.01 * silo.capacity)} / ${silo.capacity}`}
               </Text>
             </View>
           </View>
           <View style={style.line} />
-          <Text style={{ color: '#BEB9B9', margin: 10 }}>Average</Text>
+          <Text style={{ color: '#BEB9B9', margin: 10 }}>{t('average')}</Text>
           {Object.keys(silo.values_by_day).map(key => (
             <View style={style.tableItemContainer} key={key}>
               <View style={{ flexDirection: 'row' }}>
@@ -83,7 +85,7 @@ const SiloDetailsTable = ({ silo }) => {
             }}
           >
             <View style={style.analyticsButton}>
-              <Text style={style.analyticsText}>ANALYTICS</Text>
+              <Text style={style.analyticsText}>{t('analytics')}</Text>
             </View>
           </TouchableWithoutFeedback>
         </View>

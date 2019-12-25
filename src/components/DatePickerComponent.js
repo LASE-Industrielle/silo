@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Text } from 'native-base';
 import DatePicker from 'react-native-date-picker';
+import {useStore} from "../context/StateContext";
+import {useTranslation} from "react-i18next";
 
 const primary = '#6CC799';
 
 const DatePickerComponent = ({ setDateTime, isVisible, label }) => {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(true);
   const [isTimePickerVisible, setIsTimePickerVisible] = useState(false);
-
+  const [{language}] = useStore()
+  const {t} = useTranslation()
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(new Date());
 
@@ -31,7 +34,7 @@ const DatePickerComponent = ({ setDateTime, isVisible, label }) => {
               <Text style={{ color: primary, fontSize: 18 }}>
                 {label}
                 {' '}
-Date
+                {t('Date')}
               </Text>
             </View>
           </View>
@@ -47,7 +50,7 @@ Date
               <DatePicker
                 date={selectedDate}
                 onDateChange={date => setSelectedDate(date)}
-                locale="en_GB"
+                locale={language.current === 'de'?"de_DE":'en_GB'}
                 textColor="#6CC799"
                 mode="date"
               />
@@ -66,7 +69,7 @@ Date
               }}
             >
               <TouchableOpacity onPress={() => isVisible(false)}>
-                <Text style={{ fontSize: 12, color: '#F18382' }}>BACK</Text>
+                <Text style={{ fontSize: 12, color: '#F18382' }}>{t('BACK')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
@@ -74,7 +77,7 @@ Date
                   setIsTimePickerVisible(true);
                 }}
               >
-                <Text style={{ fontSize: 12, color: primary }}>NEXT</Text>
+                <Text style={{ fontSize: 12, color: primary }}>{t('NEXT')}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -97,7 +100,7 @@ Date
               <Text style={{ color: primary, fontSize: 18 }}>
                 {label}
                 {' '}
-Time
+                {t('Time')}
               </Text>
             </View>
           </View>
@@ -114,7 +117,7 @@ Time
               <DatePicker
                 date={selectedTime}
                 onDateChange={date => setSelectedTime(date)}
-                locale="en_GB"
+                locale={language.current === 'de'?"de_DE":'en_GB'}
                 textColor="#6CC799"
                 mode="time"
               />
@@ -138,7 +141,7 @@ Time
                   setIsDatePickerVisible(true);
                 }}
               >
-                <Text style={{ fontSize: 12, color: '#F18382' }}>BACK</Text>
+                <Text style={{ fontSize: 12, color: '#F18382' }}>{t('BACK')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {

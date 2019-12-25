@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image, StyleSheet, Switch, Text, TouchableOpacity, View,
 } from 'react-native';
@@ -6,15 +6,18 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { useNavigation } from 'react-navigation-hooks';
 import { useStore } from '../context/StateContext';
-import { LOGOUT_USER } from '../Actions';
+import {CHANGE_LANGUAGE, LOGOUT_USER, NOTIFICATIONS_LOAD_SUCCESS} from '../Actions';
 
 import { elevationShadowStyle } from '../Styles';
 import NotificationIcon from '../icons/NotificationIcon';
 import SynchronizationIcon from '../icons/SynchronizationIcon';
 import LogoutIcon from '../icons/LogoutIcon';
 import ccLogo from '../../assets/img/cc.jpg';
+import changeLanguage from '../services/LanguageService'
 
 import GradientHeaderComponent from '../components/GradientHeaderComponent';
+import {useTranslation} from "react-i18next";
+import InfoIcon from "../icons/InfoIcon";
 
 const style = StyleSheet.create({
   view: {
@@ -76,10 +79,23 @@ const style = StyleSheet.create({
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
-  const [{ profile }, dispatch] = useStore();
+  const [{ profile, language }, dispatch] = useStore();
+  const {t} = useTranslation()
 
   const [sync1, setSync1] = useState(true);
   const [sync2, setSync2] = useState(false);
+  const [isGermanEnabled, setIsGermanEnabled] = useState(language.current === 'de');
+
+
+  const handleChangeLanguage = () => {
+    if(isGermanEnabled){
+      changeLanguage(dispatch,'en')
+      setIsGermanEnabled(false)
+    } else {
+      changeLanguage(dispatch,'de')
+      setIsGermanEnabled(true)
+    }
+  };
 
   const logout = async () => {
     await AsyncStorage.removeItem('token');
@@ -97,20 +113,27 @@ const ProfileScreen = () => {
             <View style={style.listItem}>
               <View style={style.iconTextWrapper}>
                 <SynchronizationIcon fill="#01A04E" height={14} width={14} style={style.icon} />
-                <Text style={style.profileItemText}>Synchronization</Text>
+                <Text style={style.profileItemText}>{t('synchronization')}</Text>
               </View>
               <Switch value={sync1} style={style.switch} onValueChange={() => setSync1(!sync1)} />
             </View>
             <View style={style.listItem}>
               <View style={style.iconTextWrapper}>
                 <NotificationIcon fill="#01A04E" height={14} width={14} style={style.icon} />
-                <Text style={style.profileItemText}>Notifications</Text>
+                <Text style={style.profileItemText}>{t('notifications')}</Text>
               </View>
               <Switch value={sync2} style={style.switch} onValueChange={() => setSync2(!sync2)} />
             </View>
+            <View style={style.listItem}>
+              <View style={style.iconTextWrapper}>
+                <InfoIcon fill="#01A04E" height={14} width={14} style={style.icon} />
+                <Text style={style.profileItemText}>{t('German language enabled')}</Text>
+              </View>
+              <Switch value={isGermanEnabled} style={style.switch} onValueChange={handleChangeLanguage} />
+            </View>
             <TouchableOpacity style={style.profileListItem} onPress={logout}>
               <LogoutIcon fill="#F19B93" height={14} width={14} style={style.icon} />
-              <Text style={style.profileItemRedText}>Logout</Text>
+              <Text style={style.profileItemRedText}>{t('Logout')}</Text>
             </TouchableOpacity>
           </View>
         </View>

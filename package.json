@@ -9,10 +9,12 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.4.1",
     "axios": "^0.18.0",
+    "i18next": "^19.0.2",
     "moment": "^2.24.0",
     "native-base": "^2.12.1",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
+    "react-i18next": "^11.2.7",
     "react-native": "^0.59.8",
     "react-native-chart-kit": "^2.6.1",
     "react-native-date-picker": "^2.5.0",

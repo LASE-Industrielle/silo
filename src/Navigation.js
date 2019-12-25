@@ -17,6 +17,7 @@ import NotificationIcon from './icons/NotificationIcon';
 import BackArrowIcon from './icons/BackArrowIcon';
 import InfoIcon from './icons/InfoIcon';
 import AnalyticsScreen from './screens/AnalyticsScreen';
+import i18n from '../i18n'
 
 const styles = StyleSheet.create({
   headerTitleText: {
@@ -61,7 +62,7 @@ const navigationOptions = (
     ),
     // Heading/title of the header
     headerTitle: (
-      <Text style={styles.headerTitleText}>{navigation.getParam('title', title !== null ? title : '')}</Text>
+      <Text style={styles.headerTitleText}>{navigation.getParam('title', title !== null ? i18n.t(title) : '')}</Text>
     ),
     // Heading style
     headerStyle:
@@ -119,7 +120,7 @@ const SiloNavigator = createStackNavigator(
     Silos: {
       screen: SilosScreen,
       path: 'Silos',
-      navigationOptions: navigationOptions(false, 'Silos', true, true, true),
+      navigationOptions: navigationOptions(false, 'silos', true, true, true),
     },
     Analytics: {
       screen: AnalyticsScreen,
@@ -134,17 +135,19 @@ const SiloNavigator = createStackNavigator(
     SiloDescription: {
       screen: SiloDescriptionScreen,
       path: 'SiloDescription',
-      navigationOptions: navigationOptions(true, 'Configuration'),
+      navigationOptions: navigationOptions(true, 'configuration'),
     },
     Profile: {
       screen: ProfileScreen,
       path: 'Profile',
-      navigationOptions: navigationOptions(true, 'Profile'),
+      // navigationOptions: ({navigationOptions }) =>({...navigationOptions,title:i18n.t('profile'),})
+      navigationOptions: navigationOptions(true, 'profile'),
+
     },
     Notifications: {
       screen: NotificationsScreen,
       path: 'Notifications',
-      navigationOptions: navigationOptions(true, 'Notifications'),
+      navigationOptions: navigationOptions(true, 'notifications'),
     },
   },
   {

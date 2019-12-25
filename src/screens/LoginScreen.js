@@ -19,6 +19,7 @@ import { useStore } from '../context/StateContext';
 import authCall from '../services/AuthService';
 
 import SiloLogoSvg from '../components/SiloLogoSvg';
+import {useTranslation} from "react-i18next";
 
 const appAction = StackActions.reset({
   index: 0,
@@ -100,6 +101,7 @@ const LoginScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [{ auth }, dispatch] = useStore();
+  const {t} = useTranslation()
 
   useEffect(() => {
     if (__DEV__ === true) {
@@ -191,7 +193,7 @@ const LoginScreen = () => {
         behavior={Platform.OS === 'ios' ? 'position' : null}
       >
         <View style={style.loginView}>
-          <Text style={style.loginText}>Sign In</Text>
+          <Text style={style.loginText}>{t('Sign In')}</Text>
           <TextInput
             style={style.credentialsTextInput}
             placeholder="xyz@gmail.com"
@@ -211,14 +213,14 @@ const LoginScreen = () => {
             value={password}
             onChangeText={text => setPassword(text)}
           />
-          <Text style={style.forgotPasswordText}>Forgot password?</Text>
+          <Text style={style.forgotPasswordText}>{t('Forgot Password')}</Text>
           <TouchableOpacity style={style.loginTouchableOpacity} onPress={login}>
-            <Text style={style.loginButton}>SIGN IN</Text>
+            <Text style={style.loginButton}>{t('LOG IN')}</Text>
           </TouchableOpacity>
           <Text style={style.dontHaveAccountText}>
-            Don&apos;t have an account?
+            {t("Don't have an account?")}
             {' '}
-            <Text style={style.signUpText}>Sign up</Text>
+            <Text style={style.signUpText}>{t('Sign up')}</Text>
           </Text>
         </View>
       </KeyboardAvoidingView>

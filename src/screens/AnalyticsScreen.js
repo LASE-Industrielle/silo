@@ -35,6 +35,7 @@ import {
 import GradientHeaderComponent from '../components/GradientHeaderComponent';
 import CalendarIcon from '../icons/CalendarIcon';
 import LinearGradient from 'react-native-linear-gradient';
+import {useTranslation} from "react-i18next";
 
 
 const style = StyleSheet.create({
@@ -128,7 +129,7 @@ const AnalyticsScreen = (props) => {
   const [{graphMeasurements}, dispatch] = useStore();
   const siloId = props.navigation.getParam('id', 1);
   const [modalDisplayed, setModalDisplayed] = useState(false);
-
+  const {t} = useTranslation()
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
 
@@ -249,7 +250,7 @@ const AnalyticsScreen = (props) => {
                       />
                       :
                       <View style={{backgroundColor: '#6CC799', height: 220, justifyContent: 'center', alignItems:'center' }}>
-                        <Text style={{color: 'white'}}>No data to show</Text>
+                        <Text style={{color: 'white'}}>{t('no data to show')}</Text>
                       </View>)
                     }
                   </View>
@@ -266,14 +267,14 @@ const AnalyticsScreen = (props) => {
                     }}>
                       <MenuTrigger customStyles={triggerStyles}
                       >
-                        <Text style={{color: 'white', height: 20}}>Select period to show</Text><CalendarIcon/>
+                        <Text style={{color: 'white', height: 20}}>{t('select period to show')}</Text><CalendarIcon/>
                       </MenuTrigger>
                       <MenuOptions customStyles={optionsStyles}>
-                        <MenuOption value={'hour'} text='Last Hour' />
-                        <MenuOption value={'day'} text={'Last Day'}/>
-                        <MenuOption value={'week'} text={'Last Week'}/>
-                        <MenuOption value={'month'} text={'Last Month'}/>
-                        <MenuOption value={'custom'} text={'Custom Date'}/>
+                        <MenuOption value={'hour'} text={t('last hour')} />
+                        <MenuOption value={'day'} text={t('last day')}/>
+                        <MenuOption value={'week'} text={t('last week')}/>
+                        <MenuOption value={'month'} text={t('last month')}/>
+                        <MenuOption value={'custom'} text={t('custom date')}/>
                       </MenuOptions>
                     </Menu>
                   </View>

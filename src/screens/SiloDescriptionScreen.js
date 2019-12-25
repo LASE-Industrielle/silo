@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { elevationShadowStyle } from '../Styles';
 
 import GradientHeaderComponent from '../components/GradientHeaderComponent';
+import {useTranslation} from "react-i18next";
 
 const style = StyleSheet.create({
   specificationRow: { flexDirection: 'column', justifyContent: 'center', alignItems: 'center' },
@@ -24,7 +25,7 @@ const style = StyleSheet.create({
 
 const SiloDescriptionScreen = (props) => {
   const silo = props.navigation.getParam('siloDetails', {});
-
+  const {t} = useTranslation()
   return (
     <GradientHeaderComponent backgroundColor={'#F2F2F2'}>
       <View
@@ -46,7 +47,7 @@ const SiloDescriptionScreen = (props) => {
           }}
         >
           <View style={style.specificationRow}>
-            <Text style={style.greyText}>Width</Text>
+            <Text style={style.greyText}>{t('Width')}</Text>
             <View style={{ flexDirection: 'row' }}>
               <Text style={style.statsText}>
                 {silo.width}
@@ -56,7 +57,7 @@ const SiloDescriptionScreen = (props) => {
             </View>
           </View>
           <View style={style.specificationRow}>
-            <Text style={style.greyText}>Height</Text>
+            <Text style={style.greyText}>{t('Height')}</Text>
             <View style={{ flexDirection: 'row' }}>
               <Text style={style.statsText}>
                 {silo.height}
@@ -66,7 +67,7 @@ const SiloDescriptionScreen = (props) => {
             </View>
           </View>
           <View style={style.specificationRow}>
-            <Text style={style.greyText}>Capacity</Text>
+            <Text style={style.greyText}>{t('capacity')}</Text>
             <View style={{ flexDirection: 'row' }}>
               <Text style={style.statsText}>
                 {silo.capacity}
@@ -78,17 +79,17 @@ const SiloDescriptionScreen = (props) => {
         </View>
         <View style={style.line} />
         <View style={{ margin: 20 }}>
-          <Text style={style.greyText}>Location</Text>
+          <Text style={style.greyText}>{t('Location')}</Text>
           <Text style={style.blackText}>{silo.location}</Text>
         </View>
         <View style={style.line} />
         <View style={{ margin: 20 }}>
-          <Text style={style.greyText}>Serial Number</Text>
+          <Text style={style.greyText}>{t('Serial Number')}</Text>
           <Text style={style.blackText}>{silo.sensor.serial_number}</Text>
         </View>
         <View style={style.line} />
         <View style={{ margin: 20 }}>
-          <Text style={style.greyText}>Type</Text>
+          <Text style={style.greyText}>{t('Type')}</Text>
           <Text style={style.blackText}>{silo.sensor.type}</Text>
         </View>
       </View>

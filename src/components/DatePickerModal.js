@@ -6,12 +6,14 @@ import DatePickerComponent from './DatePickerComponent'
 import moment from "moment";
 import DatePickerIcon from "../icons/DatePickerIcon";
 import {MenuProvider} from 'react-native-popup-menu';
+import {useTranslation} from "react-i18next";
 
 const primary = '#6CC799';
 
 const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
   const [startDateTime, setStartDateTime] = useState(null);
   const [endDateTime, setEndDateTime] = useState(null);
+  const {t} = useTranslation()
 
   const [isSelectDatePickerVisible, setIsSelectDatePickerVisible] = useState(true);
   const [isStartDateTimePickerVisible, setIsStartDateTimePickerVisible] = useState(false);
@@ -30,7 +32,7 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
                 borderBottomWidth: 1, height: 50, alignItems: 'flex-start',
                 justifyContent: 'center', paddingLeft: 10
               }}>
-                <Text style={{color:primary,fontSize: 18}}>Select Date & Time</Text>
+                <Text style={{color:primary,fontSize: 18}}>{t('Select Date & Time')}</Text>
               </View>
             </View>
             <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -46,7 +48,7 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
                   fontSize: 13, width: '80%', color: '#AAA9A9', paddingBottom: 5,
                 }}
                 >
-                  Start Date & Time
+                  {t('Start date and time')}
                 </Text>
                 <TouchableOpacity
                   style={{
@@ -95,7 +97,7 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
                     paddingBottom: 5,
                   }}
                 >
-                  End Date & Time
+                  {t('End date and time')}
                 </Text>
                 <TouchableOpacity
                   style={{
@@ -156,7 +158,7 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
                     setEndDateTime(null);
                   }}
                 >
-                  <Text style={{ fontSize: 12, color: '#F18382' }}>CANCEL</Text>
+                  <Text style={{ fontSize: 12, color: '#F18382' }}>{t('CANCEL')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -168,7 +170,7 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
                     setEndDateTime(null);
                   }}
                 >
-                  <Text style={{ fontSize: 12, color: primary }}>APPLY</Text>
+                  <Text style={{ fontSize: 12, color: primary }}>{t('APPLY')}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -178,14 +180,14 @@ const DatePickerModal = ({ modalDisplayed, setModalDisplayed, filterData }) => {
           <DatePickerComponent
             setDateTime={setStartDateTime}
             isVisible={setIsStartDateTimePickerVisible}
-            label="Start"
+            label={t('Start')}
           />
         ) : null}
         {isEndDateTimePickerVisible ? (
           <DatePickerComponent
             setDateTime={setEndDateTime}
             isVisible={setIsEndDateTimePickerVisible}
-            label="End"
+            label={t('End')}
           />
         ) : null}
       </View>

@@ -7,6 +7,7 @@ import getNotifications from '../services/NotificationService';
 import { useStore } from '../context/StateContext';
 import { elevationShadowStyle } from '../Styles';
 import GradientHeaderComponent from '../components/GradientHeaderComponent';
+import {useTranslation} from "react-i18next";
 
 const style = StyleSheet.create({
   view: {
@@ -71,6 +72,7 @@ const style = StyleSheet.create({
 
 const renderListItem = ({ item }) => {
   item.read = false;
+
   return (
     <View style={style.notificationContainer}>
       {item.read ? (
@@ -98,6 +100,7 @@ const renderListItem = ({ item }) => {
 
 const NotificationsScreen = (props) => {
   const [{ notifications }, dispatch] = useStore([]);
+  const {t} = useTranslation()
 
   useEffect(() => {
     getNotifications(dispatch);
@@ -120,7 +123,6 @@ const NotificationsScreen = (props) => {
     <GradientHeaderComponent backgroundColor={'#F2F2F2'}>
       <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
         <View style={{ justifyContent: 'center', alignItems: 'flex-start' }}>
-          <Text style={{ color: '#C5C5C5', margin: 5, marginLeft: 15 }}>You have 3 unread notifications</Text>
         </View>
         <View
           style={{
@@ -144,10 +146,10 @@ const NotificationsScreen = (props) => {
               <View>
                 <View style={style.footer}>
                   <TouchableOpacity>
-                    <Text style={style.allRead}>Mark all as read</Text>
+                    <Text style={style.allRead}>{t('Mark all as read')}</Text>
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Text style={style.clearAll}>Clear all</Text>
+                    <Text style={style.clearAll}>{t('Clear all')}</Text>
                   </TouchableOpacity>
                 </View>
 
@@ -156,7 +158,7 @@ const NotificationsScreen = (props) => {
   )}
             ListEmptyComponent={(
               <View style={style.view}>
-                <Text>No notifications</Text>
+                <Text>{t('No notifications')}</Text>
               </View>
   )}
           />
