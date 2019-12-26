@@ -17,7 +17,7 @@ const App = () => {
 
   useEffect(() => {
     checkPermission();
-    subscribeToTopic('/topics/silo1');
+    firebase.messaging().unsubscribeFromTopic('/topics/silo1')
 
   }, []);
 

@@ -3,6 +3,7 @@ import {
   AUTH_ERROR, AUTH_START, AUTH_SUCCESS, SET_USERNAME,
 } from '../Actions';
 import { loginUrl } from '../Urls';
+import firebase from "react-native-firebase";
 
 const authCall = (dispatch, loginUsername, loginPassword) => {
   dispatch({ type: AUTH_START });
@@ -27,6 +28,7 @@ const authCall = (dispatch, loginUsername, loginPassword) => {
         type: SET_USERNAME,
         username: loginUsername,
       });
+      firebase.messaging().subscribeToTopic('/topics/'+loginUsername);
     })
     .catch((err) => {
       dispatch({
