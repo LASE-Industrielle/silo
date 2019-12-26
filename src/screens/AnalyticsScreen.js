@@ -133,7 +133,7 @@ const AnalyticsScreen = (props) => {
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
 
-  const [lastPeriodToShow, setLastPeriodToShow] = useState('month');
+  const [lastPeriodToShow, setLastPeriodToShow] = useState('hour');
 
   const [transformedGraphData, setTransformedGraphData] = useState('');
 
@@ -161,19 +161,14 @@ const AnalyticsScreen = (props) => {
   };
 
   useEffect(() => {
-    getPeriodMeasurements(dispatch, siloId, 'month');
-    //getAllMeasurements(dispatch, siloId);
-  }, []);
+    getPeriodMeasurements(dispatch, siloId, lastPeriodToShow);
+  }, [lastPeriodToShow]);
 
   useEffect(() => {
     if(!graphMeasurements.loading) {
       getDataMeasurements();
     }
   }, [graphMeasurements.data]);
-
-  const onRefresh = () => {
-    //getAllMeasurements(dispatch, siloId);
-  };
 
   const analyticsList = () => {
     const arr = [];
@@ -261,7 +256,6 @@ const AnalyticsScreen = (props) => {
                       }
                       else {
                         setLastPeriodToShow(value);
-                        getPeriodMeasurements(dispatch, siloId, value);
                       }
                       return true;
                     }}>
@@ -269,7 +263,7 @@ const AnalyticsScreen = (props) => {
                       >
                         <Text style={{color: 'white', height: 20}}>{t('select period to show')}</Text><CalendarIcon/>
                       </MenuTrigger>
-                      <MenuOptions customStyles={optionsStyles}>
+                      <MenuOptions customStyles={optionsStyles} >
                         <MenuOption value={'hour'} text={t('last hour')} />
                         <MenuOption value={'day'} text={t('last day')}/>
                         <MenuOption value={'week'} text={t('last week')}/>

@@ -6,7 +6,7 @@ import {
   VictoryLine,
   VictoryTheme,
   VictoryLabel,
-  LineSegment,
+  LineSegment, VictoryScatter,
 } from 'victory-native';
 
 const style = {
@@ -14,7 +14,11 @@ const style = {
     axis: { stroke: '#4E9685', strokeWidth: 3, width: 100 },
     ticks: { stroke: 'transparent' },
     grid: { stroke: '#5EA890', strokeDasharray: '3,3' },
-  }
+  },
+  victoryScatter: {
+    data: { fill: '#fff' },
+  },
+
 }
 const AnalyticsGraph = (props) => {
   const { ticks } = props;
@@ -81,6 +85,10 @@ const AnalyticsGraph = (props) => {
             style={{ data: { stroke: 'white' } }}
             data={data}
             interpolation="monotoneX"
+          />
+          <VictoryScatter
+            style={style.victoryScatter}
+            data={data}
           />
         </VictoryChart>
       ) : (
